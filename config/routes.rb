@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
-  post '/hello', to: 'application#hello_world'
+  get '/hello', to: 'application#hello'
+  # post '/hello_world', to: 'application#hello_world'
 
 end
