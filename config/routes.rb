@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :masteries
+  resources :problems
+  resources :students
+  resources :classrooms
+  resources :teachers
 
   get '/hello', to: 'application#hello'
 
