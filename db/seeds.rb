@@ -1,6 +1,6 @@
-mrs_cuff = Teacher.create(username: "Mrs. Cuff")
-mr_klatt = Teacher.create(username: "Mr. Klatt") 
-mr_retzlaff = Teacher.create(username: "Mrs. Retzlaff")
+mrs_cuff = Teacher.create(username: "Mrs. Cuff", password: 'password',)
+mr_klatt = Teacher.create(username: "Mr. Klatt", password: 'password',) 
+mr_retzlaff = Teacher.create(username: "Mrs. Retzlaff", password: 'password',)
 
 third_grade = Classroom.new(classroom_name: "3rd Grade")
 fourth_grade = Classroom.new(classroom_name: "4th Grade")
@@ -23,16 +23,16 @@ sixth_grade.save
 seventh_grade.save
 eighth_grade.save
 
-boz = Student.new(username: 'Boz Leyrer', extra_time_needed: true, extra_time_amount: 5, offer_support: false)
-griffith = Student.new(username: 'Griffey Sellnow', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-abbie = Student.new(username: 'Abbie Leyrer', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-kippy = Student.new(username: 'Kippy Ninman', extra_time_needed: true, extra_time_amount: 3, offer_support: false)
-seth = Student.new(username: 'Sethaoy Pardee', extra_time_needed: false, extra_time_amount: 0, offer_support: true)
-dara = Student.new(username: 'Dara Parrish', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-grant = Student.new(username: 'Grant Stafford', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-cassie =Student.new(username: 'Cassandra Ibeling', extra_time_needed: true, extra_time_amount: 4, offer_support: true)
-jamie = Student.new(username: 'Jamie Anderson', extra_time_needed: true, extra_time_amount: 7, offer_support: true)
-darby =Student.new(username: 'Darby Parrish', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
+boz = Student.new(username: 'Boz Leyrer', password: 'password', extra_time_needed: true, extra_time_amount: 5, offer_support: false)
+griffith = Student.new(username: 'Griffey Sellnow', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
+abbie = Student.new(username: 'Abbie Leyrer', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
+kippy = Student.new(username: 'Kippy Ninman', password: 'password', extra_time_needed: true, extra_time_amount: 3, offer_support: false)
+seth = Student.new(username: 'Sethaoy Pardee', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: true)
+dara = Student.new(username: 'Dara Parrish', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
+grant = Student.new(username: 'Grant Stafford', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
+cassie =Student.new(username: 'Cassandra Ibeling', password: 'password', extra_time_needed: true, extra_time_amount: 4, offer_support: true)
+jamie = Student.new(username: 'Jamie Anderson', password: 'password', extra_time_needed: true, extra_time_amount: 7, offer_support: true)
+darby =Student.new(username: 'Darby Parrish', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
 
 boz.classroom = fourth_grade
 griffith.classroom = third_grade
@@ -68,7 +68,7 @@ p6 = Problem.create(multiplication_fact: '1 x 6', answer: 6, fact_number: 6)
 p7 = Problem.create(multiplication_fact: '1 x 7', answer: 7, fact_number: 7)
 p8 = Problem.create(multiplication_fact: '1 x 8', answer: 8, fact_number: 8)
 p9 = Problem.create(multiplication_fact: '1 x 9', answer: 9, fact_number: 9)
-p10 = Problem.create(multiplication_fact: '2 x 10', answer: 10, fact_number: 10)
+p10 = Problem.create(multiplication_fact: '1 x 10', answer: 10, fact_number: 10)
 
 p11 = Problem.create(multiplication_fact: '2 x 1', answer: 2, fact_number: 11)
 p12 = Problem.create(multiplication_fact: '2 x 2', answer: 4, fact_number: 12)
