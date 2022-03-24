@@ -34,6 +34,8 @@ cassie =Student.new(username: 'Cassandra Ibeling', password: 'password', extra_t
 jamie = Student.new(username: 'Jamie Anderson', password: 'password', extra_time_needed: true, extra_time_amount: 7, offer_support: true)
 darby =Student.new(username: 'Darby Parrish', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
 
+
+
 boz.classroom = fourth_grade
 griffith.classroom = third_grade
 abbie.classroom = sixth_grade
@@ -168,3 +170,22 @@ p97 = Problem.create(multiplication_fact: '10 x 7', answer: 70, fact_number: 97)
 p98 = Problem.create(multiplication_fact: '10 x 8', answer: 80, fact_number: 98)
 p99 = Problem.create(multiplication_fact: '10 x 9', answer: 90, fact_number: 99)
 p100 = Problem.create(multiplication_fact: '10 x 10', answer: 100, fact_number: 100)
+
+def create_masteries(one_student)
+  n = 1
+  while n <= 100
+    one_student.masteries.create(mastery_level: rand(0...11), times_answered: rand(6...11), times_correct: rand(0...6), problem_id: n)
+    n += 1
+  end
+end
+
+create_masteries(boz)
+create_masteries(griffith)
+create_masteries(abbie)
+create_masteries(kippy)
+create_masteries(seth)
+create_masteries(dara)
+create_masteries(cassie)
+create_masteries(jamie)
+create_masteries(darby)
+create_masteries(grant)

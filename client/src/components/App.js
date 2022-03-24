@@ -27,11 +27,26 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <Route path="/testing">
-            <h1>Test Route</h1>
-          </Route>
-          <Route path="/loging">
+          <Route path="/user-login">
             <LoginForm user={user} setUser={setUser}/>
+          </Route>
+          <Route path="/user-signup">
+            {/* <SignUpForm user={user} setUser={setUser}/> */}
+          </Route>
+          <Route path="/multiplication_rules">
+            {/* <MultiplicationRules user={user} setUser={setUser}/> */}
+          </Route>
+          <Route path="/teacher-dashboard">
+            {/* <TeacherDashboard user={user} setUser={setUser}/> */}
+          </Route>
+          <Route path="/student-dashboard">
+            {/* <StudentDashboard user={user} setUser={setUser}/> */}
+          </Route>
+          <Route path="/my-times-tables">
+            {/* <MyTimesTables user={user} setUser={setUser}/> */}
+          </Route>
+          <Route path="/quizzes">
+            {/* <Quizzes user={user} setUser={setUser}/> */}
           </Route>
           <Route exact path="/">
             <h1>Page Count: {count}</h1>

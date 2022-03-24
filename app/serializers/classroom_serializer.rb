@@ -1,4 +1,8 @@
 class ClassroomSerializer < ActiveModel::Serializer
-  attributes :id, :classroom_name
+  
   has_one :teacher
+  has_many :students
+
+  attributes :id, :classroom_name, :number_of_students
+
 end
