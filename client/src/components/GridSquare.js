@@ -1,6 +1,9 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useContext} from 'react'
+import {UserContext} from "./UserContext"
 
-function GridSquare ({fact, user}) {
+function GridSquare ({fact}) {
+
+  const {user} = useContext(UserContext)
 
   const firstUpdate = useRef(true);
 
@@ -20,9 +23,10 @@ function GridSquare ({fact, user}) {
     <div className='grid-square' id={`level-${masteryLevel}`} onClick={() => setShowAnswer(!showAnswer)}>
     {showAnswer ===false 
       ? 
-    <h2 style={{fontSize: '1.3vw'}}>{fact.multiplication_fact}</h2>
+    <h2 className='grid-fact' >{fact.multiplication_fact}</h2>
       :
-    <h2 style={{fontSize: '1.6vw'}}>{fact.answer}</h2>}
+    <h2 className='grid-answer'>{fact.answer}</h2>}
+    {masteryLevel === 10 ? <h5 className='grid-mastered'>MASTER</h5>: null}
     </div>
   ) 
   :

@@ -17,11 +17,12 @@ code {
   flex-direction: row;
   flex-wrap: wrap; 
   justify-content: space-between;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 5%;
+  margin-right: 5%;
   background-color: #00396b;
   padding: 5px;
   border-radius: 15px;
+  max-width: 700px;
 }
 
 .grid-square {
@@ -34,10 +35,32 @@ code {
   height: 0; 
   position: relative; 
   margin: 2px;
+  flex-wrap: wrap;
   /* margin-top: 3px; 
   margin-bottom: 3px; */
   /* border: 1px solid white; */
   
+}
+
+.grid-fact {
+  /* font-size: max(1.6vw, 20px); */
+  font-size: min(2vw, 18px)
+}
+
+.grid-answer {
+  font-size: min(2vw, 18px);
+  color:#00686b;
+  font-weight: bolder;
+  background-color: white;
+  padding: 3px;
+  border-radius: 5px;
+}
+
+.grid-mastered {
+  font-size: min(1.2vw, 10px);
+  margin-top: -8px;
+  padding: 0px;
+  color: white
 }
 
 #level-0 {
@@ -81,5 +104,5 @@ code {
 }
 
 #level-10 {
-  background-color: #d5ff19;
+  background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
 }

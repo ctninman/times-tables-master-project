@@ -7,6 +7,8 @@ import TeacherDashboard from "./TeacherDashboard";
 import StudentDashboard from "./StudentDashboard";
 import MultiplicationRules from "./MultiplicationRules";
 import SignUpForm from "./SignUpForm";
+import NavBar from "./NavBar";
+import {UserContext} from "./UserContext"
 
 function App() {
   const [count, setCount] = useState(0);
@@ -34,8 +36,13 @@ function App() {
 
 
   return (
+    
     <BrowserRouter>
+      
       <div className="App">
+
+      <UserContext.Provider value={{user, setUser}}> 
+        <NavBar className='nav-bar'/>
         <Switch>
           <Route path="/user-login">
             <LoginForm user={user} setUser={setUser}/>
@@ -63,6 +70,7 @@ function App() {
           </Route>
 
         </Switch>
+        </UserContext.Provider>
       </div>
     </BrowserRouter>
   );
