@@ -23,6 +23,7 @@ code {
   padding: 5px;
   border-radius: 15px;
   max-width: 700px;
+  margin-bottom: 5px;
 }
 
 .grid-square {
@@ -52,7 +53,7 @@ code {
   color:#00686b;
   font-weight: bolder;
   background-color: white;
-  padding: 3px;
+
   border-radius: 5px;
 }
 

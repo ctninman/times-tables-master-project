@@ -34,3 +34,45 @@ function GridSquare ({fact}) {
 }
 
 export default GridSquare
+
+
+// import {useState, useEffect, useRef, useContext} from 'react'
+// import {UserContext} from "./UserContext"
+
+// function GridSquare ({fact}) {
+
+//   const {user} = useContext(UserContext)
+
+//   const firstUpdate = useRef(true);
+
+//   const [masteryLevel, setMasteryLevel] = useState(0)
+//   const [showAnswer, setShowAnswer] = useState(false)
+//   useEffect(() => {
+//       if (firstUpdate.current) {
+//         firstUpdate.current = false;
+//         return;
+//       }
+//     let currentFact = user.masteries.find(mastery => mastery.problem.fact_number === fact.fact_number)
+//     setMasteryLevel(currentFact.mastery_level)
+//   }, [user]);
+
+//   return user ?
+//     (
+//       showAnswer === false 
+//         ? 
+//     <div className='grid-square' style={{backgroundColor: '#f62d2d', display: 'inline-block',flexDirection: 'column'}}onClick={() => setShowAnswer(!showAnswer)}>
+//       <h2 className='grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{fact.answer}</h2>
+//       <h5 className='grid-mastered' style={{marginTop: '-15px', color: 'black'}}>{fact.multiplication_fact}</h5>
+//     </div>
+//       :
+//       <div className='grid-square' style={{backgroundColor: '#ffee00', display: 'inline-block',flexDirection: 'column'}} onClick={() => setShowAnswer(!showAnswer)}>
+//       <h2 className='grid-fact' style={{backgroundColor: 'transparent', color: 'black'}} >{fact.answer}</h2>
+//       <h5 className='grid-mastered' style={{marginTop: '-15px', color: 'black'}}>{fact.multiplication_fact}</h5>
+//     </div>
+   
+//   ) 
+//   :
+//   <h1>no user</h1>
+// }
+
+// export default GridSquare
