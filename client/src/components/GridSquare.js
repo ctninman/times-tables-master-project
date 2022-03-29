@@ -9,13 +9,26 @@ function GridSquare ({fact}) {
 
   const [masteryLevel, setMasteryLevel] = useState(0)
   const [showAnswer, setShowAnswer] = useState(false)
+  // useEffect(() => {
+  //     // if (firstUpdate.current) {
+  //     //   firstUpdate.current = false;
+  //     //   return;
+  //     // }
+  //   if (user) {
+  //   let currentFact = user.masteries.find(mastery => mastery.problem.fact_number === fact.fact_number)
+  //   setMasteryLevel(currentFact.mastery_level)
+  //   }
+  // }, []);
+
   useEffect(() => {
-      if (firstUpdate.current) {
-        firstUpdate.current = false;
-        return;
-      }
+    // if (firstUpdate.current) {
+    //   firstUpdate.current = false;
+    //   return;
+    // }
+    if (user) {
     let currentFact = user.masteries.find(mastery => mastery.problem.fact_number === fact.fact_number)
     setMasteryLevel(currentFact.mastery_level)
+    }
   }, [user]);
 
   return user ?

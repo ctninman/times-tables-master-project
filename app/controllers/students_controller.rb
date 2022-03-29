@@ -3,11 +3,22 @@ class StudentsController < ApplicationController
   wrap_parameters format: []
 
   def show
-    student = Student.find_by(id: session[:user_id])
-    if student
-      render json: student, include: ['masteries', 'masteries.problem'], status: :ok
-    else
-      render json: {error: "Not authorized"}, status: :unauthorized
+    if session[:student_id]
+      # session.delete :teacher_id
+      student = Student.find_by(id: session[:student_id])
+      if student
+        render json: student, include: ['masteries', 'masteries.problem'], status: :ok
+      else
+        render json: {error: "Not authorized"}, status: :unauthorized
+      end
+    elsif session[:teacher_id]
+      # session.delete :student_id
+      teacher = Teacher.find_by(id: session[:teacher_id])
+      if teacher
+        render json: teacher, status: :ok
+      else
+        render json: {error: "Not authorized"}, status: :unauthorized
+      end
     end
   end
 

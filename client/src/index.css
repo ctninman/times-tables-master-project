@@ -26,6 +26,21 @@ code {
   margin-bottom: 5px;
 }
 
+.quiz-grid {
+  display: flex; 
+  flex-direction: row;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-right: 5%;
+  background-color: #00396b;
+  padding: 5px;
+  border-radius: 15px;
+  min-width: 400px;
+  max-width: 450px;
+  margin-bottom: 5px;
+}
+
 .grid-square {
   width: 9%;
   border-radius: 5px; 
@@ -62,6 +77,11 @@ code {
   margin-top: -8px;
   padding: 0px;
   color: white
+}
+
+.grid-photo {
+  width: 50%;
+  min-width: 500px;
 }
 
 #level-0 {

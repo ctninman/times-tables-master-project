@@ -5,4 +5,9 @@ class Classroom < ApplicationRecord
   def number_of_students
     self.students.length
   end
+
+  # def class_mastery_level
+
+  # end
+
 end

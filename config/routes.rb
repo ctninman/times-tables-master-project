@@ -9,9 +9,12 @@ Rails.application.routes.draw do
   get '/hello', to: 'application#hello'
 
   get '/me', to: 'students#show'
-  post '/signup', to: 'users#create'
+  get '/me-teacher', to:'teachers#show'
+  post '/signup-student', to: 'students#create'
+  post '/signup-teacher', to: 'teachers#create'
 
   post '/login', to: 'sessions#create'
+  post '/login-teacher', to: 'sessions#create_teacher'
   delete '/logout', to: 'sessions#destroy'
 
   get '*path',

@@ -1,52 +1,66 @@
-import { useContext } from "react"
+import { useContext, useState,useEffect } from "react"
 import {UserContext} from "./UserContext"
 import FactCard from "./FactCard"
 
 function StudentDashboard () {
 
   const {user} = useContext(UserContext)
-  const userMasteredFacts = user.masteries.filter ((mastery) => mastery.mastery_level === 10);
-  const userAlmostMasteredFacts = user.masteries.filter ((mastery) => mastery.mastery_level < 10 && mastery.mastery_level >=8 );
-  const userLearningFacts = user.masteries.filter ((mastery) => mastery.mastery_level < 8 && mastery.mastery_level >=4);
-  const userUnknownFacts = user.masteries.filter ((mastery) => mastery.mastery_level < 3);
+  // const [userMasteredFacts, setUserMasteredFacts] = useState(null);
+  // const [userAlmostMasteredFacts, setUserAlmostMasteredFacts] = useState(null);
+  // const [userLearningFacts, setUserLearningFacts] = useState(null);
+  // const [userUnknownFacts, setUserUnknownFacts] = useState(null);
+
+  // useEffect (() => {
+  //   setUserMasteredFacts(user.masteries.filter ((mastery) => mastery.mastery_level === 10))
+  //   setUserAlmostMasteredFacts(user.masteries.filter ((mastery) => mastery.mastery_level < 10 && mastery.mastery_level >=8 ))
+  //   setUserLearningFacts(user.masteries.filter ((mastery) => mastery.mastery_level < 8 && mastery.mastery_level >=4))
+  //   setUserUnknownFacts(user.masteries.filter ((mastery) => mastery.mastery_level < 3))
+  // }, [user])
+
+  // useEffect (() => {
+  //   if (user) 
+  // })
 
   return (
-    <>
+    user ?
+      <>
       <h1>Student Dashboard</h1>
       <h2>My Mastered Facts</h2>
-        <div>
-          {userMasteredFacts.map((fact) => (
+        <div style ={{backgroundColor: 'yellow', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+          {user.masteries.filter ((mastery) => mastery.mastery_level === 10).map((fact) => (
           <FactCard
             fact={fact}
             key={fact.id}/>
         ))}
         </div>
       <h2>My Almost-Mastered Facts</h2>
-      <div>
-          {userAlmostMasteredFacts.map((fact) => (
+      <div style ={{backgroundColor: 'orange', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+          {user.masteries.filter ((mastery) => mastery.mastery_level < 10 && mastery.mastery_level >=8 ).map((fact) => (
           <FactCard
             fact={fact}
             key={fact.id}/>
         ))}
         </div>
       <h2>Facts I'm Learning</h2>
-      <div>
-          {userLearningFacts.map((fact) => (
+      <div style ={{backgroundColor: 'red', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+          {user.masteries.filter ((mastery) => mastery.mastery_level < 8 && mastery.mastery_level >=4).map((fact) => (
           <FactCard
             fact={fact}
             key={fact.id}/>
         ))}
         </div>
 
-      <h2>Facts I'm Need To Work On</h2>  
-      <div>
-          {userUnknownFacts.map((fact) => (
+      <h2>Facts I Need To Work On</h2>  
+      <div style ={{backgroundColor: 'purple', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
+          {user.masteries.filter ((mastery) => mastery.mastery_level < 3).map((fact) => (
           <FactCard
             fact={fact}
             key={fact.id}/>
         ))}
         </div>
     </>
+    :
+    null
   )
 }
 

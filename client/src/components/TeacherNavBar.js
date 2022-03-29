@@ -3,7 +3,7 @@ import { useContext } from "react"
 import {UserContext} from "./UserContext"
 import {useHistory} from "react-router-dom"
 
-function NavBar({isTeacher, setIsTeacher}) {
+function TeacherNavBar({isTeacher, setIsTeacher}) {
 
   const {user, setUser} = useContext(UserContext)
 
@@ -14,6 +14,7 @@ function NavBar({isTeacher, setIsTeacher}) {
       if (r.ok) {
         history.push('/')
         setUser(null);
+        setIsTeacher(false)
       }
     });
   }
@@ -39,15 +40,15 @@ function NavBar({isTeacher, setIsTeacher}) {
           >
             Multiplication Rules
           </NavLink>
-          <NavLink
+          {/* <NavLink
             to='/my-times-tables'
             exact
             className='my-times-table-nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             My Times Tables
-          </NavLink>
-          <NavLink
+          </NavLink> */}
+          {/* <NavLink
             to='/quizzes'
             exact
             className='quizzes-nav-bar'
@@ -64,8 +65,8 @@ function NavBar({isTeacher, setIsTeacher}) {
             activeStyle={{background: "#FB7498"}}
           >
             Dashboard
-          </NavLink>
-            :
+          </NavLink> */}
+            {/* : */}
             <NavLink
             to='/teacher-dashboard'
             exact
@@ -74,7 +75,7 @@ function NavBar({isTeacher, setIsTeacher}) {
           >
             Dashboard
           </NavLink>
-          }
+          {/* } */}
         </div>
 
         <div style={{display: 'flex', flexDirection: 'row', flexGrow: '1', flexWrap: 'wrap', justifyContent: 'center'}}>
@@ -113,4 +114,4 @@ function NavBar({isTeacher, setIsTeacher}) {
   )
 }
 
-export default NavBar
+export default TeacherNavBar
