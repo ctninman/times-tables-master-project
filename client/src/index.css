@@ -76,7 +76,7 @@ code {
   font-size: min(1.2vw, 10px);
   margin-top: -8px;
   padding: 0px;
-  color: white
+  color: #c42121;
 }
 
 .grid-photo {
@@ -84,20 +84,48 @@ code {
   min-width: 500px;
 }
 
+.support-not-needed{
+  margin: 5px; 
+  background-color: lightgreen
+}
+
+.support-needed{
+  margin: 5px; 
+  background-color: lightcoral
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  padding: "12px";
+  margin: 0 12px 12px;
+  background: #D95276;
+  text-decoration: none;
+  color: #022873;
+  border-radius: 5px;
+  height: 55px;
+  width: 95px;
+  text-align: center;
+  margin-bottom: 0px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
 #level-0 {
-  background-color: #f62d2d;
+  background-color: #c42121;
 }
 
 #level-1 {
-  background-color: #F6412D;
+  background-color: #e42828;
 }
 
 #level-2 {
-  background-color: #ff6207;
+  background-color: #f62d2d;
 }
 
 #level-3 {
-  background-color: #FF5607;
+  background-color: #ff6207;
 }
 
 #level-4 {
@@ -105,7 +133,7 @@ code {
 }
 
 #level-5 {
-  background-color: #FF9800;
+  background-color: #ff8b07;
 }
 
 #level-6 {
@@ -113,23 +141,84 @@ code {
 }
 
 #level-7 {
-  background-color: #FFC100;
+  background-color: #ffbb00;
 }
 
 #level-8 {
-  background-color: #ffee00;
+  background-color: #ffd000;
 }
 
+
 #level-9 {
-  background-color: #f0ff19;
+  background-color: #fbff19;
 }
 
 #level-10 {
-  background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
+  background-image: linear-gradient(to bottom right, white, rgb(255, 253, 160),#fbff19, rgb(255, 253, 160),white);
 }
 
 button {
-  width: 125px;
+  width: 130px;
   height: 25px;
   margin: 3px;
+}
+
+.mastery-color {
+  width: 9.1%;
+}
+
+#color-0 {
+  background-color: #c42121;
+}
+
+#color-1 {
+  background-color: #e42828;
+}
+
+#color-2 {
+  background-color: #f62d2d;
+}
+
+#color-3 {
+  background-color: #ff6207;
+}
+
+#color-4 {
+  background-color: #ff7707;
+}
+
+#color-5 {
+  background-color: #ff8b07;
+}
+
+#color-6 {
+  background-color: #ffa600;
+}
+
+#color-7 {
+  background-color: #ffbb00;
+}
+
+#color-8 {
+  background-color: #ffd000;
+}
+
+
+#color-9 {
+  background-color: #fbff19;
+}
+
+#color-10 {
+  background-image: linear-gradient(to bottom right, white, rgb(255, 253, 160),#fbff19, rgb(255, 253, 160),white);
+}
+
+.student-dash-fact {
+  border: 1px solid; 
+  border-radius: 3px;
+  margin-left: 5px; 
+  margin-right: 5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }

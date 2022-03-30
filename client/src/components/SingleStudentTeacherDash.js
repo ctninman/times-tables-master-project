@@ -78,27 +78,27 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
 
       <h3># of Struggling Facts: {struggle.length}</h3>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {struggle.map((item) => <p style={{marginLeft: '8px', marginRight: '8px'}}>{item.problem.multiplication_fact}</p>)}
+        {struggle.map((item) => <p className='student-dash-fact' >{item.problem.multiplication_fact}</p>)}
       </div>
 
       <h3># of Mastered Facts: {mastered.length}</h3>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {mastered.map((item) => <p style={{marginLeft: '8px', marginRight: '8px'}}>{item.problem.multiplication_fact}</p>)}
+        {mastered.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
       <h3># of Almost-Mastered Facts: {almostMastered.length}</h3>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {almostMastered.map((item) => <p style={{marginLeft: '8px', marginRight: '8px'}}>{item.problem.multiplication_fact}</p>)}
+        {almostMastered.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
       <h3># of Still Learning Facts: {learning.length}</h3>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {learning.map((item) => <p style={{marginLeft: '8px', marginRight: '8px'}}>{item.problem.multiplication_fact}</p>)}
+        {learning.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
       <h3># of Unknown Facts: {unknown.length}</h3>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {unknown.map((item) => <p style={{marginLeft: '8px', marginRight: '8px'}}>{item.problem.multiplication_fact}</p>)}
+        {unknown.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
 
       <button onClick={() => setViewSingleStudent(false)}>View Class</button>

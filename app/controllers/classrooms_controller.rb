@@ -1,7 +1,7 @@
 class ClassroomsController < ApplicationController
 
   def show
-    teacher = Teacher.find_by(id: session[:user_id])
+    teacher = Teacher.find_by(id: session[:teacher_id])
     if teacher
       classroom = Classroom.find_by(id: params[:id])
       render json: classroom, include: ['students.masteries', 'students.masteries.problem'], status: :ok

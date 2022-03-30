@@ -6,13 +6,17 @@ function Grid ({allFacts}) {
 
   const {user} = useContext(UserContext)
 
-  return (
+  return allFacts ? (
+    <div style={{display: 'flex', justifyContent: 'center'}}>
     <div className='grid'>
       {allFacts.map((fact) => (
         <GridSquare style={{width: '9%'}} key={fact.fact_number} fact={fact}/>
       )) }
+    </div>
     </div>  
   )
+  :
+  null
 }
 
 export default Grid

@@ -1,17 +1,17 @@
 import {useState, useContext} from "react"
 import {UserContext} from "./UserContext"
 
-function AddClassroom () {
+function AddClassroom ({setSelectedClassroom, setToggleAddClassroom}) {
 
-    const {user, teacherLogin} = useContext(UserContext)
+    const {user, isTeacher, fetchUser} = useContext(UserContext)
 
     const [newClassroomName, setNewClassroomName] = useState("");
 
-    function handleAddClassroom () {
-      // e.preventDefault();
+    function handleAddClassroom (e) {
+      e.preventDefault();
       // setErrors([]);
       // setIsLoading(true);
-      if (teacherLogin === true) {
+      if (isTeacher === true) {
         fetch("/classrooms", {
           method: "POST",
           headers: {
@@ -25,15 +25,20 @@ function AddClassroom () {
           // setIsLoading(false);
           if (r.ok) {
             r.json()
-            .then((classroom) => console.log(classroom));
+            .then((classroom) => setSelectedClassroom(classroom))
+            .then(fetchUser())
           } else {
             r.json()
             // .then((err) => setErrors(err.errors));
             console.log("um, nope")
           }
-        });
-      }
+        })
+      } 
+      setNewClassroomName("")
+      setToggleAddClassroom(false)
     }
+
+    
 
     return (
       <form onSubmit={handleAddClassroom}>

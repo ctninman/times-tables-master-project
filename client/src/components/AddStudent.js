@@ -7,7 +7,8 @@ function AddStudent ({setSingleStudent, selectedClassroom}) {
     // const [teacherLogin, setTeacherLogin] = useState(false)
     const [newStudentPasswordConfirmation, setNewStudentPasswordConfirmation] = useState("")
 
-    function handleAddStudent () {
+    function handleAddStudent (e) {
+      e.preventDefault()
       fetch("/signup-student", {
         method: "POST",
         headers: {

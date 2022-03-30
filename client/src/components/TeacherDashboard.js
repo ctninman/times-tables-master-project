@@ -24,6 +24,26 @@ function TeacherDashboard ({teacherLogin}) {
   const [addClassroomName, setAddClassroomName] = useState('New Class')
 
   useEffect (() => {
+    fetchClassroom()
+    // if (selectedClassroom) {
+    //   setIsLoading(true)
+    //   // if (firstUpdate.current) {
+    //   //   firstUpdate.current = false;
+    //   //   return;
+    //   // }
+    //   fetch(`/classrooms/${selectedClassroom.id}`, {method: "GET"})
+    //     .then((res) => {
+    //       res.json()
+    //     .then((data) => {
+    //       console.log(data)
+    //       setFullClassroomData(data)
+    //       setIsLoading(false)
+    //     })
+    //   })
+    // }
+  }, [selectedClassroom])
+
+  function fetchClassroom() {
     if (selectedClassroom) {
       setIsLoading(true)
       // if (firstUpdate.current) {
@@ -40,62 +60,16 @@ function TeacherDashboard ({teacherLogin}) {
         })
       })
     }
-  }, [selectedClassroom])
-
-  function handleAddClassroom () {
-      // e.preventDefault();
-      // setErrors([]);
-      // setIsLoading(true);
-      if (teacherLogin === false) {
-        fetch("/classrooms", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            classroom_name: addClassroomName,
-            teacher_id: user.id
-          }),
-        }).then((r) => {
-          // setIsLoading(false);
-          if (r.ok) {
-            r.json()
-            .then((classroom) => console.log(classroom));
-          } else {
-            r.json()
-            // .then((err) => setErrors(err.errors));
-            console.log("um, nope")
-          }
-        });
-      }
-    }
-
-  function handleAddStudent () {
-    fetch("/signup-student", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: "student",
-        password: "password",
-        password_confirmation: "password",
-        classroom_id: selectedClassroom.id
-      }),
-    }).then((r) => {
-      // setIsLoading(false);
-      if (r.ok) {
-        r.json()
-        .then((student) => setSingleStudent(student));
-      } else {
-        r.json()
-        // .then((err) => setErrors(err.errors));
-        console.log("um, nope")
-      }
-    });
   }
 
-  return (
+  function handleDashboardHome () {
+    setViewSingleStudent(false)
+    setSelectedClassroom(null)
+  }
+
+
+  return user ?
+  (
     <>
       <h1>Teacher Dashboard</h1>
       <div style={{display: 'flex', flexDirection: 'row'}}>
@@ -104,14 +78,15 @@ function TeacherDashboard ({teacherLogin}) {
             key={classroom.id} 
             classroom={classroom}
             setSelectedClassroom={setSelectedClassroom}
-            selectedClassroom={selectedClassroom}/>
+            selectedClassroom={selectedClassroom}
+            setViewSingleStudent={setViewSingleStudent}/>
         ))}
         
         <div>
           <button onClick={() => setToggleAddClassroom(!toggleAddClassroom)}>Add Classroom</button>
           
           {toggleAddClassroom ?
-          <AddClassroom />
+          <AddClassroom setSelectedClassroom={setSelectedClassroom} setToggleAddClassroom={setToggleAddClassroom}/>
           :
           null}
         
@@ -157,9 +132,11 @@ function TeacherDashboard ({teacherLogin}) {
     
     }
       
-        <button onClick={() => setSelectedClassroom(null)}>Dashboard Home</button>
+        <button onClick={handleDashboardHome}>Dashboard Home</button>
     </>
   )
+  :
+  null
 }
 
 export default TeacherDashboard

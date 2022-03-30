@@ -62,6 +62,18 @@ function App() {
     })
   }, [] )
 
+  function fetchUser () {
+    fetch("/me", {method: 'GET'})
+    .then((r) => {
+      if (r.ok) {
+        r.json()
+        .then((user) => {
+          setUser(user)
+          console.log('user fetchies')
+        })
+      }
+    })
+  }
 
   return (
     
@@ -69,7 +81,7 @@ function App() {
       
       
 
-      <UserContext.Provider value={{user, setUser, isLoading, setIsLoading, teacherLogin}}> 
+      <UserContext.Provider value={{user, setUser, isLoading, setIsLoading, isTeacher, fetchUser}}> 
       {isTeacher === false ?
         <div className="App">
           <NavBar className='nav-bar' isTeacher={isTeacher} setIsTeacher={setIsTeacher}/>

@@ -1,14 +1,23 @@
-function ClassroomButton ({classroom, selectedClassroom, setSelectedClassroom}) {
+import {UserContext} from "./UserContext"
+import {useContext} from 'react'
+
+function ClassroomButton ({classroom, selectedClassroom, setSelectedClassroom, setViewSingleStudent}) {
+
+  const {fetchUser} = useContext(UserContext)
 
   function handleClassroomSelect () {
     setSelectedClassroom(classroom)
+    setViewSingleStudent(false)
   }
 
   function handleClassroomDelete () {
+    setViewSingleStudent(false)
     fetch(`/classrooms/${classroom.id}`, {method: "DELETE"})
     .then((r) => r.json())
     .then((data) => {
       console.log("Deleted")
+      fetchUser()
+      setSelectedClassroom(null)
     })
   }
 

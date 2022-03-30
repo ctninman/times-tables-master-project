@@ -26,7 +26,7 @@ function NavBar({isTeacher, setIsTeacher}) {
           <NavLink
             to='/'
             exact
-            className='home-nav-bar'
+            className='nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             Home
@@ -34,7 +34,7 @@ function NavBar({isTeacher, setIsTeacher}) {
           <NavLink
             to='/multiplication-rules'
             exact
-            className='rules-nav-bar'
+            className='nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             Multiplication Rules
@@ -42,7 +42,7 @@ function NavBar({isTeacher, setIsTeacher}) {
           <NavLink
             to='/my-times-tables'
             exact
-            className='my-times-table-nav-bar'
+            className='nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             My Times Tables
@@ -50,7 +50,7 @@ function NavBar({isTeacher, setIsTeacher}) {
           <NavLink
             to='/quizzes'
             exact
-            className='quizzes-nav-bar'
+            className='nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             Quiz
@@ -60,7 +60,7 @@ function NavBar({isTeacher, setIsTeacher}) {
           <NavLink
             to='/student-dashboard'
             exact
-            className='student-dash'
+            className='nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             Dashboard
@@ -69,7 +69,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             <NavLink
             to='/teacher-dashboard'
             exact
-            className='teacher-dash'
+            className='nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             Dashboard
@@ -89,7 +89,7 @@ function NavBar({isTeacher, setIsTeacher}) {
           <NavLink
             to='/user-login'
             exact
-            className='login-user'
+            className='nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             Login
@@ -97,13 +97,13 @@ function NavBar({isTeacher, setIsTeacher}) {
           <NavLink
             to='/user-signup'
             exact
-            className='signup-user'
+            className='nav-bar'
             activeStyle={{background: "#FB7498"}}
           >
             Sign Up
           </NavLink>
-          <button className='login-button' onClick={() => console.log(user)}>Sign In</button>
-          <button className='login-button' 
+          <button className='nav-bar' onClick={() => console.log(user)}>Sign In</button>
+          <button className='nav-bar' 
             onClick={handleSignOut}
             >Sign Out
           </button>

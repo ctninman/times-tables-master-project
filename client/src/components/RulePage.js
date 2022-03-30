@@ -51,27 +51,33 @@ function RulePage ({allRules}) {
       {singleRule 
         ?
       <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
-        <div>
-          <h1 style={{backgroundColor: 'lightgreen'}}>{singleRule.rule_title} : {singleRule.rule}</h1>
+        <div style={{display: 'flex', flexDirection: 'row', textAlign: 'center', justifyContent: 'center'}}>
+          <h1 style={{backgroundColor: 'yellow', width: '20%'}}>{singleRule.rule_title}:</h1>
+          <h1 style={{backgroundColor: 'lightgreen', width: '70%'}}>{singleRule.rule}</h1>
         </div>
-        <div>
+        <div style={{textAlign: 'center'}}>
           {singleRule.explanation.map((explanation) => (
             <SingleExplanation key={explanation} explanation={explanation}/>
           ))}
         </div>
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>{showRelatedFacts === true ?
-          <img onClick={() => setShowRelatedFacts(() => !showRelatedFacts)}src={singleRule.grid_photo} alt={singleRule.rule} className='grid-photo'/>
+        <div style={{textAlign: 'center'}}>{showRelatedFacts === true ?
+          <div>
+            <img onClick={() => setShowRelatedFacts(() => !showRelatedFacts)}src={singleRule.grid_photo} alt={singleRule.rule} className='grid-photo'/>
+          </div>
         :
-          <img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%2011.26.09%20PM.png"} alt={singleRule.rule} className='grid-photo'/>} 
-        <div style={{display: 'flex', flexDirection: 'row'}}>
-          <h1 style={{backgroundColor: 'pink'}}>{singleRule.related_facts} = </h1>
-          <h2 style ={{backgroundColor: 'orange'}}>Number of facts learned through this rule</h2>
-          <button onClick={() => setShowRelatedFacts(!showRelatedFacts)}>See which facts</button>
+          <div><img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%2011.26.09%20PM.png"} alt={singleRule.rule} className='grid-photo'/>
+        </div>} 
+        <button onClick={() => setShowRelatedFacts(!showRelatedFacts)}>See Facts</button>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+          <h1 style ={{backgroundColor: 'orange'}}>Number of facts learned through this rule: </h1>
+          <h1 style={{backgroundColor: 'pink'}}>{singleRule.related_facts}</h1>
         </div>
         </div>
+        <div style={{textAlign: 'center'}}>
           {singleRule.additional_explanation.map((additional_explanation) => (
               <SingleExplanation key={additional_explanation} explanation={additional_explanation} />
           ))}
+          </div>
         <button onClick={handleNextRule}>Next Rule</button>
         
       </div>
