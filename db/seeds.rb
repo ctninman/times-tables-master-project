@@ -1,6 +1,6 @@
 mrs_cuff = Teacher.create(username: "Mrs. Cuff", password: 'password',)
 mr_klatt = Teacher.create(username: "Mr. Klatt", password: 'password',) 
-mr_retzlaff = Teacher.create(username: "Mrs. Retzlaff", password: 'password',)
+mr_retzlaff = Teacher.create(username: "Mr. Retzlaff", password: 'password',)
 
 third_grade = Classroom.new(classroom_name: "3rd Grade")
 fourth_grade = Classroom.new(classroom_name: "4th Grade")
@@ -23,18 +23,16 @@ sixth_grade.save
 seventh_grade.save
 eighth_grade.save
 
-boz = Student.new(username: 'Boz Leyrer', password: 'password', extra_time_needed: true, extra_time_amount: 5, offer_support: false)
-griffith = Student.new(username: 'Griffey Sellnow', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-abbie = Student.new(username: 'Abbie Leyrer', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-kippy = Student.new(username: 'Kippy Ninman', password: 'password', extra_time_needed: true, extra_time_amount: 3, offer_support: false)
-seth = Student.new(username: 'Sethaoy Pardee', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: true)
-dara = Student.new(username: 'Dara Parrish', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-grant = Student.new(username: 'Grant Stafford', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-cassie =Student.new(username: 'Cassandra Ibeling', password: 'password', extra_time_needed: true, extra_time_amount: 4, offer_support: true)
-jamie = Student.new(username: 'Jamie Anderson', password: 'password', extra_time_needed: true, extra_time_amount: 7, offer_support: true)
-darby =Student.new(username: 'Darby Parrish', password: 'password', extra_time_needed: false, extra_time_amount: 0, offer_support: false)
-
-
+boz = Student.new(username: 'Boz Leyrer', password: 'password', time_to_solve: 5, offer_support: false)
+griffith = Student.new(username: 'Griffey Sellnow', password: 'password', time_to_solve: 0, offer_support: false)
+abbie = Student.new(username: 'Abbie Leyrer', password: 'password', time_to_solve: 0, offer_support: false)
+kippy = Student.new(username: 'Kippy Ninman', password: 'password', time_to_solve: 3, offer_support: false)
+seth = Student.new(username: 'Sethaoy Pardee', password: 'password', time_to_solve: 0, offer_support: true)
+dara = Student.new(username: 'Dara Parrish', password: 'password', time_to_solve: 0, offer_support: false)
+grant = Student.new(username: 'Grant Stafford', password: 'password', time_to_solve: 0, offer_support: false)
+cassie =Student.new(username: 'Cassandra Ibeling', password: 'password', time_to_solve: 4, offer_support: true)
+jamie = Student.new(username: 'Jamie Anderson', password: 'password', time_to_solve: 7, offer_support: true)
+darby =Student.new(username: 'Darby Parrish', password: 'password', time_to_solve: 0, offer_support: false)
 
 boz.classroom = fourth_grade
 griffith.classroom = third_grade
@@ -191,23 +189,25 @@ create_masteries(darby)
 create_masteries(grant)
 
 
-rule_1 = Rule.create(rule: "The 1st number multiplied by the 2nd number is equal to the 2nd number multiplied by the 1st number", explanation: ["6 x 7 = 42 and 7 x 6 = 42. So, 6 x 7 = 7 x 6", "3 x 9 = 27 and 9 x 3 = 27. So, 3 x 9 = 9 x 3."], related_facts: 45, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.43.47%20PM.png", additional_explanation: ["Just remember that 7 x 6 (seven groups of 6) is not the same as 6 x 7 (six groups of seven), but they do equal the same number.", "If you remember this rule, you have already taken away almost half of the times tables facts."], rule_number: 1, rule_title: "Rule #1")
+rule_0 = Rule.create(rule: "Learn the following multiplication rules to master all your multiplication facts.", explanation: ["Using the numbers 1 through 10, there are 100 multiplication facts in total. But you don't need to memorize 100 facts!", "Each rule will help you learn a large number of facts using much less effort!"], related_facts: 100, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%2011.26.09%20PM.png", additional_explanation: ["Learn the rules one by one, and you can quickly become a Times Tables Master!"], rule_number: 0, rule_title: "Rules Home")
 
-rule_2 = Rule.create(rule: "Any number multiplied by 1 is equal to itself.", explanation: ["Multiply a number times times one and it will equal that number.", "6 x 1 = 6.", "9 x 1 = 9."], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.44.46%20PM.png", additional_explanation: ["Combine this with Rule #1. One multiplied by any number is that number. 1 x 4 = 4. 1 x 78 = 78.", "This rule is always true. 54,765 x 1 = 54,765."], rule_number: 2, rule_title: "Rule #2")
+rule_1 = Rule.create(rule: "The 1st number multiplied by the 2nd number is equal to the 2nd number multiplied by the 1st number", explanation: ["6 x 7 = 42    and    7 x 6 = 42     So,   6 x 7 = 7 x 6", "3 x 9 = 27   and   9 x 3 = 27     So,   3 x 9 = 9 x 3"], related_facts: 45, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.43.47%20PM.png", additional_explanation: ["Just remember that 7 x 6 (seven groups of 6) is not the same as 6 x 7 (six groups of seven), but they do equal the same number", "If you remember this rule, you have already taken away almost half of the times tables facts."], rule_number: 1, rule_title: "Rule #1")
 
-rule_3 = Rule.create(rule: "When you multiply a number times 10, attach a zero.", explanation: ["2 x 10 is the same as saying '2 tens', or 20.", "9 x 10 = 90."], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.46.27%20PM.png", additional_explanation: ["Combine this with Rule #1. 10 x 6 = 60.", "This rule is always true. 54,765 x 10 = 547,650."], rule_number: 3, rule_title: "Rule #3")
+rule_2 = Rule.create(rule: "Any number multiplied by 1 is equal to itself.", explanation: ["Multiply a number times times one and it will equal that number.", "6 x 1 = 6", "9 x 1 = 9"], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.44.46%20PM.png", additional_explanation: ["Combine this with Rule #1. One multiplied by any number is that number.     1 x 4 = 4     1 x 78 = 78", "This rule is always true.     54,765 x 1 = 54,765"], rule_number: 2, rule_title: "Rule #2")
 
-rule_4 = Rule.create(rule: "To multiply any number times 2, double that number.", explanation: ["5 x 2 = 5 + 5, which equals 10", "9 x 2 = 9 + 9, which = 18."], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.45.32%20PM.png", additional_explanation: ["Combine this with Rule #1. 2 x 8 is equal to eigth doubled.", "This rule is always true. 400 x 2 = 800."], rule_number: 4, rule_title: "Rule #4")
+rule_3 = Rule.create(rule: "When you multiply a number times 10, attach a zero.", explanation: ["2 x 10 is the same as saying '2 tens', or 20", "9 x 10 = 90"], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.46.27%20PM.png", additional_explanation: ["Combine this with Rule #1.     10 x 6 = 60.", "This rule is always true.     54,765 x 10 = 547,650"], rule_number: 3, rule_title: "Rule #3")
 
-
-rule_5 = Rule.create(rule: "Multiplying a number times 4 is the same as doubling that number twice.", explanation: ["6 x 4 = 6 + 6 + 6 + 6, which is the same as 12 + 12", "If you multiply 8 x 4, double 8, which is 16. Then double 16, which is 32."], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.47.10%20PM.png", additional_explanation: ["Combine this with Rule #1. 4 x 6 = six doubled twice.", "You may find it easier just to memorize the four times table."], rule_number: 5, rule_title: "Rule #5")
-
-
-rule_6 = Rule.create(rule: "Multiplying times 5 is just like counting by 5's.5, 10, 15, 20, 25, 30 ...", explanation: ["5 x 1 = 5, 5 x 2 = 10, 5 x 3 = 15.", "When you multiply times 5, your product will always end with a '0' or a '5'."], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.47.52%20PM.png", additional_explanation: ["An even number times 5 ends in 0. An odd number times 5 ends in 5."], rule_number: 6, rule_title: "Rule #6")
-
-rule_7 = Rule.create(rule: "When multiplying times 9, the tens digit plus the ones digit equals 9, and the tens digit will be one less than the number you multiply by.", explanation: ["5 x 9 = 45. Add the tens digit and the ones digit, 4 + 5 = 9", "7 x 9 = 63. Add the tens digit and the ones digit, 6 + 3 = 9"], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.48.42%20PM.png", additional_explanation: ["Another way to memorize your 9 times table is to multiply the number times 10, and then subtract the number. 8 x 10 = 80, so 8 x 9 equals 80 - 8, or 72.", "4 x 10 = 40, so 4 x 9 equals 40 - 4, or 36."], rule_number: 7, rule_title: "Rule #7")
+rule_4 = Rule.create(rule: "To multiply any number times 2, double that number.", explanation: ["5 x 2 = 5 + 5   which equals 10", "9 x 2 = 9 + 9   which = 18"], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.45.32%20PM.png", additional_explanation: ["Combine this with Rule #1. 2 x 8 is equal to eight doubled.", "This rule is always true.     400 x 2 = 800"], rule_number: 4, rule_title: "Rule #4")
 
 
-rule_8 = Rule.create(rule: "Memorize the remaining 10 facts.", explanation: ["If you have the other 7 rules learned, you are left with only 10 remaining multiplication facts.", "There is no simple rule to cover these facts, so you just need to memorize them. But it is only ten facts, rather than the hundred facts we started with!"], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.50.14%20PM.png", additional_explanation: ["Never forget the first rule: The 1st number multiplied by the 2nd number is equal to the 2nd number multiplied by the 1st number."], rule_number: 8, rule_title: "Rule #8")
+rule_5 = Rule.create(rule: "Multiplying a number times 4 is the same as doubling that number twice.", explanation: ["6 x 4 = 6 + 6 + 6 + 6   which is the same as 12 + 12", "To multiply 8 x 4, first: double 8, which is 16. Then double 16, which is 32."], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.47.10%20PM.png", additional_explanation: ["Combine this with Rule #1.   4 x 6 = six doubled twice.", "NOTE: You may find it easier just to memorize the four times table."], rule_number: 5, rule_title: "Rule #5")
 
-rule_9 = Rule.create(rule: "The only time you will get an odd number for a product by multiplying two numbers is when you multiply an odd number times an odd number.", explanation: ["An even number multiplied by an even number equals an even number. 6 x 8 = 48.", "An even number multiplied by an odd number equals an even number. 7 x 4 = 28.", "An odd number multiplied by an odd number equals an odd number. 5 x 9 = 45."], related_facts: 25, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%2010.16.59%20PM.png", additional_explanation: ["Never forget the first rule: The 1st number multiplied by the 2nd number is equal to the 2nd number multiplied by the 1st number"], rule_number: 9, rule_title: "Extra help")
+
+rule_6 = Rule.create(rule: "Multiplying times 5 is just like counting by 5's.   5, 10, 15, 20, 25, 30 ...", explanation: ["5 x 1 = 5     5 x 2 = 10     5 x 3 = 15", "When you multiply times 5, your product will always end with a '0' or a '5'"], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.47.52%20PM.png", additional_explanation: ["An even number times 5 ends in 0. An odd number times 5 ends in 5"], rule_number: 6, rule_title: "Rule #6")
+
+rule_7 = Rule.create(rule: "When multiplying times 9, the tens digit plus the ones digit equals 9, and the tens digit will be one less than the number you multiply by.", explanation: ["5 x 9 = 45     Add the tens digit and the ones digit,   4 + 5 = 9", "7 x 9 = 63     Add the tens digit and the ones digit,   6 + 3 = 9"], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.48.42%20PM.png", additional_explanation: ["Another way to memorize your 9 times table is to multiply the number times 10, and then subtract the number. 8 x 10 = 80, so   8 x 9   equals   80 - 8 , or 72 ", "4 x 10 = 40 , so   4 x 9   equals   40 - 4 , or 36"], rule_number: 7, rule_title: "Rule #7")
+
+
+rule_8 = Rule.create(rule: "Memorize the remaining 10 facts.", explanation: ["If you have the other 7 rules learned, you are left with only 10 remaining multiplication facts.", "There is no simple rule to cover these facts, so you just need to memorize them. But it is only ten facts, rather than the 100 facts we started with!"], related_facts: 19, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%203.50.14%20PM.png", additional_explanation: ["Never forget the first rule: The 1st number multiplied by the 2nd number is equal to the 2nd number multiplied by the 1st number."], rule_number: 8, rule_title: "Rule #8")
+
+rule_9 = Rule.create(rule: "The only time you will get an odd number for a product by multiplying two numbers is when you multiply an odd number times an odd number.", explanation: ["An even number multiplied by an even number equals an even number.     6 x 8 = 48", "An even number multiplied by an odd number equals an even number.     7 x 4 = 28", "An odd number multiplied by an odd number equals an odd number.     5 x 9 = 45"], related_facts: 25, grid_photo: "https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%2010.16.59%20PM.png", additional_explanation: ["Never forget the first rule: The 1st number multiplied by the 2nd number is equal to the 2nd number multiplied by the 1st number."], rule_number: 9, rule_title: "Extra help")

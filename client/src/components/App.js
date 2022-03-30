@@ -20,6 +20,7 @@ function App() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [teacherLogin, setTeacherLogin] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   
   // const [currentRule, setCurrentRule] = useState({})
@@ -68,7 +69,7 @@ function App() {
       
       
 
-      <UserContext.Provider value={{user, setUser}}> 
+      <UserContext.Provider value={{user, setUser, isLoading, setIsLoading, teacherLogin}}> 
       {isTeacher === false ?
         <div className="App">
           <NavBar className='nav-bar' isTeacher={isTeacher} setIsTeacher={setIsTeacher}/>
@@ -150,7 +151,7 @@ function App() {
               <MultiplicationRules user={user} setUser={setUser} allRules={allRules} setAllRules={setAllRules}/>
             </Route>
             <Route path="/teacher-dashboard">
-              <TeacherDashboard user={user} setUser={setUser}/>
+              <TeacherDashboard user={user} setUser={setUser} teacherLogin={teacherLogin}/>
             </Route>
             {/* <Route path="/student-dashboard">
               <StudentDashboard user={user} setUser={setUser}/>

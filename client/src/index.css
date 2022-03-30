@@ -127,3 +127,9 @@ code {
 #level-10 {
   background-image: linear-gradient(to right, red,orange,yellow,green,blue,indigo,violet);
 }
+
+button {
+  width: 125px;
+  height: 25px;
+  margin: 3px;
+}

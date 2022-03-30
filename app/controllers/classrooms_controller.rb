@@ -11,7 +11,7 @@ class ClassroomsController < ApplicationController
   end
 
   def create
-    teacher = Teacher.find_by(id: session[:user_id])
+    teacher = Teacher.find_by(id: session[:teacher_id])
     if teacher
       new_classroom = teacher.classrooms.create(classroom_params)
       new_classroom.save

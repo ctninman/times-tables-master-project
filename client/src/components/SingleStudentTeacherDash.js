@@ -1,3 +1,5 @@
+import {useState, useEffect, useRef} from 'react'
+
 function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
 
   const sumAllResponses = singleStudent.masteries.map(item => item.times_answered).reduce((prev, curr) => prev + curr, 0);
@@ -8,13 +10,68 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
   const unknown = singleStudent.masteries.filter(item => item.mastery_level < 4)
   const struggle = singleStudent.masteries.filter((mastery) => mastery.times_answered > 8 && mastery.times_answered / mastery.times_correct > 2)
 
+  const [studentTimeNeeded, setStudentTimeNeeded] = useState(singleStudent.extra_time_amount)
+  const [studentSupportNeeded, setStudentSupportNeeded] = useState(singleStudent.offer_support)
+
+  const firstUpdate = useRef(true);
+
+  useEffect (() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    patchUpdatedStudent({extra_time_amount: studentTimeNeeded})
+  }, [studentTimeNeeded])
+
+  useEffect (() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    patchUpdatedStudent({offer_support: studentSupportNeeded})
+  }, [studentSupportNeeded])
+
+
+  function handleDeleteStudent () {
+    fetch(`/students/${singleStudent.id}`, {method: "DELETE"})
+    .then((r) => r.json())
+    .then((data) => {
+      console.log("Deleted")
+    })
+  }
+
+  function patchUpdatedStudent (object) {
+    fetch(`/students/${singleStudent.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(object),
+    }).then((r) => {
+      // setIsLoading(false);
+      if (r.ok) {
+        r.json()
+        // .then((user) => setUser(user));
+        .then((data) => console.log(data))
+      } else {
+        r.json()
+        // .then((err) => setErrors(err.errors));
+        console.log("um, nope")
+      }
+    });
+  }
+
   return (
     <div>
       <h1>{singleStudent.username}</h1>
-      <button>Needs Support</button>
-      <button>Give extra time to solve</button>
-      <button>Add second to solving time</button>
-      <h3>{singleStudent.username}</h3>
+      <div style={{display: 'flex', flexDirection: 'row'}}>
+        <button onClick={() => setStudentSupportNeeded(!studentSupportNeeded)}>Needs Support</button>
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+          <button onClick={() => setStudentTimeNeeded(studentTimeNeeded - 1)}> - </button>
+          <h2>{studentTimeNeeded}</h2>
+          <button onClick={() => setStudentTimeNeeded(studentTimeNeeded + 1)}> + </button>
+        </div>
+      </div>
       <h3>Total Responses Given: {sumAllResponses}</h3>
       <h3>Total Responses Correct: {sumAllCorrect}</h3>
       <h3>Overall Percent Correct: {(sumAllCorrect / sumAllResponses * 100).toFixed(2)}%</h3>
@@ -45,6 +102,7 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
       </div>
 
       <button onClick={() => setViewSingleStudent(false)}>View Class</button>
+      <button onClick={handleDeleteStudent}>Delete Student</button>
     </div>
   )
 }

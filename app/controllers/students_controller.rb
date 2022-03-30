@@ -4,7 +4,6 @@ class StudentsController < ApplicationController
 
   def show
     if session[:student_id]
-      # session.delete :teacher_id
       student = Student.find_by(id: session[:student_id])
       if student
         render json: student, include: ['masteries', 'masteries.problem'], status: :ok
@@ -12,7 +11,6 @@ class StudentsController < ApplicationController
         render json: {error: "Not authorized"}, status: :unauthorized
       end
     elsif session[:teacher_id]
-      # session.delete :student_id
       teacher = Teacher.find_by(id: session[:teacher_id])
       if teacher
         render json: teacher, status: :ok
@@ -57,7 +55,7 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.permit(:username, :extra_time_needed, :extra_time_amount, :offer_support, :classroom_id, :password)
+    params.permit(:username, :extra_time_needed, :extra_time_amount, :offer_support, :classroom_id, :password, :id)
   end
 
 end
