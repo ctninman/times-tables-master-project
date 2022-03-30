@@ -1,7 +1,9 @@
-mrs_cuff = Teacher.create(username: "Mrs. Cuff", password: 'password',)
-mr_klatt = Teacher.create(username: "Mr. Klatt", password: 'password',) 
-mr_retzlaff = Teacher.create(username: "Mr. Retzlaff", password: 'password',)
+no_teacher = Teacher.create(username: "Mrs. Cuff", password: 'password', email: "no_teacher@no_teacher.com", is_teacher: true)
+mrs_cuff = Teacher.create(username: "Mrs. Cuff", password: 'password', email: "mrs_cuff@mrs_cuff.com", is_teacher: true)
+mr_klatt = Teacher.create(username: "Mr. Klatt", password: 'password', email: "mr_klatt@mr_klatt.com", is_teacher: true) 
+mr_retzlaff = Teacher.create(username: "Mr. Retzlaff", password: 'password', email: "mr_retzlaff@mr_retzlaff.com", is_teacher: true)
 
+no_classroom = Classroom.new(classroom_name: "No Classroom")
 third_grade = Classroom.new(classroom_name: "3rd Grade")
 fourth_grade = Classroom.new(classroom_name: "4th Grade")
 fifth_grade = Classroom.new(classroom_name: "5th Grade")
@@ -9,6 +11,7 @@ sixth_grade = Classroom.new(classroom_name: "6th Grade")
 seventh_grade = Classroom.new(classroom_name: "7th Grade")
 eighth_grade = Classroom.new(classroom_name: "8th Grade")
 
+no_classroom.teacher = no_teacher
 third_grade.teacher = mrs_cuff
 fourth_grade.teacher = mrs_cuff
 fifth_grade.teacher = mr_klatt
@@ -16,6 +19,7 @@ sixth_grade.teacher = mr_klatt
 seventh_grade.teacher = mr_retzlaff
 eighth_grade.teacher = mr_retzlaff
 
+no_classroom.save
 third_grade.save
 fourth_grade.save
 fifth_grade.save
@@ -23,16 +27,17 @@ sixth_grade.save
 seventh_grade.save
 eighth_grade.save
 
-boz = Student.new(username: 'Boz Leyrer', password: 'password', time_to_solve: 5, offer_support: false)
-griffith = Student.new(username: 'Griffey Sellnow', password: 'password', time_to_solve: 0, offer_support: false)
-abbie = Student.new(username: 'Abbie Leyrer', password: 'password', time_to_solve: 0, offer_support: false)
-kippy = Student.new(username: 'Kippy Ninman', password: 'password', time_to_solve: 3, offer_support: false)
-seth = Student.new(username: 'Sethaoy Pardee', password: 'password', time_to_solve: 0, offer_support: true)
-dara = Student.new(username: 'Dara Parrish', password: 'password', time_to_solve: 0, offer_support: false)
-grant = Student.new(username: 'Grant Stafford', password: 'password', time_to_solve: 0, offer_support: false)
-cassie =Student.new(username: 'Cassandra Ibeling', password: 'password', time_to_solve: 4, offer_support: true)
-jamie = Student.new(username: 'Jamie Anderson', password: 'password', time_to_solve: 7, offer_support: true)
-darby =Student.new(username: 'Darby Parrish', password: 'password', time_to_solve: 0, offer_support: false)
+boz = Student.new(username: 'Boz Leyrer', password: 'password', time_to_solve: 7, offer_support: false, is_teacher: false)
+griffith = Student.new(username: 'Griffey Sellnow', password: 'password', time_to_solve: 7, offer_support: false, is_teacher: false)
+abbie = Student.new(username: 'Abbie Leyrer', password: 'password', time_to_solve: 7, offer_support: false, is_teacher: false)
+kippy = Student.new(username: 'Kippy Ninman', password: 'password', time_to_solve: 7, offer_support: false, is_teacher: false)
+seth = Student.new(username: 'Sethaoy Pardee', password: 'password', time_to_solve: 7, offer_support: true, is_teacher: false)
+dara = Student.new(username: 'Dara Parrish', password: 'password', time_to_solve: 7, offer_support: false, is_teacher: false)
+grant = Student.new(username: 'Grant Stafford', password: 'password', time_to_solve: 7, offer_support: false, is_teacher: false)
+cassie =Student.new(username: 'Cassandra Ibeling', password: 'password', time_to_solve: 7, offer_support: true, is_teacher: false)
+jamie = Student.new(username: 'Jamie Anderson', password: 'password', time_to_solve: 7, offer_support: true, is_teacher: false)
+darby = Student.new(username: 'Darby Parrish', password: 'password', time_to_solve: 7, offer_support: false, is_teacher: false)
+matteo = Student.new(username: 'Matteo', password: 'password', time_to_solve: 7, offer_support: false, is_teacher: false)
 
 boz.classroom = fourth_grade
 griffith.classroom = third_grade
@@ -44,6 +49,7 @@ grant.classroom = fourth_grade
 cassie.classroom = eighth_grade
 jamie.classroom = eighth_grade
 darby.classroom = fourth_grade
+matteo.classroom = no_classroom
 
 boz.save
 griffith.save
@@ -55,7 +61,7 @@ grant.save
 cassie.save
 jamie.save
 darby.save
-
+matteo.save
 
 
 

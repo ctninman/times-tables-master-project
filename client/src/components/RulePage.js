@@ -4,7 +4,7 @@ import SingleExplanation from './SingleExplanation'
 function RulePage ({allRules}) {
 
   // const [allRules, setAllRules] = useState([])
-  const [currentRuleNumber, setCurrentRuleNumber] = useState(1)
+  const [currentRuleNumber, setCurrentRuleNumber] = useState(0)
   const [singleRule, setSingleRule] = useState(allRules.find((oneRule) => oneRule.rule_number == currentRuleNumber))
   const [showRelatedFacts, setShowRelatedFacts] = useState(true)
 
@@ -27,9 +27,17 @@ function RulePage ({allRules}) {
     console.log(event.target.value)
   }
 
+  function handleNextRule () {
+    if (currentRuleNumber < 9) {
+      setCurrentRuleNumber(currentRuleNumber +1)
+    }
+    else {
+      setCurrentRuleNumber(0)
+    }
+  }
+
   return (
     <div>
-      <button onClick={() => console.log(singleRule)}>SRULE</button>
       <div>
         {allRules.map((rule) => (
           <button 
@@ -64,6 +72,7 @@ function RulePage ({allRules}) {
           {singleRule.additional_explanation.map((additional_explanation) => (
               <SingleExplanation key={additional_explanation} explanation={additional_explanation} />
           ))}
+        <button onClick={handleNextRule}>Next Rule</button>
         
       </div>
       :

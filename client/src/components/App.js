@@ -34,7 +34,7 @@ function App() {
         r.json()
         .then((user) => {
           setUser(user)
-          if (user.hasOwnProperty('classrooms')) {
+          if (user.is_teacher === true) {
             setIsTeacher(true)
           } else {
             setIsTeacher(false)

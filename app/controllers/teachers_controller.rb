@@ -3,7 +3,7 @@ class TeachersController < ApplicationController
   wrap_parameters format: []
 
   def show
-    teacher = Teacher.find_by(id: session[:user_id])
+    teacher = Teacher.find_by(id: session[:teacher_id])
     if teacher
       render json: teacher, status: :ok
     else
@@ -35,7 +35,7 @@ class TeachersController < ApplicationController
   private
 
   def teacher_params
-    params.permit(:username, :password)
+    params.permit(:username, :password, :email, is_teacher)
   end
   
 end

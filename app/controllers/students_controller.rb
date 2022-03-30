@@ -17,7 +17,10 @@ class StudentsController < ApplicationController
       else
         render json: {error: "Not authorized"}, status: :unauthorized
       end
+    else
+      render json: {error: "no session"}, status: :unauthorized
     end
+
   end
 
   def create
@@ -55,7 +58,7 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.permit(:username, :extra_time_needed, :extra_time_amount, :offer_support, :classroom_id, :password, :id)
+    params.permit(:username, :is_teacher, :time_to_solve, :offer_support, :classroom_id, :password, :id)
   end
 
 end

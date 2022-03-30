@@ -19,6 +19,7 @@ function TeacherDashboard ({teacherLogin}) {
   const [fullClassroomData, setFullClassroomData] = useState(null)
   const [viewSingleStudent, setViewSingleStudent] = useState(false)
   const [toggleAddStudent, setToggleAddStudent] = useState(false)
+  const [toggleAddClassroom, setToggleAddClassroom] = useState(false)
   const [singleStudent, setSingleStudent] = useState(null)
   const [addClassroomName, setAddClassroomName] = useState('New Class')
 
@@ -105,8 +106,16 @@ function TeacherDashboard ({teacherLogin}) {
             setSelectedClassroom={setSelectedClassroom}
             selectedClassroom={selectedClassroom}/>
         ))}
-        <AddClassroom />
-        {/* <button onClick={handleAddClassroom}>Add Classroom</button> */}
+        
+        <div>
+          <button onClick={() => setToggleAddClassroom(!toggleAddClassroom)}>Add Classroom</button>
+          
+          {toggleAddClassroom ?
+          <AddClassroom />
+          :
+          null}
+        
+        </div>
       </div>
       {viewSingleStudent === false 
         ? 

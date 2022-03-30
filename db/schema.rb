@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_25_211757) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_30_142905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,11 +58,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_25_211757) do
     t.bigint "classroom_id", null: false
     t.string "username"
     t.string "password_digest"
-    t.boolean "extra_time_needed"
-    t.integer "extra_time_amount"
+    t.integer "time_to_solve"
     t.boolean "offer_support"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_teacher"
     t.index ["classroom_id"], name: "index_students_on_classroom_id"
   end
 
@@ -71,6 +71,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_25_211757) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
+    t.boolean "is_teacher"
   end
 
   add_foreign_key "classrooms", "teachers"

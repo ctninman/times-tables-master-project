@@ -19,8 +19,8 @@ function AddStudent ({setSingleStudent, selectedClassroom}) {
           password_confirmation: newStudentPasswordConfirmation,
           classroom_id: selectedClassroom.id,
           offer_support: false,
-          extra_time_needed: false,
-          extra_time_amount: 0
+          time_to_solve: 7,
+          is_teacher: false
         }),
       }).then((r) => {
         // setIsLoading(false);

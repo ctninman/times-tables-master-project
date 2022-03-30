@@ -6,6 +6,7 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
     // const [password, setPassword] = useState("");
     // const [teacherLogin, setTeacherLogin] = useState(false)
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
+    const [email, setEmail] = useState("")
 
   
     // function handleSubmit(e) {
@@ -35,10 +36,13 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username,
-            password,
+            username: username,
+            password: password,
             password_confirmation: passwordConfirmation,
-            classroom_id: 1
+            classroom_id: 1,
+            is_teacher: false,
+            offer_support: false,
+            time_to_solve: 7,
           }),
         }).then((r) => {
           // setIsLoading(false);
@@ -58,9 +62,11 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username,
-            password,
-            password_confirmation: passwordConfirmation
+            username: username,
+            password: password,
+            password_confirmation: passwordConfirmation,
+            email: email,
+            is_teacher: true
           }),
         }).then((r) => {
           // setIsLoading(false);
@@ -118,7 +124,7 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
     // }
   
     return (
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', width: '400px', marginLeft: '20px'}}>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -133,23 +139,42 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <label htmlFor="password-confirmation">Password:</label>
+        <label htmlFor="password-confirmation">Confirm Password:</label>
         <input
           type="password"
           id="password-confirmation"
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
+        { teacherLogin 
+        ?
+          <>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="text"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          </>
+        :
+          null
+        }
 
-        <label htmlFor="is-teacher">I am a teacher</label>
-        <input
+        <div style={{display: 'flex', flexDirection: 'row'}}>
+          <input
           type="checkbox"
           id="is-teacher"
           checked={teacherLogin}
           onChange={() => setTeacherLogin(!teacherLogin)}
-        />
+          />
+          <label htmlFor="is-teacher">I am a teacher</label>
+        </div>
+
         <button type="submit">Submit</button>
       </form>
+
+
     );
   }
 

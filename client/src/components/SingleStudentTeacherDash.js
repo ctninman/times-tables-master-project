@@ -10,7 +10,7 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
   const unknown = singleStudent.masteries.filter(item => item.mastery_level < 4)
   const struggle = singleStudent.masteries.filter((mastery) => mastery.times_answered > 8 && mastery.times_answered / mastery.times_correct > 2)
 
-  const [studentTimeNeeded, setStudentTimeNeeded] = useState(singleStudent.extra_time_amount)
+  const [studentTimeNeeded, setStudentTimeNeeded] = useState(singleStudent.time_to_solve)
   const [studentSupportNeeded, setStudentSupportNeeded] = useState(singleStudent.offer_support)
 
   const firstUpdate = useRef(true);
@@ -20,7 +20,7 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
       firstUpdate.current = false;
       return;
     }
-    patchUpdatedStudent({extra_time_amount: studentTimeNeeded})
+    patchUpdatedStudent({time_to_solve: studentTimeNeeded})
   }, [studentTimeNeeded])
 
   useEffect (() => {
