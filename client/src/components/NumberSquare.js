@@ -14,11 +14,30 @@ function NumberSquare ({
   factTimesCorrect,
   setFactTimesCorrect,
   makeRequest,
-  setMakeRequest
+  setMakeRequest,
+  timeToAnswer,
+  timerFinished,
+  generalToggler
 }) {
 
   const {user} = useContext(UserContext)
   const firstUpdate = useRef(true);
+
+  const [revealAnswer, setRevealAnswer] = useState(false)
+
+  useEffect (() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    if (selectedQuizQuestion.problem.answer === number) {
+      setRevealAnswer(true)
+    }
+  }, [makeRequest, timerFinished])
+
+  useEffect (() => {
+    setRevealAnswer(false)
+  }, [generalToggler])
 
   // const [factMasteryLevel, setFactMasteryLevel] = useState(selectedQuizQuestion.mastery_level)
   // const [factTimesAnswered, setFactTimesAnswered] = useState(selectedQuizQuestion.times_answered)
@@ -65,8 +84,10 @@ function NumberSquare ({
 
 
   return (
-    <div className='grid-square' style={{backgroundColor: '#f62d2d', display: 'inline-block',flexDirection: 'column'}}onClick={handleAnswer}>
-      <h2 className='grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
+    <div 
+      className={`number-square${revealAnswer ? "-reveal" : ""}`}
+      style={{ display: 'inline-block',flexDirection: 'column'}}onClick={handleAnswer}>
+        <h2 className='grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
     </div>
    
   ) 

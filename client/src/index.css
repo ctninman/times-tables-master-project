@@ -52,10 +52,45 @@ code {
   position: relative; 
   margin: 2px;
   flex-wrap: wrap;
+  
   /* margin-top: 3px; 
   margin-bottom: 3px; */
   /* border: 1px solid white; */
   
+}
+
+.number-square {
+  width: 9%;
+  border-radius: 5px; 
+  padding-bottom: 7.5%; /* 1:1 Aspect Ratio */
+  text-align: center; 
+  display: flex;
+  justify-content: center;
+  height: 0; 
+  position: relative; 
+  margin: 2px;
+  flex-wrap: wrap;
+  /* margin-top: 3px; 
+  margin-bottom: 3px; */
+  /* border: 1px solid white; */
+  background-image: linear-gradient(to bottom right, rgb(255, 253, 160),#fbff19,#ffb619 ,#fbff19, rgb(255, 253, 160));
+}
+
+.number-square-reveal {
+  width: 9%;
+  border-radius: 5px; 
+  padding-bottom: 7.5%; /* 1:1 Aspect Ratio */
+  text-align: center; 
+  display: flex;
+  justify-content: center;
+  height: 0; 
+  position: relative; 
+  margin: 2px;
+  flex-wrap: wrap;
+  /* margin-top: 3px; 
+  margin-bottom: 3px; */
+  /* border: 1px solid white; */
+  background-image: linear-gradient(to bottom right, rgb(105, 194, 102),rgb(83, 172, 80),rgb(67, 150, 65) ,rgb(83, 172, 80), rgb(105, 194, 102));
 }
 
 .grid-fact {
@@ -156,6 +191,8 @@ code {
 #level-10 {
   background-image: linear-gradient(to bottom right, white, rgb(255, 253, 160),#fbff19, rgb(255, 253, 160),white);
 }
+
+
 
 button {
   width: 130px;
