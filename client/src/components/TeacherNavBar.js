@@ -20,15 +20,15 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
   }
 
     // *** JSX *** //
-  return (
-    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#022873'}}> 
+  return user? (
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#A0D568'}}> 
       
         <div style={{flexGrow: '1', display: 'flex', flexDirection: 'row', marginTop: '10px', flexWrap: 'wrap'}}>
           <NavLink
             to='/'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB"}}
           >
             Home
           </NavLink>
@@ -36,7 +36,7 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
             to='/multiplication-rules'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB"}}
           >
             Multiplication Rules
           </NavLink>
@@ -44,7 +44,7 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
             to='/my-times-tables'
             exact
             className='my-times-table-nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB"}}
           >
             My Times Tables
           </NavLink> */}
@@ -52,7 +52,7 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
             to='/quizzes'
             exact
             className='quizzes-nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB"}}
           >
             Quiz
           </NavLink>
@@ -62,7 +62,7 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
             to='/student-dashboard'
             exact
             className='student-dash'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB"}}
           >
             Dashboard
           </NavLink> */}
@@ -71,7 +71,7 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
             to='/teacher-dashboard'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB"}}
           >
             Dashboard
           </NavLink>
@@ -87,11 +87,11 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
         
         <div style={{flexGrow: '1', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', marginTop: '10px', flexWrap: 'wrap'}}>
           <div style={{width: '75px'}}></div>
-          <NavLink
+          {/* <NavLink
             to='/user-login'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB"}}
           >
             Login
           </NavLink>
@@ -99,11 +99,11 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
             to='/user-signup'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB"}}
           >
             Sign Up
-          </NavLink>
-          <button style={{width: '20px'}} className='login-button' onClick={() => console.log(user)}></button>
+          </NavLink> */}
+          <h3>Hi {user.username}</h3>
           <button className='nav-bar' 
             onClick={handleSignOut}
             >Sign Out
@@ -112,6 +112,8 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
 
     </div>
   )
+  :
+  null
 }
 
 export default TeacherNavBar

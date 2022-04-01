@@ -4,7 +4,7 @@ function MyTimesTables ({allFacts, user}) {
   
   const colorSquaresArray = [0,1,2,3,4,5,6,7,8,9,10]
 
-  return (
+  return user ? (
     <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
       <h1 style={{textAlign: 'center'}}>My Times Tables</h1>
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: '5px'}}>
@@ -19,6 +19,8 @@ function MyTimesTables ({allFacts, user}) {
       </div>
     </div>
   )
+    :
+  <h1>Login Please</h1>
 }
 
 export default MyTimesTables

@@ -71,7 +71,17 @@ function TeacherDashboard ({teacherLogin}) {
   return user ?
   (
     <>
-      <h1>Teacher Dashboard</h1>
+      <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+        <h1 style={{marginRight: '20px'}}>Teacher Dashboard</h1>
+          <button onClick={() => setToggleAddClassroom(!toggleAddClassroom)}>{toggleAddClassroom ? "Cancel": "+ Add Classroom"}</button>
+        </div>
+
+      {toggleAddClassroom ?
+        <AddClassroom setSelectedClassroom={setSelectedClassroom} setToggleAddClassroom={setToggleAddClassroom}/>
+        :
+        null
+      }
+        
       <div style={{display: 'flex', flexDirection: 'row'}}>
         {user.classrooms.map ((classroom) => (
           <ClassroomButton 
@@ -82,15 +92,7 @@ function TeacherDashboard ({teacherLogin}) {
             setViewSingleStudent={setViewSingleStudent}/>
         ))}
         
-        <div>
-          <button onClick={() => setToggleAddClassroom(!toggleAddClassroom)}>Add Classroom</button>
-          
-          {toggleAddClassroom ?
-          <AddClassroom setSelectedClassroom={setSelectedClassroom} setToggleAddClassroom={setToggleAddClassroom}/>
-          :
-          null}
-        
-        </div>
+
       </div>
       {viewSingleStudent === false 
         ? 
@@ -106,14 +108,17 @@ function TeacherDashboard ({teacherLogin}) {
             {selectedClassroom && fullClassroomData 
                 ?
               <div>
-                <button onClick={() => setToggleAddStudent(!toggleAddStudent)}>{toggleAddStudent ? "Cancel": "Add Student"}</button>
-                {toggleAddStudent === true 
-                ?
-                  <AddStudent selectedClassroom={selectedClassroom} setSingleStudent={setSingleStudent}/>
-                :
-                  null
-                }
-                <h1 style={{margin: '2px'}}>{selectedClassroom.classroom_name}</h1>
+                <div style={{display: 'flex', flexDirection: 'row', margin: '10px', marginTop: '15px', alignItems: 'center'}}>
+                  <h1 style={{marginRight: '20px'}}>{selectedClassroom.classroom_name}</h1>
+                  <button onClick={() => setToggleAddStudent(!toggleAddStudent)}>{toggleAddStudent ? "Cancel": "+ Add Student"}</button>
+                </div>
+                  {toggleAddStudent === true 
+                  ?
+                    <AddStudent selectedClassroom={selectedClassroom} setSingleStudent={setSingleStudent}/>
+                  :
+                    null
+                  }
+      
                 <div style={{display: 'flex', flexDirection:'row', flexWrap: 'wrap', marginTop: '0px'}}>
                   {fullClassroomData.students.map((student) => (
                     <StudentInfo key={student.username} student={student} setSingleStudent={setSingleStudent} setViewSingleStudent={setViewSingleStudent} viewSingleStudent={viewSingleStudent}/>
@@ -121,7 +126,7 @@ function TeacherDashboard ({teacherLogin}) {
                 </div>
               </div>
                 :
-              <h1>Nope Slected</h1>
+              null
             }
           </>
         }
@@ -132,7 +137,12 @@ function TeacherDashboard ({teacherLogin}) {
     
     }
       
-        <button onClick={handleDashboardHome}>Dashboard Home</button>
+        {selectedClassroom
+          ? 
+        <button style={{margin: '20px'}} onClick={handleDashboardHome}>Dashboard Home</button>
+          :
+        null
+        } 
     </>
   )
   :

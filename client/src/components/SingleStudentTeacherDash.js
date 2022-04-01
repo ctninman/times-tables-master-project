@@ -33,11 +33,17 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
 
 
   function handleDeleteStudent () {
-    fetch(`/students/${singleStudent.id}`, {method: "DELETE"})
-    .then((r) => r.json())
-    .then((data) => {
-      console.log("Deleted")
-    })
+    const shouldDeleteStudent = window.confirm("Are you sure you want to remove this student from your classroom?")
+    if (shouldDeleteStudent) {
+      let confirmShouldDeleteStudent = window.confirm("Just double checking")
+      if (confirmShouldDeleteStudent) {
+        fetch(`/students/${singleStudent.id}`, {method: "DELETE"})
+        .then((r) => r.json())
+        .then((data) => {
+          console.log("Deleted")
+        })
+      }
+    }
   }
 
   function patchUpdatedStudent (object) {
@@ -63,48 +69,73 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
 
   return (
     <div>
-      <h1>{singleStudent.username}</h1>
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-        <button onClick={() => setStudentSupportNeeded(!studentSupportNeeded)}>Needs Support</button>
+      {studentSupportNeeded ?
+        <h1 
+          className='support-needed' 
+          style={{textAlign: 'center', paddingTop: '5px', marginLeft: '20%', marginRight: '20%', border: '2px solid', borderRadius: '5px'}}
+          >{singleStudent.username}</h1>
+      :
+        <h1 
+        className='support-not-needed'
+        style={{textAlign: 'center', paddingTop: '5px', marginLeft: '20%', marginRight: '20%', border: '2px solid', borderRadius: '5px'}}
+        >{singleStudent.username}</h1>
+      } 
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+        <div style={{display: 'flex', flexDirection: 'row'}}>  
+          <input
+            type="checkbox"
+            id="needs-support"
+            checked={studentSupportNeeded}
+            onChange={() => setStudentSupportNeeded(!studentSupportNeeded)}
+          />
+          <label htmlFor="needs-support">Needs Support</label>
+        </div>
         <div style={{display: 'flex', flexDirection: 'row'}}>
-          <button onClick={() => setStudentTimeNeeded(studentTimeNeeded - 1)}> - </button>
-          <h2>{studentTimeNeeded}</h2>
-          <button onClick={() => setStudentTimeNeeded(studentTimeNeeded + 1)}> + </button>
+          <h3 style={{marginTop: '2px'}}><i> Seconds Given To Solve:</i>  {studentTimeNeeded}</h3>
+          <button style={{width: '25px', marginLeft: '10px'}} onClick={() => setStudentTimeNeeded(studentTimeNeeded - 1)}> - </button>
+          <button style={{width: '25px'}} onClick={() => setStudentTimeNeeded(studentTimeNeeded + 1)}> + </button>
         </div>
       </div>
-      <h3>Total Responses Given: {sumAllResponses}</h3>
-      <h3>Total Responses Correct: {sumAllCorrect}</h3>
-      <h3>Overall Percent Correct: {(sumAllCorrect / sumAllResponses * 100).toFixed(2)}%</h3>
+      <h3><i> Total Responses Given:</i>  {sumAllResponses}</h3>
+      <h3><i> Total Responses Correct:</i>  {sumAllCorrect}</h3>
+      <h3><i> Overall Percent Correct:</i>  {(sumAllCorrect / sumAllResponses * 100).toFixed(2)}%</h3>
 
-      <h3># of Struggling Facts: {struggle.length}</h3>
+      <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#ED5564'}}># of Struggling Facts: {struggle.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
         {struggle.map((item) => <p className='student-dash-fact' >{item.problem.multiplication_fact}</p>)}
       </div>
 
-      <h3># of Mastered Facts: {mastered.length}</h3>
+      <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#FFCE54'}}># of Mastered Facts: {mastered.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
         {mastered.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
-      <h3># of Almost-Mastered Facts: {almostMastered.length}</h3>
+      <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#A0D568'}}># of Almost-Mastered Facts: {almostMastered.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
         {almostMastered.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
-      <h3># of Still Learning Facts: {learning.length}</h3>
+      <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#4FC1E8'}}># of Still Learning Facts: {learning.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
         {learning.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
-      <h3># of Unknown Facts: {unknown.length}</h3>
+      <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#AC92EB'}}># of Unknown Facts: {unknown.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
         {unknown.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
 
-      <button onClick={() => setViewSingleStudent(false)}>View Class</button>
+      <button style={{margin: '20px'}} onClick={() => setViewSingleStudent(false)}>View Class</button>
       <button onClick={handleDeleteStudent}>Delete Student</button>
     </div>
   )
 }
 
 export default SingleStudentTeacherDash
+
+
+// color: #AC92EB;
+// color: #4FC1E8;
+// color: #A0D568;
+// color: #FFCE54;
+// color: #ED5564;

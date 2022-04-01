@@ -18,12 +18,14 @@ function MultiplicationRules ({allRules, setAllRules, currentRuleNumber, setCurr
   //   })
   // }, [] )
 
-  return (
+  return allRules ? (
     <>
       <RulePage allRules={allRules}/>
       {/* <button onClick={() => console.log(currentRule)} >Rules</button> */}
     </>
   )
+  :
+  <h1>Rules Please</h1>
 }
 
 export default MultiplicationRules

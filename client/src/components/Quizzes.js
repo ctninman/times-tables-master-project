@@ -1,31 +1,48 @@
 import { useContext, useState, useRef, useEffect } from "react"
 import {UserContext} from "./UserContext"
-import FactButton from "./FactButton"
+import FactFilter from "./FactFilter"
 import NumberSquare from "./NumberSquare"
+import LoadScreen from "./LoadScreen";
 
 function Quizzes () {
 
   const firstUpdate = useRef(true);
+  const secondUpdate = useRef(true)
+  const thirdUpdate = useRef(true)
 
-  const {user, setUser} = useContext(UserContext)
-  const [selectedQuizQuestion, setSelectedQuizQuestion] = useState(user.masteries[Math.floor(Math.random()*user.masteries.length)])
+  const {user, isTeacher} = useContext(UserContext)
+  const [selectedQuizQuestion, setSelectedQuizQuestion] = useState(null)
   const [answerGiven, setAnswerGiven] = useState(false)
   const [makeRequest, setMakeRequest] = useState(false)
-  const [timeToAnswer, setTimeToAnswer] = useState(user.time_to_solve)
+  const [timeToAnswer, setTimeToAnswer] = useState(null)
   const [timerFinished, setTimerFinished] = useState(false)
   const [generalToggler, setGeneralToggler] = useState(false)
-
+  const [correctResponse, setCorrectResponse] = useState (false)
+  // const [selectedFactNumbers, setSelectedFactNumbers] = useState([...Array(101).keys()])
+  const [filteredQuestionList, setFilteredQuestionList] = useState(null)
 
   const [factMasteryLevel, setFactMasteryLevel] = useState(0)
   const [factTimesAnswered, setFactTimesAnswered] = useState(0)
   const [factTimesCorrect, setFactTimesCorrect] = useState(0)
 
+
   let hundredArray = [...Array(101).keys()]
   hundredArray.shift()
 
-  useEffect (()=> {
+  useEffect (() => {
     if (firstUpdate.current) {
       firstUpdate.current = false;
+      return;
+    }
+     else if (user) {
+      // setSelectedQuizQuesti[Math.floor(Math.random.length)])
+      setTimeToAnswer(user.time_to_solve)
+    }
+  }, [selectedQuizQuestion])
+
+  useEffect (()=> {
+    if (secondUpdate.current) {
+      secondUpdate.current = false;
       return;
     }
     setFactMasteryLevel(selectedQuizQuestion.mastery_level)
@@ -35,11 +52,13 @@ function Quizzes () {
   }, [selectedQuizQuestion])
 
   useEffect (() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
+    if (thirdUpdate.current) {
+      thirdUpdate.current = false;
       return;
     }
-    patchStudentMastery()
+    if (selectedQuizQuestion) {
+      patchStudentMastery()
+    }
     // fetch(`/masteries/${selectedQuizQuestion.id}`, {
     //   method: "PATCH",
     //   headers: {"Content-Type": "application/json",},
@@ -87,51 +106,86 @@ function Quizzes () {
   }
 
   function setNextQuestion () {
-    setSelectedQuizQuestion(user.masteries[Math.floor(Math.random()*user.masteries.length)])
+    setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
     setAnswerGiven(false)
     setGeneralToggler(!generalToggler)
   }
 
-  return (
+  return user && isTeacher === false? (
     <>
-      <h1>{user.username}</h1>
+      {/* <button onClick={filterFacts} style={{width: '40px'}}>1x</button>
+      <button onClick={() => console.log(filteredQuestionList)} style={{width: '40px'}}>2x</button>
+      <button style={{width: '40px'}}>3x</button>
+      <button style={{width: '40px'}}>4x</button>
+      <button style={{width: '40px'}}>5x</button>
+      <button style={{width: '40px'}}>6x</button>
+      <button style={{width: '40px'}}>7x</button>
+      <button style={{width: '40px'}}>8x</button>
+      <button style={{width: '40px'}}>9x</button>
+      <button style={{width: '40px'}}>10x</button> */}
       {/* <div>
-        {user.masteries.map((mastery) => (
+    .map((mastery) => (
           <FactButton key={mastery.id} mastery={mastery}/>
         ))}
       </div> */}
-      <div style={{display: 'flex', flexDirection: 'row'}}>
-        <div>
-          <h1>{selectedQuizQuestion.problem.multiplication_fact} = {answerGiven ? `${selectedQuizQuestion.problem.answer}` : null}</h1>
-          <h1>{timeToAnswer === 0 || answerGiven ? "Time's Up" : `Time: ${timeToAnswer}`} </h1>
-          <button onClick={setNextQuestion} >Next</button>
+      
+      {selectedQuizQuestion ?
+      
+      <div style={{display: 'flex', flexDirection: 'column'}}>
+
+      {timeToAnswer === 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time's Up </h1> : null }
+      {timeToAnswer != 0  && answerGiven === false? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time Left: {timeToAnswer} </h1> : null }
+      {answerGiven && timeToAnswer != 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Answer Given </h1> : null }
+
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+          <button style={{width: '90px', marginLeft: '10%'}}>Start/Stop</button>
+          <div style={{display: 'flex', flexDirection: 'column'}}>
+            <h1 style={{margin: '3px', fontSize: '40px', backgroundColor: '#4FC1E8', padding: '8px', border: '2px solid', borderRadius: '10px'}}>{selectedQuizQuestion.problem.multiplication_fact} = {answerGiven ? `${selectedQuizQuestion.problem.answer}` : null}</h1>
+           
+          </div>
+          <button style={{width: '90px', marginRight: '10%'}} onClick={setNextQuestion} >Next</button>
         </div>
-        <div className='quiz-grid'>
-          {hundredArray.map((number) => (
-            <NumberSquare 
-            key={number} 
-            number={number} 
-            setSelectedQuizQuestion={setSelectedQuizQuestion} selectedQuizQuestion={selectedQuizQuestion} 
-            answerGiven={answerGiven}
-            setAnswerGiven={setAnswerGiven}
-            factMasteryLevel={factMasteryLevel}
-            setFactMasteryLevel={setFactMasteryLevel}
-            factTimesAnswered={factTimesAnswered}
-            setFactTimesAnswered={setFactTimesAnswered}
-            factTimesCorrect={factTimesCorrect}
-            setFactTimesCorrect={setFactTimesCorrect}
-            makeRequest={makeRequest}
-            setMakeRequest={setMakeRequest}
-            timeToAnswer={timeToAnswer}
-            patchStudentMastery={patchStudentMastery}
-            timerFinished={timerFinished}
-            generalToggler={generalToggler}/>
-          ))}
+        
+        <div style={{display: 'flex', justifyContent: 'center'}}>
+          <div className='quiz-grid'>
+            {hundredArray.map((number) => (
+              <NumberSquare 
+              key={number} 
+              number={number} 
+              setSelectedQuizQuestion={setSelectedQuizQuestion} selectedQuizQuestion={selectedQuizQuestion} 
+              answerGiven={answerGiven}
+              setAnswerGiven={setAnswerGiven}
+              factMasteryLevel={factMasteryLevel}
+              setFactMasteryLevel={setFactMasteryLevel}
+              factTimesAnswered={factTimesAnswered}
+              setFactTimesAnswered={setFactTimesAnswered}
+              factTimesCorrect={factTimesCorrect}
+              setFactTimesCorrect={setFactTimesCorrect}
+              makeRequest={makeRequest}
+              setMakeRequest={setMakeRequest}
+              timeToAnswer={timeToAnswer}
+              patchStudentMastery={patchStudentMastery}
+              timerFinished={timerFinished}
+              generalToggler={generalToggler}/>
+            ))}
+          </div>
         </div>
       </div>
-      <button onClick={() => console.log(selectedQuizQuestion)}>testArray</button>
+      :
+      <div style={{textAlign: 'center'}}>
+        <div>
+          <FactFilter 
+            filteredQuestionList={filteredQuestionList}setFilteredQuestionList={setFilteredQuestionList}/>
+        </div>
+        <button style={{margin: '30px'}} onClick={setNextQuestion}>Become a Master!</button>
+
+        {/* <div><button onClick={checkLengths}>testArray</button></div> */}
+      </div>
+    }
     </>
   )
+  :
+  <LoadScreen />
 }
 
 export default Quizzes

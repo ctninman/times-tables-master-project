@@ -33,13 +33,13 @@ function GridSquare ({fact}) {
 
   return user ?
     (
-    <div className='grid-square' id={`level-${masteryLevel}`} onClick={() => setShowAnswer(!showAnswer)}>
+    <div className='grid-square' id={`level-${masteryLevel}`} onMouseEnter={() => setShowAnswer(true)} onMouseLeave={() => setShowAnswer(false)}>
     {showAnswer ===false 
       ? 
     <h2 className='grid-fact' >{fact.multiplication_fact}</h2>
       :
     <h2 className='grid-answer'>{fact.answer}</h2>}
-    {masteryLevel === 10 ? <h5 className='grid-mastered'>MASTER</h5>: null}
+    {masteryLevel === 10 && showAnswer === false ? <h5 className='grid-mastered'>MASTER</h5>: null}
     </div>
   ) 
   :

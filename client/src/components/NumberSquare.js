@@ -24,6 +24,7 @@ function NumberSquare ({
   const firstUpdate = useRef(true);
 
   const [revealAnswer, setRevealAnswer] = useState(false)
+  const [highlightNumber, setHighlightNumber] = useState(false)
 
   useEffect (() => {
     if (firstUpdate.current) {
@@ -85,7 +86,8 @@ function NumberSquare ({
 
   return (
     <div 
-      className={`number-square${revealAnswer ? "-reveal" : ""}`}
+      onMouseEnter={() => setHighlightNumber(true)} onMouseLeave={() => setHighlightNumber(false)}
+      className={`number-square${revealAnswer ? "-reveal" : ""}`} 
       style={{ display: 'inline-block',flexDirection: 'column'}}onClick={handleAnswer}>
         <h2 className='grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
     </div>

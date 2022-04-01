@@ -20,14 +20,14 @@ function NavBar({isTeacher, setIsTeacher}) {
 
     // *** JSX *** //
   return (
-    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#022873'}}> 
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#A0D568'}}> 
       
-        <div style={{flexGrow: '1', display: 'flex', flexDirection: 'row', marginTop: '10px', flexWrap: 'wrap'}}>
+        <div style={{width: '32%', display: 'flex', flexDirection: 'row', marginTop: '10px', flexWrap: 'wrap'}}>
           <NavLink
             to='/'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
           >
             Home
           </NavLink>
@@ -35,7 +35,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/multiplication-rules'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
           >
             Multiplication Rules
           </NavLink>
@@ -43,7 +43,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/my-times-tables'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
           >
             My Times Tables
           </NavLink>
@@ -51,7 +51,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/quizzes'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
           >
             Quiz
           </NavLink>
@@ -61,7 +61,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/student-dashboard'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
           >
             Dashboard
           </NavLink>
@@ -70,43 +70,53 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/teacher-dashboard'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
           >
             Dashboard
           </NavLink>
           }
         </div>
 
-        <div style={{display: 'flex', flexDirection: 'row', flexGrow: '1', flexWrap: 'wrap', justifyContent: 'center'}}>
+        <div style={{display: 'flex', flexDirection: 'row', width: '32%', flexWrap: 'wrap', justifyContent: 'center'}}>
           <h1 
             style={{fontSize: '50px', color: 'white', textAlign: 'center', textShadow: '0px 0px 6px rgba(255,255,255,0.7)', margin: '0px'}}
             >Times Tables Master
           </h1>
         </div>
         
-        <div style={{flexGrow: '1', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', marginTop: '10px', flexWrap: 'wrap'}}>
+        <div style={{width: '32%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', marginTop: '10px', flexWrap: 'wrap'}}>
           <div style={{width: '75px'}}></div>
-          <NavLink
-            to='/user-login'
-            exact
-            className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
-          >
-            Login
-          </NavLink>
+          {user ?
+           <h3>Hi, {user.username}</h3>
+           :
+            <NavLink
+              to='/user-login'
+              exact
+              className='nav-bar'
+              activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
+            >
+              Login
+            </NavLink>
+          }
+          {user ?
+          null:
           <NavLink
             to='/user-signup'
             exact
             className='nav-bar'
-            activeStyle={{background: "#FB7498"}}
+            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
           >
             Sign Up
           </NavLink>
-          <button className='nav-bar' onClick={() => console.log(user)}>Sign In</button>
+          }
+          {user
+          ?
           <button className='nav-bar' 
             onClick={handleSignOut}
             >Sign Out
           </button>
+          :
+          null}
         </div>
 
     </div>
