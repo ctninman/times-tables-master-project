@@ -64,6 +64,8 @@ code {
   
 }
 
+
+
 .number-square {
   width: 9%;
   border-radius: 5px; 
@@ -80,6 +82,8 @@ code {
   /* border: 1px solid white; */
   background-image: linear-gradient(to bottom right, rgb(255, 253, 160),#fbff19,#ffb619 ,#fbff19, rgb(255, 253, 160));
 }
+
+
 
 .number-square-reveal {
   width: 9%;
@@ -101,6 +105,15 @@ code {
 .grid-fact {
   /* font-size: max(1.6vw, 20px); */
   font-size: min(2vw, 18px)
+}
+
+.number-grid-fact {
+  font-size: 22px;
+  font-weight: bolder;
+  margin: 0;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-radius: 5px;
 }
 
 .grid-answer {
@@ -272,6 +285,11 @@ button {
 
 #color-10 {
   background-image: linear-gradient(to bottom right, white, rgb(255, 253, 160),#f9fc42, rgb(255, 253, 160),white);
+}
+
+.home-screen-button {
+  height: 75px;
+  border-radius: 25%;
 }
 
 .student-dash-fact {

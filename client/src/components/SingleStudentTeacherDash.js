@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef} from 'react'
 
-function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
+function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchClassroom}) {
 
   const sumAllResponses = singleStudent.masteries.map(item => item.times_answered).reduce((prev, curr) => prev + curr, 0);
   const sumAllCorrect = singleStudent.masteries.map(item => item.times_correct).reduce((prev, curr) => prev + curr, 0);
@@ -67,6 +67,11 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
     });
   }
 
+  function handleViewClass () {
+    setViewSingleStudent(false)
+    fetchClassroom()
+  }
+
   return (
     <div>
       {studentSupportNeeded ?
@@ -125,7 +130,7 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent}) {
         {unknown.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
 
-      <button style={{margin: '20px'}} onClick={() => setViewSingleStudent(false)}>View Class</button>
+      <button style={{margin: '20px'}} onClick={handleViewClass}>View Class</button>
       <button onClick={handleDeleteStudent}>Delete Student</button>
     </div>
   )

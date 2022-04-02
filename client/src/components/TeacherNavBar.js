@@ -40,6 +40,14 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
           >
             Multiplication Rules
           </NavLink>
+          <NavLink
+            to='/the-times-tables'
+            exact
+            className='nav-bar'
+            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
+          >
+            Times Tables
+          </NavLink>
           {/* <NavLink
             to='/my-times-tables'
             exact

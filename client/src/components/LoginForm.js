@@ -5,6 +5,8 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
 
   let history = useHistory()
 
+  const [errors, setErrors] = useState(false)
+
     function handleLogin (event) {
       event.preventDefault()
       setPassword("")
@@ -26,6 +28,8 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
               setIsTeacher(false)
               history.push('/')
             });
+          } else {
+            setErrors(true)
           }
         })
       } else {
@@ -43,37 +47,42 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
               setIsTeacher(true)
               history.push('/')
             })
+          }   else {
+            setErrors(true)
           }
         })
       }
     }
   
     return (
-      <form onSubmit={handleLogin}>
-        <label htmlFor="username">Username:</label>
-        <input
-          type="text"
-          id="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+      <>
+        <form onSubmit={handleLogin}>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <label htmlFor="is-teacher">I am a teacher</label>
-        <input
-          type="checkbox"
-          id="is-teacher"
-          checked={teacherLogin}
-          onChange={() => setTeacherLogin(!teacherLogin)}
-        />
-        <button type="submit">Submit</button>
-      </form>
+          <label htmlFor="is-teacher">I am a teacher</label>
+          <input
+            type="checkbox"
+            id="is-teacher"
+            checked={teacherLogin}
+            onChange={() => setTeacherLogin(!teacherLogin)}
+          />
+          <button type="submit">Submit</button>
+        </form>
+        {errors ? <h1>Incorrect Login Information</h1>: null}
+      </>
     );
   }
 

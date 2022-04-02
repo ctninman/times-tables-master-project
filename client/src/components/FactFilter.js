@@ -1,9 +1,11 @@
 import {UserContext} from "./UserContext"
-import {useContext} from 'react'
+import {useContext, useState} from 'react'
 
 function FactFilter ({setFilteredQuestionList, filteredQuestionList}) {
 
   const {user} = useContext(UserContext)
+
+  const [whichFacts, setWhichFacts] = useState("All Facts")
   
   const allX = [...Array(101).keys()]
   allX.shift()
@@ -22,19 +24,27 @@ function FactFilter ({setFilteredQuestionList, filteredQuestionList}) {
     setFilteredQuestionList(user.masteries.filter((mastery) => numberArray.includes(mastery.problem.fact_number)))
   }
 
+  function handleFilterChange (event) {
+    setWhichFacts(event.target.value)
+  }
+
   return (
     <div>
-    <button onClick={() => filterFacts(allX)} style={{width: '80px'}}>All Facts</button>      
-    <button onClick={() => filterFacts(oneX)} style={{width: '40px'}}>1x</button>
-    <button onClick={() => filterFacts(twoX)} style={{width: '40px'}}>2x</button>
-    <button onClick={() => filterFacts(threeX)}style={{width: '40px'}}>3x</button>
-    <button onClick={() => filterFacts(fourX)}style={{width: '40px'}}>4x</button>
-    <button onClick={() => filterFacts(fiveX)}style={{width: '40px'}}>5x</button>
-    <button onClick={() => filterFacts(sixX)}style={{width: '40px'}}>6x</button>
-    <button onClick={() => filterFacts(sevenX)}style={{width: '40px'}}>7x</button>
-    <button onClick={() => filterFacts(eightX)}style={{width: '40px'}}>8x</button>
-    <button onClick={() => filterFacts(nineX)}style={{width: '40px'}}>9x</button>
-    <button onClick={() => filterFacts(tenX)}style={{width: '40px'}}>10x</button></div>
+      <div>
+        <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '80px'}}>All Facts</button>      
+        <button value={"1x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(oneX)}} style={{width: '40px'}}>1x</button>
+        <button value={"2x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(twoX)}} style={{width: '40px'}}>2x</button>
+        <button value={"3x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(threeX)}} style={{width: '40px'}}>3x</button>
+        <button value={"4x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(fourX)}} style={{width: '40px'}}>4x</button>
+        <button value={"5x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(fiveX)}} style={{width: '40px'}}>5x</button>
+        <button value={"6x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(sixX)}} style={{width: '40px'}}>6x</button>
+        <button value={"7x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(sevenX)}} style={{width: '40px'}}>7x</button>
+        <button value={"8x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(eightX)}} style={{width: '40px'}}>8x</button>
+        <button value={"9x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(nineX)}}style={{width: '40px'}}>9x</button>
+        <button value={"10x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(tenX)}}style={{width: '40px'}}>10x</button>
+      </div>
+      <h1>{whichFacts}</h1>
+    </div>
   )
 }
 

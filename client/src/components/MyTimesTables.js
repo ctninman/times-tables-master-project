@@ -1,4 +1,5 @@
 import Grid from "./Grid"
+import NoUserTimesTables from "./NoUserTimesTables"
 
 function MyTimesTables ({allFacts, user}) {
   
@@ -20,7 +21,7 @@ function MyTimesTables ({allFacts, user}) {
     </div>
   )
     :
-  <h1>Login Please</h1>
+  <NoUserTimesTables allFacts={allFacts}/>
 }
 
 export default MyTimesTables

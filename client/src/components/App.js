@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import LoginForm from './LoginForm'
 import Quizzes from "./Quizzes";
 import MyTimesTables from "./MyTimesTables";
+import NoUserTimesTables from "./NoUserTimesTables";
 import TeacherDashboard from "./TeacherDashboard";
 import StudentDashboard from "./StudentDashboard";
 import MultiplicationRules from "./MultiplicationRules";
@@ -10,6 +11,7 @@ import SignUpForm from "./SignUpForm";
 import NavBar from "./NavBar";
 import TeacherNavBar from "./TeacherNavBar";
 import {UserContext} from "./UserContext"
+import NoUserHomeScreen from "./NoUserHomeScreen";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -126,7 +128,7 @@ function App() {
               <Quizzes user={user} setUser={setUser}/>
             </Route>
             <Route exact path="/">
-              <h1>Page Count: {count}</h1>
+              <NoUserHomeScreen />
             </Route>
 
           </Switch>
@@ -162,6 +164,9 @@ function App() {
             <Route path="/multiplication-rules">
               <MultiplicationRules user={user} setUser={setUser} allRules={allRules} setAllRules={setAllRules}/>
             </Route>
+            <Route path="/the-times-tables">
+              <NoUserTimesTables allFacts={allFacts}/>
+            </Route>
             <Route path="/teacher-dashboard">
               <TeacherDashboard user={user} setUser={setUser} teacherLogin={teacherLogin}/>
             </Route>
@@ -175,7 +180,7 @@ function App() {
               <Quizzes user={user} setUser={setUser}/>
             </Route> */}
             <Route exact path="/">
-              <h1>Soon to be the splendid home page</h1>
+              <NoUserHomeScreen />
             </Route>
 
           </Switch>

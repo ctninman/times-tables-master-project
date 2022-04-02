@@ -89,7 +89,16 @@ function NumberSquare ({
       onMouseEnter={() => setHighlightNumber(true)} onMouseLeave={() => setHighlightNumber(false)}
       className={`number-square${revealAnswer ? "-reveal" : ""}`} 
       style={{ display: 'inline-block',flexDirection: 'column'}}onClick={handleAnswer}>
-        <h2 className='grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
+        {highlightNumber 
+          ?
+        <div style={{backgroundColor: '#AC92EB'}}>
+          <h2 className='number-grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
+        </div>
+          :
+        <div>
+          <h2 className='number-grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
+        </div>
+      }
     </div>
    
   ) 

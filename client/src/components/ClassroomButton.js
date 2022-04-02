@@ -1,13 +1,14 @@
 import {UserContext} from "./UserContext"
 import {useContext} from 'react'
 
-function ClassroomButton ({classroom, selectedClassroom, setSelectedClassroom, setViewSingleStudent}) {
+function ClassroomButton ({classroom, selectedClassroom, setSelectedClassroom, setViewSingleStudent, fetchClassroom}) {
 
   const {fetchUser} = useContext(UserContext)
 
   function handleClassroomSelect () {
     setSelectedClassroom(classroom)
     setViewSingleStudent(false)
+    fetchClassroom()
   }
 
   function handleClassroomDelete () {

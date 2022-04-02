@@ -1,6 +1,7 @@
 import { useContext, useState,useEffect } from "react"
 import {UserContext} from "./UserContext"
 import FactCard from "./FactCard"
+import LoadScreen from "./LoadScreen"
 
 function StudentDashboard () {
 
@@ -60,7 +61,10 @@ function StudentDashboard () {
         </div>
     </>
     :
-    null
+    <div>
+      <h1 style={{backgroundColor: '#ED5564', textAlign: 'center', padding: '15px'}}>Login to Access Your Dashboard</h1>
+      <LoadScreen />
+  </div>
   )
 }
 

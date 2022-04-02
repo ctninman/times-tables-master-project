@@ -89,7 +89,8 @@ function TeacherDashboard ({teacherLogin}) {
             classroom={classroom}
             setSelectedClassroom={setSelectedClassroom}
             selectedClassroom={selectedClassroom}
-            setViewSingleStudent={setViewSingleStudent}/>
+            setViewSingleStudent={setViewSingleStudent}
+            fetchClassroom={fetchClassroom}/>
         ))}
         
 
@@ -132,7 +133,12 @@ function TeacherDashboard ({teacherLogin}) {
         }
         </>
           :
-        <SingleStudentTeacherDash key={singleStudent.id} singleStudent={singleStudent} setViewSingleStudent={setViewSingleStudent}/>
+        <SingleStudentTeacherDash 
+          key={singleStudent.id} 
+          singleStudent={singleStudent} 
+          setViewSingleStudent={setViewSingleStudent}
+          fetchClassroom={fetchClassroom}
+          />
     
     
     }

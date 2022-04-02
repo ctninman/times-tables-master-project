@@ -1,10 +1,13 @@
 import { useContext, useState, useRef, useEffect } from "react"
+import { useHistory } from "react-router"
 import {UserContext} from "./UserContext"
 import FactFilter from "./FactFilter"
 import NumberSquare from "./NumberSquare"
 import LoadScreen from "./LoadScreen";
 
 function Quizzes () {
+
+  let history = useHistory()
 
   const firstUpdate = useRef(true);
   const secondUpdate = useRef(true)
@@ -59,17 +62,6 @@ function Quizzes () {
     if (selectedQuizQuestion) {
       patchStudentMastery()
     }
-    // fetch(`/masteries/${selectedQuizQuestion.id}`, {
-    //   method: "PATCH",
-    //   headers: {"Content-Type": "application/json",},
-    //   body: JSON.stringify(
-    //     {mastery_level: factMasteryLevel,
-    //       times_answered: factTimesAnswered,
-    //       times_correct: factTimesCorrect}
-    //   ),
-    // })
-      // .then((res) => res.json())
-      // .then((data) => console.log(data))
   }, [makeRequest, timerFinished])
 
   useEffect(() => {
@@ -113,32 +105,23 @@ function Quizzes () {
 
   return user && isTeacher === false? (
     <>
-      {/* <button onClick={filterFacts} style={{width: '40px'}}>1x</button>
-      <button onClick={() => console.log(filteredQuestionList)} style={{width: '40px'}}>2x</button>
-      <button style={{width: '40px'}}>3x</button>
-      <button style={{width: '40px'}}>4x</button>
-      <button style={{width: '40px'}}>5x</button>
-      <button style={{width: '40px'}}>6x</button>
-      <button style={{width: '40px'}}>7x</button>
-      <button style={{width: '40px'}}>8x</button>
-      <button style={{width: '40px'}}>9x</button>
-      <button style={{width: '40px'}}>10x</button> */}
-      {/* <div>
-    .map((mastery) => (
-          <FactButton key={mastery.id} mastery={mastery}/>
-        ))}
-      </div> */}
       
       {selectedQuizQuestion ?
       
-      <div style={{display: 'flex', flexDirection: 'column'}}>
+      <div style={{display: 'flex', flexDirection: 'column', marginTop: '10px'}}>
 
       {timeToAnswer === 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time's Up </h1> : null }
       {timeToAnswer != 0  && answerGiven === false? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time Left: {timeToAnswer} </h1> : null }
       {answerGiven && timeToAnswer != 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Answer Given </h1> : null }
 
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
-          <button style={{width: '90px', marginLeft: '10%'}}>Start/Stop</button>
+         
+        
+         
+          <button onClick={() => history.push('/my-times-tables')}style={{width: '90px', marginLeft: '10%'}}>Stop</button>
+         
+         
+         
           <div style={{display: 'flex', flexDirection: 'column'}}>
             <h1 style={{margin: '3px', fontSize: '40px', backgroundColor: '#4FC1E8', padding: '8px', border: '2px solid', borderRadius: '10px'}}>{selectedQuizQuestion.problem.multiplication_fact} = {answerGiven ? `${selectedQuizQuestion.problem.answer}` : null}</h1>
            
@@ -185,7 +168,10 @@ function Quizzes () {
     </>
   )
   :
-  <LoadScreen />
+  <div>
+    <h1 style={{backgroundColor: '#ED5564', textAlign: 'center', padding: '15px'}}>Login to Access the Quiz Section</h1>
+    <LoadScreen />
+  </div>
 }
 
 export default Quizzes
