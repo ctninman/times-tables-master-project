@@ -20,9 +20,10 @@ function NavBar({isTeacher, setIsTeacher}) {
 
     // *** JSX *** //
   return (
-    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: '#A0D568'}}> 
+    <div>
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white'}}> 
       
-        <div style={{width: '32%', display: 'flex', flexDirection: 'row', marginTop: '10px', flexWrap: 'wrap'}}>
+        <div style={{width: '60%', display: 'flex', flexDirection: 'row', marginTop: '10px', flexWrap: 'wrap', marginBottom: '0px'}}>
           <NavLink
             to='/'
             exact
@@ -77,12 +78,7 @@ function NavBar({isTeacher, setIsTeacher}) {
           }
         </div>
 
-        <div style={{display: 'flex', flexDirection: 'row', width: '32%', flexWrap: 'wrap', justifyContent: 'center'}}>
-          <h1 
-            style={{fontSize: '50px', color: 'white', textAlign: 'center', textShadow: '0px 0px 6px rgba(255,255,255,0.7)', margin: '0px'}}
-            >Times Tables Master
-          </h1>
-        </div>
+
         
         <div style={{width: '32%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', marginTop: '10px', flexWrap: 'wrap'}}>
           <div style={{width: '75px'}}></div>
@@ -117,6 +113,15 @@ function NavBar({isTeacher, setIsTeacher}) {
           </button>
           :
           null}
+        </div>
+
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'row', width: '100%',marginTop: '2px', flexWrap: 'wrap', justifyContent: 'center'}}>
+          <h2 
+            style={{fontSize: '40px', color: 'black', textAlign: 'center', textShadow: '0px 0px 6px rgba(255,255,255,0.7)', margin: '0px', marginTop: '0px'}}
+            >Times Tables Master
+          </h2>
         </div>
 
     </div>

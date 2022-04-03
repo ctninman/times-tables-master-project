@@ -36,43 +36,43 @@ function LoadScreen () {
       
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
         <div style={{backgroundImage: 'linear-gradient(to bottom right, #AC92EB, #4FC1E8', marginRight: '100px', borderRadius: '50%'}}>
-          <h1 style={{padding: '5px'}}>{sixthLoadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{sixthLoadingFact}</h2>
         </div>
         <div style={{backgroundImage: 'linear-gradient(to bottom left, #AC92EB, #4FC1E8', marginLeft: '100px', borderRadius: '50%'}}>
-          <h1 style={{padding: '5px'}}>{seventhLoadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{seventhLoadingFact}</h2>
         </div>
       </div>
      
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
         <div style={{backgroundImage: 'linear-gradient(to bottom right, #4FC1E8, #A0D568', marginRight: '20px', borderRadius: '50%'}}>
-          <h1 style={{padding: '5px'}}>{loadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{loadingFact}</h2>
         </div>
         <div style={{backgroundImage: 'linear-gradient(to bottom left, #4FC1E8, #A0D568', marginLeft: '20px', borderRadius: '50%'}}>
-          <h1 style={{padding: '5px'}}>{secondLoadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{secondLoadingFact}</h2>
         </div>
       </div>
       
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
         <div style={{backgroundImage: 'radial-gradient(#A0D568, #FFCE54, #A0D568', borderRadius: '50%'}}>
-          <h1 style={{padding: '5px'}}>{thirdLoadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{thirdLoadingFact}</h2>
         </div>
       </div>
 
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
         <div style={{backgroundImage: 'linear-gradient(to bottom left, #A0D568, #4FC1E8', marginRight: '20px', borderRadius: '50%'}}>
-          <h1 style={{padding: '5px'}}>{fourthLoadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{fourthLoadingFact}</h2>
         </div>
         <div style={{backgroundImage: 'linear-gradient(to bottom right, #A0D568, #4FC1E8', marginLeft: '20px', borderRadius: '50%'}}>
-          <h1 style={{padding: '5px'}}>{fifthLoadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{fifthLoadingFact}</h2>
         </div>
       </div>
 
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
         <div style={{backgroundImage: 'linear-gradient(to bottom left, #A0D568, #4FC1E8', marginRight: '100px', borderRadius: '50%'}}>  
-          <h1 style={{padding: '5px'}}>{eighthLoadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{eighthLoadingFact}</h2>
         </div>
         <div style={{backgroundImage: 'linear-gradient(to bottom right, #A0D568, #4FC1E8', marginLeft: '100px', borderRadius: '50%'}}>
-          <h1 style={{padding: '5px'}}>{ninthLoadingFact}</h1>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{ninthLoadingFact}</h2>
         </div>
       </div>
 
