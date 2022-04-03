@@ -68,7 +68,7 @@ function RulePage ({allRules}) {
             <img onClick={() => setShowRelatedFacts(() => !showRelatedFacts)}src={singleRule.grid_photo} alt={singleRule.rule} className='grid-photo'/>
           </div>
         :
-          <div><img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.cloud.google.com/times-tables-master_photos/Screen%20Shot%202022-03-25%20at%2011.26.09%20PM.png"} alt={singleRule.rule} className='grid-photo'/>
+          <div><img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-02%20at%209.47.29%20PM.png"} alt={singleRule.rule} className='grid-photo'/>
         </div>} 
         <button onClick={() => setShowRelatedFacts(!showRelatedFacts)}>{showRelatedFacts? "Hide Facts" : "See Facts"}</button>
         
