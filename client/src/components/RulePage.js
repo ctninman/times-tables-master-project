@@ -57,7 +57,7 @@ function RulePage ({allRules}) {
       <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{display: 'flex', flexDirection: 'row', textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
           <h1 style={{padding: '8px', marginLeft: '15px', width: '120px', fontWeight: 'bolder', height: '80px',textAlign: 'center', fontSize: '40px', color: 'black',textShadow: '2px 2px 2px #4FC1E8'}}>{singleRule.rule_title.toUpperCase()}:</h1>
-          <h1 style={{padding: '5px',backgroundImage: 'linear-gradient(#A0D568, #4FC1E8', marginLeft: '15px',borderRadius: '5px', width: '75%', textShadow: '2px 2px 2px #AC92EB'}}>{singleRule.rule}</h1>
+          <h1 style={{padding: '5px',backgroundImage: 'linear-gradient(to bottom right, #4FC1E8, #A0D568, #4FC1E8)', marginLeft: '15px',borderRadius: '5px', width: '75%', textShadow: '2px 2px 2px #AC92EB'}}>{singleRule.rule}</h1>
         </div>
         <div style={{textAlign: 'center'}}>
           {singleRule.explanation.map((explanation) => (

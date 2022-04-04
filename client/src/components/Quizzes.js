@@ -102,6 +102,7 @@ function Quizzes () {
   }
 
   function setNextQuestion () {
+    setCorrectResponse(false)
     if (whichFacts) {
       setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
       setAnswerGiven(false)
@@ -120,21 +121,19 @@ function Quizzes () {
 
       {timeToAnswer === 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time's Up </h1> : null }
       {timeToAnswer != 0  && answerGiven === false? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time Left: {timeToAnswer} </h1> : null }
-      {answerGiven && timeToAnswer != 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Answer Given </h1> : null }
+      {answerGiven && timeToAnswer != 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>{correctResponse ? "CORRECT!" : "INCORRECT" }</h1> : null }
 
-        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', textAlign: 'center'}}>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center',textAlign: 'center', marginBottom: '12px'}}>
          
         
-         
-          <button onClick={() => history.push('/my-times-tables')}style={{width: '90px', marginLeft: '10%'}}>STOP</button>
-         
-         
+       
+          <button onClick={() => history.push('/my-times-tables')}style={{marginRight: '30px',width: '90px',marginTop: '30px'}}>STOP</button>
          
           <div style={{display: 'flex', flexDirection: 'column'}}>
             <h1 style={{margin: '3px', fontSize: '40px', padding: '8px', border: '4px solid', borderRadius: '10px'}}>{selectedQuizQuestion.problem.multiplication_fact} = {answerGiven ? `${selectedQuizQuestion.problem.answer}` : null}</h1>
            
           </div>
-          <button style={{width: '90px', marginRight: '10%'}} onClick={setNextQuestion} >NEXT</button>
+          <button style={{width: '90px', marginLeft: '30px', marginTop: '30px'}} onClick={setNextQuestion} >NEXT</button>
         </div>
         
         <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -157,7 +156,8 @@ function Quizzes () {
               timeToAnswer={timeToAnswer}
               patchStudentMastery={patchStudentMastery}
               timerFinished={timerFinished}
-              generalToggler={generalToggler}/>
+              generalToggler={generalToggler}
+              setCorrectResponse={setCorrectResponse}/>
             ))}
           </div>
         </div>

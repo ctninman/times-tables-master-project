@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap');
 
 body {
   margin: 0;
@@ -55,13 +55,16 @@ code {
   border-radius: 5px; 
   padding-bottom: 7.5%; /* 1:1 Aspect Ratio */
   text-align: center; 
-  display: flex;
+  display: table-cell;
+  flex-direction: column;
   justify-content: center;
   height: 0; 
   position: relative; 
   margin: 2px;
   flex-wrap: wrap;
   border: 1px solid;
+  align-items: center;
+  
   
   /* margin-top: 3px; 
   margin-bottom: 3px; */
@@ -109,32 +112,45 @@ code {
 
 .grid-fact {
   /* font-size: max(1.6vw, 20px); */
-  font-size: min(2vw, 18px)
+  font-size: min(2vw, 18px);
+  height: 70%;
 }
 
 .number-grid-fact {
   font-size: 22px;
   font-weight: bolder;
   margin: 0;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 9.5%;
+  padding-bottom: 9.5%;
   border-radius: 5px;
 }
 
 .grid-answer {
-  font-size: min(2vw, 18px);
-  color:#00686b;
-  font-weight: bolder;
-  background-color: white;
-  padding: 8px;
-  border-radius: 5px;
+
+  font-size: min(3vw, 24px);
+  margin-top: 18%;
+  
 }
 
+.grid-fact-no-user {
+
+  font-size: min(3vw, 24px);
+  margin-top: 0%;
+  margin-bottom: 0%;
+  
+}
+
+
 .grid-mastered {
-  font-size: min(1.2vw, 10px);
-  margin-top: -8px;
-  padding: 0px;
-  color: #c42121;
+  font-size: min(1.7vw, 16px);
+  /* margin-top: -8px; */
+  border-radius: 10px;
+  margin-top: 0%;
+  margin-left: 2px;
+  margin-right: 2px;
+  background-color: white;
+  
+  
 }
 
 .grid-photo {
@@ -295,8 +311,15 @@ button {
 }
 
 .home-screen-button {
-  height: 75px;
-  border-radius: 25%;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  align-content: center;
+  text-decoration: underline;
+  height: 95px;
+  width: 160px;
+  border-radius: 45%;
+  box-shadow: inset 5px 5px rgba(0,0,0,.15);
 }
 
 .student-dash-fact {
@@ -358,6 +381,23 @@ button:hover {
 #outer {
   width: 364px;
   margin: 50px auto 0 auto;
+  text-align: center;
+}
+
+.home-one {
+  text-align: center;
+  text-decoration: underline;
+}
+
+.home-two {
+  text-align: center;
+}
+
+.home-three {
+  text-align: center;
+}
+
+.home-four {
   text-align: center;
 }
 

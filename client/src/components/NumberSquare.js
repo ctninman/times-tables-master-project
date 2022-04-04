@@ -17,7 +17,8 @@ function NumberSquare ({
   setMakeRequest,
   timeToAnswer,
   timerFinished,
-  generalToggler
+  generalToggler,
+  setCorrectResponse
 }) {
 
   const {user} = useContext(UserContext)
@@ -67,12 +68,14 @@ function NumberSquare ({
       setAnswerGiven(true)
       setFactTimesAnswered(factTimesAnswered + 1)
       if (selectedQuizQuestion.problem.answer == number) {
+        setCorrectResponse(true)
         setFactTimesCorrect(factTimesCorrect + 1)
         if (factMasteryLevel < 10) {
           setFactMasteryLevel(factMasteryLevel + 1)
           console.log('1st')
         }
       } else if (selectedQuizQuestion.problem.answer != number) {
+        setCorrectResponse(false)
         if (factMasteryLevel > 0) {
           setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
           console.log('2nd')
@@ -91,11 +94,11 @@ function NumberSquare ({
       style={{ display: 'inline-block',flexDirection: 'column'}}onClick={handleAnswer}>
         {highlightNumber 
           ?
-        <div style={{backgroundColor: '#AC92EB'}}>
+        <div style={{backgroundColor: '#AC92EB', borderRadius: '5px'}}>
           <h2 className='number-grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
         </div>
           :
-        <div>
+        <div style={{borderRadius: '5px'}}>
           <h2 className='number-grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
         </div>
       }

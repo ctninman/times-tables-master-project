@@ -14,8 +14,8 @@ function NoUserGridSquare ({fact}) {
       // onMouseLeave={() => setToggleShowAnswer(false)}
       onClick={() => setToggleShowAnswer(!toggleShowAnswer)}
       >
-      <h2 className='grid-fact' style={{backgroundColor: 'transparent', color: 'black', fontWeight: 'bold'}}  >{fact.answer}</h2>
-      <h5 className='grid-mastered' style={{marginTop: '-15px', color: 'black'}}>{fact.multiplication_fact}</h5>
+      <h2 className='grid-fact-no-user' style={{backgroundColor: 'transparent', color: 'black', fontWeight: 'bold'}}  >{fact.answer}</h2>
+      <h5 className='grid-mastered' style={{ color: 'black'}}>{fact.multiplication_fact}</h5>
     </div>
       :
       <div 
@@ -25,8 +25,8 @@ function NoUserGridSquare ({fact}) {
         // onMouseLeave={() => setToggleShowAnswer(false)}
         onClick={() => setToggleShowAnswer(!toggleShowAnswer)}
         >
-      <h2 className='grid-fact' style={{backgroundColor: 'transparent', color: 'black'}} >{fact.answer}</h2>
-      <h5 className='grid-mastered' style={{marginTop: '-15px', color: 'black'}}>{fact.multiplication_fact}</h5>
+      <h2 className='grid-fact-no-user' style={{backgroundColor: 'transparent', color: 'black'}} >{fact.answer}</h2>
+      <h5 className='grid-mastered' style={{ color: 'black'}}>{fact.multiplication_fact}</h5>
     </div>
    
   ) 

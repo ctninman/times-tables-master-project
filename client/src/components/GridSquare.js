@@ -39,7 +39,7 @@ function GridSquare ({fact}) {
     <h2 className='grid-fact' >{fact.multiplication_fact}</h2>
       :
     <h2 className='grid-answer'>{fact.answer}</h2>}
-    {masteryLevel === 10 && showAnswer === false ? <h5 className='grid-mastered'>MASTER</h5>: null}
+    {/* {masteryLevel === 10 && showAnswer === false ? <h5 className='grid-mastered'>MASTER</h5>: null} */}
     </div>
   ) 
   :

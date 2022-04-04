@@ -40,7 +40,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             className='nav-bar'
             activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
           >
-            X RULES
+            RULES
           </NavLink>
           <h3 style={{fontSize: '11px', marginLeft: '8px', marginRight: '8px'}}>|</h3>
           <NavLink
@@ -49,7 +49,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             className='nav-bar'
             activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
           >
-            MY X TABLES
+            MY TABLES
           </NavLink>
           <h3 style={{fontSize: '11px', marginLeft: '8px', marginRight: '8px'}}>|</h3>
           <NavLink

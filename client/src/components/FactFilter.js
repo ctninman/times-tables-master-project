@@ -31,7 +31,7 @@ function FactFilter ({setFilteredQuestionList, filteredQuestionList, whichFacts,
   return (
     <div style={{marginTop: '10px'}}>
       <div>
-        <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '84px', fontSize: '14px'}}>ALL FACTS</button>      
+        <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '87px', fontSize: '14px'}}>ALL FACTS</button>      
         <button value={"1x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(oneX)}} style={{width: '34px', fontSize: '14px'}}>1x</button>
         <button value={"2x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(twoX)}} style={{width: '34px', fontSize: '14px'}}>2x</button>
         <button value={"3x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(threeX)}} style={{width: '34px', fontSize: '14px'}}>3x</button>

@@ -19,7 +19,7 @@ function NoUserHomeScreen () {
 
   return (
     <>
-    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px'}}>
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px', marginTop: '15px'}}>
 
       <button
         className='home-screen-button'
@@ -60,8 +60,11 @@ function NoUserHomeScreen () {
       <div>
         {toggleWhyCreateButton 
           ? 
-        <div>  
-          <h1>Why Should I Create An Account?</h1> 
+        <div>
+          <h1 className='home-one'>When you know which facts you need to focus on, you'll </h1>
+          <h2 className='home-two' style={{paddingLeft: '20px'}}>MULTI-DIGIT MULTIPLICATION, LONG DIVISION, REDUCING FRACTIONS</h2>
+          <h1 className='home-three'>All of these will use several multiplication facts for solving each problem. It is easy to lose your place if you need to pause and think about what 7 x 8, or another fact, equals.</h1>
+          <h1 className='home-four'style={{paddingLeft: '20px', fontSize: '35px'}}>THE SINGLE MOST IMPORTANT FACTOR IN SUCCEEDING IN MATH GOING FORWARD IS TO HAVE ALL YOUR MULTIPLICATION FACTS MEMORIZED!</h1>
         </div>
           : 
         null}
@@ -70,10 +73,10 @@ function NoUserHomeScreen () {
         {toggleWhyLearnButton 
           ? 
         <div>
-          <h1>Here are some of the things you have waiting for you in the next years of your mathematical future: </h1>
-          <h2 style={{paddingLeft: '20px'}}>MULTI-DIGIT MULTIPLICATION, LONG DIVISION, REDUCING FRACTIONS</h2>
-          <h1>All of these will use several multiplication facts for solving each problem. It is easy to lose your place if you need to pause and think about what 7 x 8, or another fact, equals.</h1>
-          <h1 style={{paddingLeft: '20px', fontSize: '35px'}}>THE SINGLE MOST IMPORTANT FACTOR IN SUCCEEDING IN MATH GOING FORWARD IS TO HAVE ALL YOUR MULTIPLICATION FACTS MEMORIZED!</h1>
+          <h1 className='home-one'>Here are some of the things you have waiting for you in the next years of your mathematical future: </h1>
+          <h2 className='home-two' style={{paddingLeft: '20px'}}>MULTI-DIGIT MULTIPLICATION, LONG DIVISION, REDUCING FRACTIONS</h2>
+          <h1 className='home-three'>All of these will use several multiplication facts for solving each problem. It is easy to lose your place if you need to pause and think about what 7 x 8, or another fact, equals.</h1>
+          <h1 className='home-four'style={{paddingLeft: '20px', fontSize: '35px'}}>THE SINGLE MOST IMPORTANT FACTOR IN SUCCEEDING IN MATH GOING FORWARD IS TO HAVE ALL YOUR MULTIPLICATION FACTS MEMORIZED!</h1>
         </div>
           : 
         null}
