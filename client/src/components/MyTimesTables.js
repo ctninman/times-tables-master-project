@@ -1,5 +1,6 @@
 import Grid from "./Grid"
 import NoUserTimesTables from "./NoUserTimesTables"
+import MatteoTimesTables from "./MatteoTimesTables"
 
 function MyTimesTables ({allFacts, user}) {
   
@@ -23,7 +24,11 @@ function MyTimesTables ({allFacts, user}) {
     </div>
   )
     :
-  <NoUserTimesTables allFacts={allFacts}/>
+  <div>
+    <NoUserTimesTables allFacts={allFacts}/>
+    <MatteoTimesTables allFacts={allFacts}/>
+  </div>
+
 }
 
 export default MyTimesTables

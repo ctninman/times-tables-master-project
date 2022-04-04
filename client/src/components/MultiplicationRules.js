@@ -1,4 +1,5 @@
 import {useState, useEffect, useRef} from 'react'
+import LoadScreen from './LoadScreen';
 import RulePage from './RulePage'
 
 function MultiplicationRules () {
@@ -44,7 +45,7 @@ useEffect (() => {
     </>
   )
   :
-  <h1>Rules Please</h1>
+  <LoadScreen />
 }
 
 export default MultiplicationRules
