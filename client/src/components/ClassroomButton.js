@@ -29,7 +29,7 @@ function ClassroomButton ({classroom, selectedClassroom, setSelectedClassroom, s
   }
 
   return (
-    <div style={{backgroundColor: '#4FC1E8', border: '2px solid', borderRadius: '5px', marginLeft: '20px', marginRight: '20px', width: '28%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+    <div style={{ backgroundColor: '#FFCE54', borderRadius: '10px', marginLeft: '20px', marginRight: '20px', width: '28%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
       <h1 style={{textAlign: 'center', margin: '2px'}}>{classroom.classroom_name}</h1>
       <h3 style={{textAlign: 'center', margin: '2px'}}># of Students: {classroom.number_of_students}</h3>
       {/* <h3 style={{textAlign: 'center', margin: '2px'}}>Mastery % : {classroom.number_of_students}</h3> */}

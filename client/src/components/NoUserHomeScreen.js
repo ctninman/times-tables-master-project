@@ -9,38 +9,49 @@ function NoUserHomeScreen () {
   const [toggleWhyLearnButton, setToggleWhyLearnButton] =useState(false)
   const [toggleHowToBecomeButton, setToggleHowToBecomeButton] =useState(false)
 
+  function setAllTogglesFalse () {
+    setToggleWhyCreateButton(false)
+    setToggleWhyLearnButton(false)
+    setToggleHowToBecomeButton(false)
+    setToggleStudentButton(false)
+    setToggleTeacherButton(false)
+  }
+
   return (
     <>
-    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px'}}>
 
       <button
         className='home-screen-button'
-        onMouseEnter={() => setToggleWhyLearnButton(true)}
-        onMouseLeave={() => setToggleWhyLearnButton(false)}
+        onClick={() => {
+          setAllTogglesFalse()
+          setToggleWhyLearnButton(!toggleWhyLearnButton)}
+        }
+        // onMouseLeave={() => setToggleWhyLearnButton(false)}
         >Why Learn the Times Tables?
       </button>
       <button
         className='home-screen-button'
-        onMouseEnter={() => setToggleHowToBecomeButton(true)}
-        onMouseLeave={() => setToggleHowToBecomeButton(false)}
+        onClick={() => setToggleHowToBecomeButton(!toggleHowToBecomeButton)}
+        // onMouseLeave={() => setToggleHowToBecomeButton(false)}
         >How Can I Become a Master?
       </button>
       <button
         className='home-screen-button'
-        onMouseEnter={() => setToggleWhyCreateButton(true)}
-        onMouseLeave={() => setToggleWhyCreateButton(false)}
+        onClick={() => setToggleWhyCreateButton(!toggleWhyCreateButton)}
+        // onMouseLeave={() => setToggleWhyCreateButton(false)}
         >Why Create an Account?
       </button>
       <button
         className='home-screen-button'
-        onMouseEnter={() => setToggleStudentButton(true)}
-        onMouseLeave={() => setToggleStudentButton(false)}
+        onClick={() => setToggleStudentButton(!toggleStudentButton)}
+        // onMouseLeave={() => setToggleStudentButton(false)}
         >What Can I Do With My Student Account?
       </button>
       <button
         className='home-screen-button'
-        onMouseEnter={() => setToggleTeacherButton(true)}
-        onMouseLeave={() => setToggleTeacherButton(false)}
+        onClick={() => setToggleTeacherButton(!toggleTeacherButton)}
+        // onMouseLeave={() => setToggleTeacherButton(false)}
         >What Can I Do With My Teacher Account?
       </button>
 

@@ -1,7 +1,11 @@
 import GridSquare from './GridSquare'
 import NoUserGridSquare from './NoUserGridSquare'
+import {useContext} from 'react'
+import {UserContext} from './UserContext'
 
-function NoUserGrid ({allFacts}) {
+function NoUserGrid () {
+
+  const {allFacts} = useContext(UserContext)
 
   return allFacts ? (
     <div style={{display: 'flex', justifyContent: 'center'}}>

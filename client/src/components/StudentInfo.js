@@ -20,13 +20,14 @@ function StudentInfo ({student, setSingleStudent, setViewSingleStudent, viewSing
   //   setUserUnknownFacts(user.masteries.filter ((mastery) => mastery.mastery_level < 3))
 
   return (
-    <div className={student.offer_support === false 
-      ? 
-        'support-not-needed' 
-      :
-        'support-needed'
-    }>
-      <h2 style={{textAlign: 'center', textDecoration: 'underline'}}>{student.username}</h2>
+    <div style={{border: '2px solid'}} >
+      <h2 style={{textAlign: 'center', textDecoration: 'underline'}}
+        className={student.offer_support === false 
+          ? 
+            'support-not-needed' 
+          :
+            'support-needed'
+        }>{student.username}</h2>
       <h3> <i>Mastery:</i> {student.mastery_percentage}%</h3>
       <h3> <i>#Struggling:</i>  {studentStrugglingFacts.length}</h3>
       <h3> <i>#Mastered:</i>  {studentMasteredFacts.length}</h3>

@@ -28,7 +28,7 @@ code {
   justify-content: space-between;
   margin-left: 5%;
   margin-right: 5%;
-  background-color: #1680a3;
+  background-color: #4FC1E8;
   padding: 5px;
   border-radius: 15px;
   max-width: 700px;
@@ -144,9 +144,8 @@ code {
 
 .support-not-needed{
   margin: 5px; 
-  background-color: #A0D568;
+  
   padding: 5px;
-  border: 2px solid;
   border-radius: 5px
 }
 
@@ -154,30 +153,31 @@ code {
   margin: 5px; 
   background-color: #ED5564;
   padding: 5px;
-  border: 2px solid;
   border-radius: 5px
 }
 
 .nav-bar {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: smaller;
-  font-size: 11px;
-  margin: 5 12px 12px;
-  background: #A0D568;
-  text-decoration: none;
+  /* justify-content: center; */
+  font-weight: bolder;
+  font-size: 12px;
+  /* min-width: 85px;
+  max-width: ;  */
+  /* font-size: 11px; */
+  /* margin: 5 12px 12px; */
+  /* background: #A0D568; */
+  text-decoration: underline;
   font-family: 'Roboto', sans-serif;
   color: black;
-  border-radius: 5px;
-  height: 30px;
-  width: 65px;
+  /* border-radius: 5px; */
+  /* height: 30px; */
+  /* width: 65px; */
   margin-left: 2px;
   margin-right: 2px;
   text-align: center;
-  margin-bottom: 0px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  /* margin-bottom: 0px; */
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
 }
 
 .student-dash-header {
@@ -234,9 +234,9 @@ form {
 }
 
 button {
-  width: 150px;
   height: 25px;
   margin: 3px;
+  background-color: A0D568;
   /* font-family: 'Josefin Sans', sans-serif; */
   /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
   font-weight: bolder;
@@ -326,16 +326,31 @@ button {
   font-family: 'Roboto', sans-serif;
   font-weight: bolder;
   cursor: pointer;
-  box-shadow: inset 0 0 0 0 #AC92EB;
+  box-shadow: inset 2 2 2 2 #A0D568;
   -webkit-transition: ease-out 0.4s;
   -moz-transition: ease-out 0.4s;
   transition: ease-out 0.4s;
+  background-color: #4FC1E8;
+  border-radius: 5px;
 }
 
+input {
+  margin: 5px;
+  margin-bottom: 10px;
+}
 
+.needs-support input[type='checkbox']{
+  font-weight:bold;
+  font-size: 50px;
+  color: gray;
+}
 
 button:hover {
-  box-shadow: inset 0 0 0 50px #AC92EB;
+  box-shadow: inset 0 0 0 50px #A0D568;
+}
+
+.nav-bar:hover {
+  color: #4FC1E8;
 }
 
 

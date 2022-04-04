@@ -57,29 +57,32 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
     return (
       <>
         <form onSubmit={handleLogin}>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-
-          <label htmlFor="is-teacher">I am a teacher</label>
-          <input
-            type="checkbox"
-            id="is-teacher"
-            checked={teacherLogin}
-            onChange={() => setTeacherLogin(!teacherLogin)}
-          />
-          <button type="submit">Submit</button>
+          <div style={{marginLeft: '20px'}}>
+            <label htmlFor="username">Username:</label>
+            <input
+              type="text"
+              id="username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div style={{marginLeft: '20px'}}>
+            <label htmlFor="is-teacher">I am a teacher</label>
+            <input
+              type="checkbox"
+              id="is-teacher"
+              checked={teacherLogin}
+              onChange={() => setTeacherLogin(!teacherLogin)}
+            />
+          </div>
+          <button style={{margin: '20px', fontSize: '15px'}} type="submit">Submit</button>
         </form>
         {errors ? <h1>Incorrect Login Information</h1>: null}
       </>

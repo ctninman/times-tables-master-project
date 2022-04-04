@@ -41,13 +41,14 @@ function RulePage ({allRules}) {
 
   return (
     <div ref={scollToRef}>
-      <div>
+      <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly'}}>
         {allRules.map((rule) => (
           <button 
             key={rule.rule_number}
             value={rule.rule_number}
             onClick={handleRuleChange}
-          >{rule.rule_title}
+            style={{fontSize: '14px'}}
+          >{rule.rule_title.toUpperCase()}
           </button>
         ))}
       </div>
@@ -55,21 +56,26 @@ function RulePage ({allRules}) {
         ?
       <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{display: 'flex', flexDirection: 'row', textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
-          <h1 style={{padding: '8px', marginLeft: '15px', width: '120px', height: '80px',textAlign: 'center', fontSize: '40px', color: '#4FC1E8'}}>{singleRule.rule_title}:</h1>
-          <h1 style={{padding: '5px',backgroundColor: '#4FC1E8', marginLeft: '15px',borderRadius: '25px', width: '75%', border: '2px solid'}}>{singleRule.rule}</h1>
+          <h1 style={{padding: '8px', marginLeft: '15px', width: '120px', fontWeight: 'bolder', height: '80px',textAlign: 'center', fontSize: '40px', color: 'black',textShadow: '2px 2px 2px #4FC1E8'}}>{singleRule.rule_title.toUpperCase()}:</h1>
+          <h1 style={{padding: '5px',backgroundImage: 'linear-gradient(#A0D568, #4FC1E8', marginLeft: '15px',borderRadius: '5px', width: '75%', textShadow: '2px 2px 2px #AC92EB'}}>{singleRule.rule}</h1>
         </div>
         <div style={{textAlign: 'center'}}>
           {singleRule.explanation.map((explanation) => (
             <SingleExplanation key={explanation} explanation={explanation}/>
           ))}
         </div>
-        <div style={{textAlign: 'center'}}>{showRelatedFacts === true ?
+        <div style={{textAlign: 'center'}}>
+          
+          {showRelatedFacts === true 
+            ?
           <div>
             <img onClick={() => setShowRelatedFacts(() => !showRelatedFacts)}src={singleRule.grid_photo} alt={singleRule.rule} className='grid-photo'/>
           </div>
         :
-          <div><img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-02%20at%209.47.29%20PM.png"} alt={singleRule.rule} className='grid-photo'/>
-        </div>} 
+        <div>
+          <img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-02%20at%209.47.29%20PM.png"} alt={singleRule.rule} className='grid-photo'/>
+        </div>
+        } 
         <button onClick={() => setShowRelatedFacts(!showRelatedFacts)}>{showRelatedFacts? "Hide Facts" : "See Facts"}</button>
         
         </div>
@@ -79,8 +85,8 @@ function RulePage ({allRules}) {
           ))}
           </div>
           <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-          <h1 style ={{padding: '8px',backgroundColor: '#4FC1E8', marginLeft: '15px',borderRadius: '25px', width: '55%', textAlign: 'center'}}>Number of facts learned through this rule: </h1>
-          <button style={{paddingTop: '4px', backgroundColor: '#FFCE54', marginLeft: '15px', borderRadius: '50%', width: '75px', height: 'auto',textAlign: 'center', fontSize: '40px'}}>{singleRule.related_facts}</button>
+          <h1 style={{padding: '5px',backgroundImage: 'linear-gradient(#A0D568, #4FC1E8', marginLeft: '15px',borderRadius: '5px', width: 'auto', textShadow: '2px 2px 2px #AC92EB'}}>Number of facts learned through this rule: </h1>
+          <h1 style={{paddingTop: '4px', backgroundColor: '#FFCE54', marginLeft: '15px', borderRadius: '50%', width: '75px', height: 'auto',textAlign: 'center', fontSize: '40px',textShadow: '2px 2px 2px #4FC1E8'}}>{singleRule.related_facts}</h1>
         </div>
         <div style={{marginBottom: '15px', textAlign: 'center'}}>
           <button onClick={handleNextRule}>Next Rule</button>

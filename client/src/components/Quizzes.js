@@ -23,7 +23,7 @@ function Quizzes () {
   const [correctResponse, setCorrectResponse] = useState (false)
   // const [selectedFactNumbers, setSelectedFactNumbers] = useState([...Array(101).keys()])
   const [filteredQuestionList, setFilteredQuestionList] = useState(null)
-
+  const [whichFacts, setWhichFacts] = useState(null)
   const [factMasteryLevel, setFactMasteryLevel] = useState(0)
   const [factTimesAnswered, setFactTimesAnswered] = useState(0)
   const [factTimesCorrect, setFactTimesCorrect] = useState(0)
@@ -65,6 +65,10 @@ function Quizzes () {
   }, [makeRequest, timerFinished])
 
   useEffect(() => {
+    setFilteredQuestionList(hundredArray)
+  }, [] )
+
+  useEffect(() => {
     if (timeToAnswer === 0) {
       setAnswerGiven(true)
       setFactTimesAnswered(factTimesAnswered + 1)
@@ -98,9 +102,13 @@ function Quizzes () {
   }
 
   function setNextQuestion () {
-    setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
-    setAnswerGiven(false)
-    setGeneralToggler(!generalToggler)
+    if (whichFacts) {
+      setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
+      setAnswerGiven(false)
+      setGeneralToggler(!generalToggler)
+    } else {
+      window.alert("Select which times tables you want to master.")
+    }
   }
 
   return user && isTeacher === false? (
@@ -118,15 +126,15 @@ function Quizzes () {
          
         
          
-          <button onClick={() => history.push('/my-times-tables')}style={{width: '90px', marginLeft: '10%'}}>Stop</button>
+          <button onClick={() => history.push('/my-times-tables')}style={{width: '90px', marginLeft: '10%'}}>STOP</button>
          
          
          
           <div style={{display: 'flex', flexDirection: 'column'}}>
-            <h1 style={{margin: '3px', fontSize: '40px', backgroundColor: '#4FC1E8', padding: '8px', border: '2px solid', borderRadius: '10px'}}>{selectedQuizQuestion.problem.multiplication_fact} = {answerGiven ? `${selectedQuizQuestion.problem.answer}` : null}</h1>
+            <h1 style={{margin: '3px', fontSize: '40px', padding: '8px', border: '4px solid', borderRadius: '10px'}}>{selectedQuizQuestion.problem.multiplication_fact} = {answerGiven ? `${selectedQuizQuestion.problem.answer}` : null}</h1>
            
           </div>
-          <button style={{width: '90px', marginRight: '10%'}} onClick={setNextQuestion} >Next</button>
+          <button style={{width: '90px', marginRight: '10%'}} onClick={setNextQuestion} >NEXT</button>
         </div>
         
         <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -158,9 +166,9 @@ function Quizzes () {
       <div style={{textAlign: 'center'}}>
         <div>
           <FactFilter 
-            filteredQuestionList={filteredQuestionList}setFilteredQuestionList={setFilteredQuestionList}/>
+            filteredQuestionList={filteredQuestionList}setFilteredQuestionList={setFilteredQuestionList} whichFacts={whichFacts} setWhichFacts={setWhichFacts}/>
         </div>
-        <button style={{margin: '30px'}} onClick={setNextQuestion}>Become a Master!</button>
+        <button style={{margin: '30px', fontSize: '14px'}} onClick={setNextQuestion}>BECOME A MASTER!</button>
 
         {/* <div><button onClick={checkLengths}>testArray</button></div> */}
       </div>

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useContext } from "react"
 import {UserContext} from "./UserContext"
 import {useHistory} from "react-router-dom"
-import siteLogo from '../images/canvaLogo.png'
+import siteLogo from '../images/newCanvaLogo.png'
 
 function NavBar({isTeacher, setIsTeacher}) {
 
@@ -22,105 +22,119 @@ function NavBar({isTeacher, setIsTeacher}) {
     // *** JSX *** //
   return (
     <div>
-    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white'}}> 
+    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white', marginTop: '0px'}}> 
       
-        <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5px', width: '360px', marginBottom: '0px'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '5px', width: '340px', marginBottom: '0px', marginLeft: '8px'}}>
           <NavLink
             to='/'
             exact
             className='nav-bar'
-            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+            activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
           >
-            Home
+            HOME
           </NavLink>
+          <h3 style={{fontSize: '11px', marginLeft: '8px', marginRight: '8px'}}>|</h3>
           <NavLink
             to='/multiplication-rules'
             exact
             className='nav-bar'
-            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+            activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
           >
-            Multiplication Rules
+            X RULES
           </NavLink>
+          <h3 style={{fontSize: '11px', marginLeft: '8px', marginRight: '8px'}}>|</h3>
           <NavLink
             to='/my-times-tables'
             exact
             className='nav-bar'
-            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+            activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
           >
-            My Times Tables
+            MY X TABLES
           </NavLink>
+          <h3 style={{fontSize: '11px', marginLeft: '8px', marginRight: '8px'}}>|</h3>
           <NavLink
             to='/quizzes'
             exact
             className='nav-bar'
-            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+            activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
           >
-            Quiz
+            QUIZ
           </NavLink>
+          <h3 style={{fontSize: '11px', marginLeft: '8px', marginRight: '8px'}}>|</h3>
           {isTeacher === false 
             ?
           <NavLink
             to='/student-dashboard'
             exact
             className='nav-bar'
-            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+            activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
           >
-            Dashboard
+            DASHBOARD
           </NavLink>
             :
             <NavLink
             to='/teacher-dashboard'
             exact
             className='nav-bar'
-            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+            activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
           >
-            Dashboard
+            DASHBOARD
           </NavLink>
           }
         </div>
-
-
         
-        <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'right', justifyContent: 'right', marginTop: '5px', textAlign: 'right', flexWrap: 'wrap'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center',alignContent: 'right', justifyContent: 'right', marginRight: '5px',textAlign: 'right', flexWrap: 'wrap'}}>
           {/* <div style={{width: '75px'}}> */}
             {user ?
-            <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-              <h5 style={{marginBottom: '2px', marginTop: '5px', marginRight: '5px'}}>Hi, {user.username}</h5>
-            </div>
+                     <h5 
+                     style={{fontSize: '12px', marginRight: '8px',width: 'auto', justifyContent: 'center', textDecoration: 'none'}}
+                
+                     >Hi {user.username}
+                   </h5>
             :
             <div style={{display: 'flex', justifyContent: 'flex-end'}}>
               <NavLink
                 to='/user-login'
                 exact
                 className='nav-bar'
-                activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+                activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
               >
-                Login
+                LOGIN
               </NavLink>
+              <h5 className='nav-bar' 
+                style={{fontSize: '12px',  justifyContent: 'center', marginRight: '8px', marginLeft: '8px'}}
+                onClick={handleSignOut}
+                >|
+              </h5>
             </div>
             }
           
           {user ?
           null:
-          <div style={{display: 'flex', justifyContent: 'flex-end'}}>  
+          // <div style={{display: 'flex', justifyContent: 'flex-end'}}>  
             <NavLink
               to='/user-signup'
               exact
               className='nav-bar'
-              activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+              activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
             >
-              Sign Up
+              SIGN UP
             </NavLink>
-          </div>
+          // </div>
           }
           {user
           ?
-          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
-            <button className='nav-bar' 
-              style={{marginTop: '0px'}}
+          <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
+              <h5 className='nav-bar' 
+              style={{fontSize: '12px',  justifyContent: 'center'}}
               onClick={handleSignOut}
-              >Sign Out
-            </button>
+              >|
+            </h5>
+            <h5 className='nav-bar' 
+              style={{fontSize: '12px', width: '70px', justifyContent: 'center', cursor: 'pointer'}}
+              onClick={handleSignOut}
+              >SIGN OUT
+            </h5>
           </div>
           :
           null}
@@ -133,7 +147,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             style={{fontSize: '40px', fontWeight: 'bolder', color: '#AC92EB', textAlign: 'center', textShadow: '0px 0px 6px rgba(255,255,255,0.7)', margin: '0px', marginTop: '0px'}}
             >TIMES TABLES MASTER
           </h2> */}
-          <img style={{width: '35%'}}src={siteLogo}/>
+          <img style={{width: '35%', minWidth: '350px'}}src={siteLogo}/>
         </div>
 
     </div>

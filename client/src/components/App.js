@@ -83,7 +83,7 @@ function App() {
       
       
 
-      <UserContext.Provider value={{user, setUser, isLoading, setIsLoading, isTeacher, fetchUser}}> 
+      <UserContext.Provider value={{user, setUser, isLoading, setIsLoading, isTeacher, setIsTeacher, fetchUser, allFacts}}> 
       {isTeacher === false ?
         <div className="App">
           <NavBar className='nav-bar' isTeacher={isTeacher} setIsTeacher={setIsTeacher}/>

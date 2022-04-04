@@ -73,27 +73,27 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
   }
 
   return (
-    <div>
+    <div style={{marginTop: '30px'}}>
       {studentSupportNeeded ?
         <h1 
           className='support-needed' 
-          style={{textAlign: 'center', paddingTop: '5px', marginLeft: '20%', marginRight: '20%', border: '2px solid', borderRadius: '5px'}}
+          style={{textAlign: 'center', paddingTop: '5px', marginLeft: '25%', marginRight: '25%',  borderRadius: '5px'}}
           >{singleStudent.username}</h1>
       :
         <h1 
         className='support-not-needed'
-        style={{textAlign: 'center', paddingTop: '5px', marginLeft: '20%', marginRight: '20%', border: '2px solid', borderRadius: '5px'}}
+        style={{textAlign: 'center', paddingTop: '5px', marginLeft: '25%', marginRight: '25%',  borderRadius: '5px'}}
         >{singleStudent.username}</h1>
       } 
       <div style={{display: 'flex', flexDirection: 'column'}}>
-        <div style={{display: 'flex', flexDirection: 'row'}}>  
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>  
           <input
             type="checkbox"
             id="needs-support"
             checked={studentSupportNeeded}
             onChange={() => setStudentSupportNeeded(!studentSupportNeeded)}
           />
-          <label htmlFor="needs-support">Needs Support</label>
+          <label style={{textAlign: 'center', fontWeight: 'bold'}} htmlFor="needs-support">Needs Support</label>
         </div>
         <div style={{display: 'flex', flexDirection: 'row'}}>
           <h3 style={{marginTop: '2px'}}><i> Seconds Given To Solve:</i>  {studentTimeNeeded}</h3>

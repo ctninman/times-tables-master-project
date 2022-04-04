@@ -1,11 +1,11 @@
 import {UserContext} from "./UserContext"
 import {useContext, useState} from 'react'
 
-function FactFilter ({setFilteredQuestionList, filteredQuestionList}) {
+function FactFilter ({setFilteredQuestionList, filteredQuestionList, whichFacts, setWhichFacts}) {
 
   const {user} = useContext(UserContext)
 
-  const [whichFacts, setWhichFacts] = useState("All Facts")
+  // const [whichFacts, setWhichFacts] = useState(null)
   
   const allX = [...Array(101).keys()]
   allX.shift()
@@ -31,19 +31,24 @@ function FactFilter ({setFilteredQuestionList, filteredQuestionList}) {
   return (
     <div style={{marginTop: '10px'}}>
       <div>
-        <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '82px'}}>All Facts</button>      
-        <button value={"1x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(oneX)}} style={{width: '34px'}}>1x</button>
-        <button value={"2x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(twoX)}} style={{width: '34px'}}>2x</button>
-        <button value={"3x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(threeX)}} style={{width: '34px'}}>3x</button>
-        <button value={"4x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(fourX)}} style={{width: '34px'}}>4x</button>
-        <button value={"5x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(fiveX)}} style={{width: '34px'}}>5x</button>
-        <button value={"6x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(sixX)}} style={{width: '34px'}}>6x</button>
-        <button value={"7x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(sevenX)}} style={{width: '34px'}}>7x</button>
-        <button value={"8x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(eightX)}} style={{width: '34px'}}>8x</button>
-        <button value={"9x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(nineX)}}style={{width: '34px'}}>9x</button>
-        <button value={"10x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(tenX)}}style={{paddingLeft: '2px',width: '36px'}}>10x</button>
+        <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '84px', fontSize: '14px'}}>ALL FACTS</button>      
+        <button value={"1x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(oneX)}} style={{width: '34px', fontSize: '14px'}}>1x</button>
+        <button value={"2x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(twoX)}} style={{width: '34px', fontSize: '14px'}}>2x</button>
+        <button value={"3x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(threeX)}} style={{width: '34px', fontSize: '14px'}}>3x</button>
+        <button value={"4x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(fourX)}} style={{width: '34px', fontSize: '14px'}}>4x</button>
+        <button value={"5x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(fiveX)}} style={{width: '34px', fontSize: '14px'}}>5x</button>
+        <button value={"6x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(sixX)}} style={{width: '34px', fontSize: '14px'}}>6x</button>
+        <button value={"7x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(sevenX)}} style={{width: '34px', fontSize: '14px'}}>7x</button>
+        <button value={"8x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(eightX)}} style={{width: '34px', fontSize: '14px'}}>8x</button>
+        <button value={"9x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(nineX)}}style={{width: '34px', fontSize: '14px'}}>9x</button>
+        <button value={"10x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(tenX)}}style={{paddingLeft: '2px',width: '36px', fontSize: '14px'}}>10x</button>
       </div>
+     
+      {whichFacts?
       <h1 style={{margin: '10px'}}>{whichFacts}</h1>
+      :
+      <h1>Select Times Table</h1>
+}
     </div>
   )
 }
