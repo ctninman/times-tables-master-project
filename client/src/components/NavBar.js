@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom'
 import { useContext } from "react"
 import {UserContext} from "./UserContext"
 import {useHistory} from "react-router-dom"
+import siteLogo from '../images/canvaLogo.png'
 
 function NavBar({isTeacher, setIsTeacher}) {
 
@@ -23,12 +24,12 @@ function NavBar({isTeacher, setIsTeacher}) {
     <div>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white'}}> 
       
-        <div style={{width: '60%', display: 'flex', flexDirection: 'row', marginTop: '10px', flexWrap: 'wrap', marginBottom: '0px'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5px', width: '360px', marginBottom: '0px'}}>
           <NavLink
             to='/'
             exact
             className='nav-bar'
-            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
+            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
           >
             Home
           </NavLink>
@@ -36,7 +37,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/multiplication-rules'
             exact
             className='nav-bar'
-            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
+            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
           >
             Multiplication Rules
           </NavLink>
@@ -44,7 +45,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/my-times-tables'
             exact
             className='nav-bar'
-            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
+            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
           >
             My Times Tables
           </NavLink>
@@ -52,7 +53,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/quizzes'
             exact
             className='nav-bar'
-            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
+            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
           >
             Quiz
           </NavLink>
@@ -62,7 +63,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/student-dashboard'
             exact
             className='nav-bar'
-            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
+            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
           >
             Dashboard
           </NavLink>
@@ -71,7 +72,7 @@ function NavBar({isTeacher, setIsTeacher}) {
             to='/teacher-dashboard'
             exact
             className='nav-bar'
-            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
+            activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
           >
             Dashboard
           </NavLink>
@@ -80,37 +81,47 @@ function NavBar({isTeacher, setIsTeacher}) {
 
 
         
-        <div style={{width: '32%', display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', marginTop: '10px', flexWrap: 'wrap'}}>
-          <div style={{width: '75px'}}></div>
-          {user ?
-           <h3>Hi, {user.username}</h3>
-           :
-            <NavLink
-              to='/user-login'
-              exact
-              className='nav-bar'
-              activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
-            >
-              Login
-            </NavLink>
-          }
+        <div style={{ display: 'flex', flexDirection: 'row', alignContent: 'right', justifyContent: 'right', marginTop: '5px', textAlign: 'right', flexWrap: 'wrap'}}>
+          {/* <div style={{width: '75px'}}> */}
+            {user ?
+            <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+              <h5 style={{marginBottom: '2px', marginTop: '5px', marginRight: '5px'}}>Hi, {user.username}</h5>
+            </div>
+            :
+            <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+              <NavLink
+                to='/user-login'
+                exact
+                className='nav-bar'
+                activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+              >
+                Login
+              </NavLink>
+            </div>
+            }
+          
           {user ?
           null:
-          <NavLink
-            to='/user-signup'
-            exact
-            className='nav-bar'
-            activeStyle={{background: "#AC92EB", textDecoration: 'underline'}}
-          >
-            Sign Up
-          </NavLink>
+          <div style={{display: 'flex', justifyContent: 'flex-end'}}>  
+            <NavLink
+              to='/user-signup'
+              exact
+              className='nav-bar'
+              activeStyle={{background: "#4FC1E8", textDecoration: 'underline'}}
+            >
+              Sign Up
+            </NavLink>
+          </div>
           }
           {user
           ?
-          <button className='nav-bar' 
-            onClick={handleSignOut}
-            >Sign Out
-          </button>
+          <div style={{display: 'flex', justifyContent: 'flex-end'}}>
+            <button className='nav-bar' 
+              style={{marginTop: '0px'}}
+              onClick={handleSignOut}
+              >Sign Out
+            </button>
+          </div>
           :
           null}
         </div>
@@ -118,10 +129,11 @@ function NavBar({isTeacher, setIsTeacher}) {
         </div>
 
         <div style={{display: 'flex', flexDirection: 'row', width: '100%',marginTop: '2px', flexWrap: 'wrap', justifyContent: 'center'}}>
-          <h2 
-            style={{fontSize: '40px', color: 'black', textAlign: 'center', textShadow: '0px 0px 6px rgba(255,255,255,0.7)', margin: '0px', marginTop: '0px'}}
-            >Times Tables Master
-          </h2>
+          {/* <h2 
+            style={{fontSize: '40px', fontWeight: 'bolder', color: '#AC92EB', textAlign: 'center', textShadow: '0px 0px 6px rgba(255,255,255,0.7)', margin: '0px', marginTop: '0px'}}
+            >TIMES TABLES MASTER
+          </h2> */}
+          <img style={{width: '35%'}}src={siteLogo}/>
         </div>
 
     </div>

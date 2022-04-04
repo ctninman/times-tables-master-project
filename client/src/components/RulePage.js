@@ -55,7 +55,7 @@ function RulePage ({allRules}) {
         ?
       <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{display: 'flex', flexDirection: 'row', textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
-          <h1 style={{padding: '8px', backgroundColor: '#FFCE54', marginLeft: '15px', borderRadius: '50%', width: '120px', height: '80px',textAlign: 'center', fontSize: '40px', border: '2px solid'}}>{singleRule.rule_title}:</h1>
+          <h1 style={{padding: '8px', marginLeft: '15px', width: '120px', height: '80px',textAlign: 'center', fontSize: '40px', color: '#4FC1E8'}}>{singleRule.rule_title}:</h1>
           <h1 style={{padding: '5px',backgroundColor: '#4FC1E8', marginLeft: '15px',borderRadius: '25px', width: '75%', border: '2px solid'}}>{singleRule.rule}</h1>
         </div>
         <div style={{textAlign: 'center'}}>
