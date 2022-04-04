@@ -1,11 +1,12 @@
 import {useEffect, useState, useRef} from 'react'
+import LoadScreen from './LoadScreen'
 import SingleExplanation from './SingleExplanation'
 
-function RulePage ({allRules}) {
+function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setCurrentRuleNumber}) {
 
   // const [allRules, setAllRules] = useState([])
-  const [currentRuleNumber, setCurrentRuleNumber] = useState(0)
-  const [singleRule, setSingleRule] = useState(allRules.find((oneRule) => oneRule.rule_number == currentRuleNumber))
+  // const [currentRuleNumber, setCurrentRuleNumber] = useState(0)
+  // const [singleRule, setSingleRule] = useState(allRules.find((oneRule) => oneRule.rule_number == currentRuleNumber))
   const [showRelatedFacts, setShowRelatedFacts] = useState(true)
 
   const scollToRef = useRef();
@@ -39,7 +40,7 @@ function RulePage ({allRules}) {
     }
   }
 
-  return (
+  return singleRule ? (
     <div ref={scollToRef}>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-evenly'}}>
         {allRules.map((rule) => (
@@ -73,7 +74,7 @@ function RulePage ({allRules}) {
           </div>
         :
         <div>
-          <img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-02%20at%209.47.29%20PM.png"} alt={singleRule.rule} className='grid-photo'/>
+          <img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.googleapis.com/times-tables-master_photos/NoTimes.png"} alt={singleRule.rule} className='grid-photo'/>
         </div>
         } 
         <button onClick={() => setShowRelatedFacts(!showRelatedFacts)}>{showRelatedFacts? "Hide Facts" : "See Facts"}</button>
@@ -96,6 +97,8 @@ function RulePage ({allRules}) {
       null}
     </div>
   )
+  :
+  <LoadScreen />
 }
 
 export default RulePage

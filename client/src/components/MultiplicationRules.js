@@ -1,27 +1,46 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useRef} from 'react'
 import RulePage from './RulePage'
 
-function MultiplicationRules ({allRules, setAllRules, currentRuleNumber, setCurrentRuleNumber}) {
+function MultiplicationRules () {
 
-//  const [allRules, setAllRules] = useState([])
+  const firstUpdate = useRef(true);
+
+ const [allRules, setAllRules] = useState(null)
 //  const [currentRule, setCurrentRule] = useState(allRules.find((rule) => rule.rule_number === currentRuleNumber))
-//  const [currentRuleNumber, setCurrentRuleNumber] = useState(1)
+ const [currentRuleNumber, setCurrentRuleNumber] = useState(0)
+
+// const [currentRuleNumber, setCurrentRuleNumber] = useState(0)
+const [singleRule, setSingleRule] = useState(null)
+
+
+useEffect (() => {
+  fetch('/rules')
+  .then(res => res.json())
+  .then(data => {
+    setAllRules(data)
+    // setSingleRule(data.find((rule) => rule.rule_number === currentRuleNumber))
+  })
+}, [] )
+
+  useEffect (() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    console.log('in that effect', allRules)
+    setSingleRule(allRules.find((rule) => rule.rule_number === currentRuleNumber))
+  }, [allRules, currentRuleNumber])
 
 
 
-  // useEffect (() => {
-  //   fetch('/rules')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     setAllRules(data)
-  //     setCurrentRule(data.find((rule) => rule.rule_number === currentRuleNumber))
-  //   })
-  // }, [] )
-
-  return allRules ? (
+  return singleRule ? (
     <>
-      <RulePage allRules={allRules}/>
-      {/* <button onClick={() => console.log(currentRule)} >Rules</button> */}
+      <RulePage allRules={allRules}
+        currentRuleNumber={currentRuleNumber}
+        setCurrentRuleNumber={setCurrentRuleNumber}
+        singleRule={singleRule}
+        setSingleRule={setSingleRule}/>
+
     </>
   )
   :

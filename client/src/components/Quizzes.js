@@ -76,7 +76,6 @@ function Quizzes () {
         setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
         console.log('time')
       }
-      setTimerFinished(!timerFinished)
     } else if (answerGiven) {
       return
     } else if (timeToAnswer > 0) {

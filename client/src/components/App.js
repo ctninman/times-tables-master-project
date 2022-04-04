@@ -14,10 +14,9 @@ import {UserContext} from "./UserContext"
 import NoUserHomeScreen from "./NoUserHomeScreen";
 
 function App() {
-  const [count, setCount] = useState(0);
   const [user, setUser] = useState(null)
   const [allFacts, setAllFacts] = useState([])
-  const [allRules, setAllRules] = useState([])
+  // const [allRules, setAllRules] = useState([])
   const [isTeacher, setIsTeacher] = useState(false)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -35,6 +34,7 @@ function App() {
       if (r.ok) {
         r.json()
         .then((user) => {
+          console.log(user);
           setUser(user)
           if (user.is_teacher === true) {
             setIsTeacher(true)
@@ -55,14 +55,14 @@ function App() {
     });
   }, []);
 
-  useEffect (() => {
-    fetch('/rules')
-    .then(res => res.json())
-    .then(data => {
-      setAllRules(data)
-      // setCurrentRule(data.find((rule) => rule.rule_number === currentRuleNumber))
-    })
-  }, [] )
+  // useEffect (() => {
+  //   fetch('/rules')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     setAllRules(data)
+  //     // setCurrentRule(data.find((rule) => rule.rule_number === currentRuleNumber))
+  //   })
+  // }, [] )
 
   function fetchUser () {
     fetch("/me", {method: 'GET'})
@@ -80,8 +80,7 @@ function App() {
   return (
     
     <BrowserRouter>
-      
-      
+    
 
       <UserContext.Provider value={{user, setUser, isLoading, setIsLoading, isTeacher, setIsTeacher, fetchUser, allFacts}}> 
       {isTeacher === false ?
@@ -113,7 +112,12 @@ function App() {
                 setTeacherLogin={setTeacherLogin}/>
             </Route>
             <Route path="/multiplication-rules">
-              <MultiplicationRules user={user} setUser={setUser} allRules={allRules} setAllRules={setAllRules}/>
+              <MultiplicationRules 
+                user={user} 
+                setUser={setUser} 
+                // allRules={allRules} 
+                // setAllRules={setAllRules}
+                />
             </Route>
             <Route path="/teacher-dashboard">
               <TeacherDashboard user={user} setUser={setUser}/>
@@ -162,7 +166,12 @@ function App() {
                 setTeacherLogin={setTeacherLogin}/>
             </Route>
             <Route path="/multiplication-rules">
-              <MultiplicationRules user={user} setUser={setUser} allRules={allRules} setAllRules={setAllRules}/>
+              <MultiplicationRules 
+                user={user} 
+                setUser={setUser} 
+                // allRules={allRules}
+                // setAllRules={setAllRules}
+                />
             </Route>
             <Route path="/the-times-tables">
               <NoUserTimesTables allFacts={allFacts}/>
