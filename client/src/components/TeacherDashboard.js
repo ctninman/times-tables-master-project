@@ -133,7 +133,8 @@ function TeacherDashboard ({teacherLogin}) {
                       fetchClassroom={fetchClassroom}
                       setTriggerClassroomFetch={setTriggerClassroomFetch}
                       newStudentErrors={newStudentErrors}
-                      setNewStudentErrors={setNewStudentErrors}/>
+                      setNewStudentErrors={setNewStudentErrors}
+                      setToggleAddStudent={setToggleAddStudent}/>
                     {newStudentErrors ? newStudentErrors.errors.map((error) => <h2 className="error">- {error}</h2>): null}
                   </>
                   :

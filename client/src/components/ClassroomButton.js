@@ -31,7 +31,7 @@ function ClassroomButton ({classroom, selectedClassroom, setSelectedClassroom, s
   }
 
   return (
-    <div style={{ backgroundImage: 'linear-gradient(to bottom right, white, #A0D56888', border: '5px solid #A0D56888', borderRadius: '10px', margin:'20px', width: '28%', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+    <div style={{ width: '220px', maxWidth: '40%', backgroundImage: 'linear-gradient(to bottom right, white, #A0D56888', border: '5px solid #A0D56888', borderRadius: '10px', margin:'20px', display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
       <h1 style={{textAlign: 'center', margin: '2px', height: '80px'}}>{classroom.classroom_name}</h1>
       {/* <h3 style={{textAlign: 'center', margin: '2px'}}># of Students: {classroom.number_of_students}</h3> */}
       {/* <h3 style={{textAlign: 'center', margin: '2px'}}>Mastery % : {classroom.number_of_students}</h3> */}

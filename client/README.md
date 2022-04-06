@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# TIMES TABLES MASTER
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### Ruby on Rails - backend 
 
-## Available Scripts
+### React - frontend
 
-In the project directory, you can run:
+## Overview
 
-### `npm start`
+TIMES TABLE MASTER is an application created to help students master their multiplication facts, and to give teachers data that will allow them to focus their instruction to individual students based on their knowledge. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Students can learn 8 rules to master their times tables, and then take quizzes on various times tables. Correct answers in the given time will increase the student's mastery level of a given fact, while an incorrect answer will move it down. Students can view a grid or graph that shows how well they know each of the 100 multiplication facts.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Teachers can set up various classrooms and create students within them. From their dashboard, teachers can keep track of which students need support, give students extra time to solve based on their needs, and view each student's progress.
 
-### `npm test`
+## Database Tables
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The database consists of 6 related tables:
+- teachers
+- classrooms
+- students
+- problems
+- masteries
+- rules
 
-### `npm run build`
+### Teacher
+- Has many classrooms
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Has many students through classrooms
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Classroom
+- Belongs to teacher
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Has many students
 
-### `npm run eject`
+### Student
+- Belongs to classroom
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Belongs to teacher through classroom
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Has many masteries
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Has many problems through masteries
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Mastery
+- Belongs to student
 
-## Learn More
+- Belongs to problem
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Problem
+- Has many masteries
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Has many students through masteries
 
-### Code Splitting
+### Rule
+- Not related to other tables
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Teacher
 
-### Analyzing the Bundle Size
+- As a teacher, a user has access to a teacher dashboard, which tracks all students' demonstrated proficiency of multiplication facts. Teachers can create classroom and students in those classrooms.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Classrooms
 
-### Making a Progressive Web App
+- Each student belongs to a classroom, and the teacher of that classroom can access all data of students in that classroom. Students who sign up without a teacher will be placed in the default classroom.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Student
 
-### Advanced Configuration
+- Anyone who visits the site can explore the 8 rules of multiplication and a blank multiplication grid. A user who logs in with a student account can also take multiplication quizzes, and view the results of their accumulated data organized in their dashboard, or through a colored grid.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Problem
 
-### Deployment
+- A database of the 100 multiplication facts using the number 1 through 10. Contain the fact ("8 x 4"), and answer (32) 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Mastery
 
-### `npm run build` fails to minify
+- Each student has a mastery for each of the 100 problems. The number of times a multiplication fact is answered, the number of times answered correctly, and the overall mastery level score is updated as a student takes quizzes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Rule
+
+- Rules for teaching the times tables, along with various related information, such as the number of facts related to the rules, and a photo of each of the facts highlighted on a grid.
+
+
+
+  

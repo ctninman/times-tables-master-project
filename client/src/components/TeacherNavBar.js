@@ -21,10 +21,10 @@ function TeacherNavBar({isTeacher, setIsTeacher}) {
 
     // *** JSX *** //
   return user? (
-    <div>
+    <div style={{marginTop: '-15px'}}>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white', marginTop: '0px'}}> 
       
-        <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'row', marginTop: '5px', width: '340px', marginBottom:'0px'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '0px', width: '340px', marginBottom: '0px', marginLeft: '8px'}}>
           <NavLink
             to='/'
             exact

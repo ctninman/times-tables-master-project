@@ -20,7 +20,7 @@ function Quizzes () {
   const [timeToAnswer, setTimeToAnswer] = useState(null)
   const [timerFinished, setTimerFinished] = useState(false)
   const [generalToggler, setGeneralToggler] = useState(false)
-  const [correctResponse, setCorrectResponse] = useState (false)
+  const [correctResponse, setCorrectResponse] = useState (null)
   // const [selectedFactNumbers, setSelectedFactNumbers] = useState([...Array(101).keys()])
   const [filteredQuestionList, setFilteredQuestionList] = useState(null)
   const [whichFacts, setWhichFacts] = useState(null)
@@ -69,7 +69,8 @@ function Quizzes () {
   }, [] )
 
   useEffect(() => {
-    if (timeToAnswer === 0) {
+    if (timeToAnswer === 0 && answerGiven === false) {
+      setTimerFinished(true)
       setAnswerGiven(true)
       setFactTimesAnswered(factTimesAnswered + 1)
       if (factMasteryLevel > 0) {
@@ -101,7 +102,8 @@ function Quizzes () {
   }
 
   function setNextQuestion () {
-    setCorrectResponse(false)
+    setTimerFinished(false)
+    setCorrectResponse(null)
     if (whichFacts) {
       setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
       setAnswerGiven(false)
@@ -118,9 +120,9 @@ function Quizzes () {
       
       <div style={{display: 'flex', flexDirection: 'column', marginTop: '10px'}}>
 
-      {timeToAnswer === 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time's Up </h1> : null }
+      {timerFinished ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time's Up </h1> : null }
       {timeToAnswer != 0  && answerGiven === false? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time Left: {timeToAnswer} </h1> : null }
-      {answerGiven && timeToAnswer != 0 ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>{correctResponse ? "CORRECT!" : "INCORRECT" }</h1> : null }
+      {answerGiven && !timerFinished ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>{correctResponse ? "CORRECT!" : "INCORRECT" }</h1> : null }
 
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center',textAlign: 'center', marginBottom: '12px'}}>
          

@@ -28,13 +28,14 @@ function StudentInfo ({student, setSingleStudent, setViewSingleStudent, viewSing
           :
             'support-needed'
         }>{student.username}</h2>
-      <h3> <i>Mastery:</i> {student.mastery_percentage}%</h3>
-      <h3> <i>#Struggling:</i>  {studentStrugglingFacts.length}</h3>
-      <h3> <i>#Mastered:</i>  {studentMasteredFacts.length}</h3>
-      <h3> <i>#Almost Mastered:</i>  {studentAlmostMasteredFacts.length}</h3>
-      <h3> <i>#Learning:</i>  {studentStillLearningFacts.length}</h3>
-      <h3> <i>#Unknown:</i>  {studentUnknownFacts.length}</h3>
-      <button onClick={handleViewStudent}>VIEW STUDENT</button>
+      <h3 className='dash-info' style={{textAlign:'center'}}> <i>Mastery:</i> {student.mastery_percentage}%</h3>
+      <h3 style={{textAlign: 'center', textDecoration: 'underline'}}>Number of Facts</h3>
+      <h3 className='dash-info'> <i>-Struggling:</i>  {studentStrugglingFacts.length}</h3>
+      <h3 className='dash-info'> <i>-Mastered:</i>  {studentMasteredFacts.length}</h3>
+      <h3 className='dash-info'> <i>-Almost Mastered:</i>  {studentAlmostMasteredFacts.length}</h3>
+      <h3 className='dash-info'> <i>-Learning:</i>  {studentStillLearningFacts.length}</h3>
+      <h3 style={{marginBottom: '15px'}} className='dash-info'> <i>-Unknown:</i>  {studentUnknownFacts.length}</h3>
+      <button style={{textAlign: 'center', marginLeft: '20px', marginRight: '20px'}}onClick={handleViewStudent}>VIEW STUDENT</button>
     </div>
   )
 }

@@ -17,7 +17,7 @@ class MasteriesController < ApplicationController
   private 
 
   def mastery_params
-    params.permit(:mastery_level, :times_answered, :times_correct)
+    params.permit(:mastery_level, :times_answered, :times_correct, :id)
   end
 
 end

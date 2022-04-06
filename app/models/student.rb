@@ -7,7 +7,7 @@ class Student < ApplicationRecord
   validates :username, length: { maximum: 20 }
   # validates :password, length: { in: 6..12 }, on: create
   validates :password, confirmation: true
-  validates :password, length: { minimum: 6 }
+  # validates :password, length: { minimum: 6 }
   validates :is_teacher, exclusion: { in: %w(true)}
 
   belongs_to :classroom

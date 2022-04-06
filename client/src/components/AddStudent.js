@@ -1,6 +1,6 @@
 import {useState, useRef, useEffect} from "react"
 
-function AddStudent ({setSingleStudent, selectedClassroom, fetchClassroom, setNewStudentErrors, newStudentErrors}) {
+function AddStudent ({setSingleStudent, setToggleAddStudent, selectedClassroom, fetchClassroom, setNewStudentErrors, newStudentErrors}) {
 
     const [newStudentUsername, setNewStudentUsername] = useState("");
     const [newStudentPassword, setNewStudentPassword] = useState("");
@@ -41,6 +41,7 @@ function AddStudent ({setSingleStudent, selectedClassroom, fetchClassroom, setNe
           .then((student) => {
             setSingleStudent(student)
             setTriggerClassroomUpdate(!triggerClassroomUpdate)
+            setToggleAddStudent(false)
           });
         } else {
           r.json()

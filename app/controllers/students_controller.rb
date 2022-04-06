@@ -77,7 +77,13 @@ class StudentsController < ApplicationController
   private
 
   def authorize
-    return render json: {error: ['You are not authorized. Check to see if you are logged in.']}, status: :unauthorized unless session.include? :teacher_id || :student_id
+    if session.include? :student_id
+      return
+    elsif session.include? :teacher_id
+      return
+    else
+      return render json: {error: ['You are not authorized. Check to see if you are logged in.']}, status: :unauthorized
+    end
   end
 
   def student_params

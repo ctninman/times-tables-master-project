@@ -91,15 +91,15 @@ function NumberSquare ({
   return (
     <div 
       onMouseEnter={() => setHighlightNumber(true)} onMouseLeave={() => setHighlightNumber(false)}
-      className={`number-square${revealAnswer ? "-reveal" : ""}`} 
+      className={ revealAnswer ? 'number-square-reveal': `number-square-${number % 10}`} 
       style={{ display: 'inline-block',flexDirection: 'column'}}onClick={handleAnswer}>
         {highlightNumber 
           ?
-        <div style={{backgroundColor: '#AC92EB', borderRadius: '5px'}}>
+        <div className='highlighter'>
           <h2 className='number-grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
         </div>
           :
-        <div style={{borderRadius: '5px'}}>
+        <div>
           <h2 className='number-grid-fact' style={{backgroundColor: 'transparent', color: 'black'}}  >{number}</h2>
         </div>
       }

@@ -33,14 +33,14 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
   
   function handleRuleChange (event) {
     setCurrentRuleNumber(event.target.value)
-    setSingleRule(allRules.find((oneRule) => oneRule.rule_number == event.target.value))
+    // setSingleRule(allRules.find((oneRule) => oneRule.rule_number == event.target.value))
     console.log(event.target.value)
   }
 
   function handleNextRule () {
     scollToRef.current.scrollIntoView()
     if (currentRuleNumber < 9) {
-      setCurrentRuleNumber(currentRuleNumber +1)
+      setCurrentRuleNumber(() => parseInt(currentRuleNumber) +1)
     }
     else {
       setCurrentRuleNumber(0)

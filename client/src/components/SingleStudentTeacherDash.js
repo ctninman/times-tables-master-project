@@ -59,7 +59,7 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
       if (r.ok) {
         r.json()
         // .then((user) => setUser(user));
-        .then((data) => console.log("data updated", data))
+        .then((data) => console.log(data))
       } else {
         r.json()
         // .then((err) => setErrors(err.errors));
@@ -104,7 +104,7 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
       </div>
       <h3><i> Total Responses Given:</i>  {sumAllResponses}</h3>
       <h3><i> Total Responses Correct:</i>  {sumAllCorrect}</h3>
-      <h3><i> Overall Percent Correct:</i>  {(sumAllCorrect / sumAllResponses * 100).toFixed(2)}%</h3>
+      <h3><i> Overall Percent Correct:</i>  {sumAllCorrect === 0 ? "0" : (sumAllCorrect / sumAllResponses * 100).toFixed(2)}%</h3>
 
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#ED5564'}}># of Struggling Facts: {struggle.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
