@@ -21,10 +21,10 @@ function NavBar({isTeacher, setIsTeacher}) {
 
     // *** JSX *** //
   return (
-    <div>
+    <div style={{marginTop: '-15px'}}>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white', marginTop: '0px'}}> 
       
-        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '5px', width: '340px', marginBottom: '0px', marginLeft: '8px'}}>
+        <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '0px', width: '340px', marginBottom: '0px', marginLeft: '8px'}}>
           <NavLink
             to='/'
             exact
@@ -89,7 +89,7 @@ function NavBar({isTeacher, setIsTeacher}) {
                      <h5 
                      style={{fontSize: '12px', marginRight: '8px',width: 'auto', justifyContent: 'center', textDecoration: 'none'}}
                 
-                     >Hi {user.username}
+                     >{user.username}
                    </h5>
             :
             <div style={{display: 'flex', justifyContent: 'flex-end'}}>

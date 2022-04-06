@@ -1,7 +1,7 @@
 import {useState, useContext} from "react"
 import {UserContext} from "./UserContext"
 
-function AddClassroom ({setSelectedClassroom, setToggleAddClassroom}) {
+function AddClassroom ({setSelectedClassroom, triggerClassroomFetch, setTriggerClassroomFetch, setToggleAddClassroom}) {
 
     const {user, isTeacher, fetchUser} = useContext(UserContext)
 
@@ -25,7 +25,13 @@ function AddClassroom ({setSelectedClassroom, setToggleAddClassroom}) {
           // setIsLoading(false);
           if (r.ok) {
             r.json()
-            .then((classroom) => setSelectedClassroom(classroom))
+            .then((classroom) => {
+              setSelectedClassroom(classroom)
+              // setTriggerClassroomFetch(!triggerClassroomFetch)
+            })
+            .then(() => {
+              setTriggerClassroomFetch(!triggerClassroomFetch)
+            })
             .then(fetchUser())
           } else {
             r.json()
@@ -51,7 +57,7 @@ function AddClassroom ({setSelectedClassroom, setToggleAddClassroom}) {
         />
  
 
-        <button type="submit">Submit</button>
+        <button type="submit">SUBMIT</button>
       </form>
     );
   }

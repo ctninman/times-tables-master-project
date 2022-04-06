@@ -1,5 +1,6 @@
 import {useState} from 'react'
 import LoadScreen from './LoadScreen'
+import BackDrop from '..//images/canvabackground.png'
 
 function NoUserHomeScreen () {
 
@@ -19,8 +20,8 @@ function NoUserHomeScreen () {
 
   return (
     <>
-    <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px', marginTop: '15px'}}>
-
+    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px', marginTop: '15px'}}>
+      <div className='button-holder'style={{backgroundImage: `url(${BackDrop})`}}>
       <button
         className='home-screen-button'
         onClick={() => {
@@ -28,43 +29,63 @@ function NoUserHomeScreen () {
           setToggleWhyLearnButton(!toggleWhyLearnButton)}
         }
         // onMouseLeave={() => setToggleWhyLearnButton(false)}
-        >Why Learn the Times Tables?
+        >WHY LEARN THE TIMES TABLES?
       </button>
+      </div>
+      <div className='button-holder'style={{backgroundImage: `url(${BackDrop})`}}>
       <button
         className='home-screen-button'
-        onClick={() => setToggleHowToBecomeButton(!toggleHowToBecomeButton)}
+        onClick={() => {
+          setAllTogglesFalse()
+          setToggleHowToBecomeButton(!toggleHowToBecomeButton)}
+        }
         // onMouseLeave={() => setToggleHowToBecomeButton(false)}
-        >How Can I Become a Master?
+        >HOW CAN I BECOME A MASTER?
       </button>
+      </div>
+      <div className='button-holder'style={{backgroundImage: `url(${BackDrop})`}}>
       <button
         className='home-screen-button'
-        onClick={() => setToggleWhyCreateButton(!toggleWhyCreateButton)}
+        onClick={() => {
+          setAllTogglesFalse()
+          setToggleWhyCreateButton(!toggleWhyCreateButton)}
+        }
         // onMouseLeave={() => setToggleWhyCreateButton(false)}
-        >Why Create an Account?
+        >WHY CREATE AN ACCOUNT?
       </button>
+      </div>
+      <div className='button-holder'style={{backgroundImage: `url(${BackDrop})`}}>
       <button
         className='home-screen-button'
-        onClick={() => setToggleStudentButton(!toggleStudentButton)}
+        onClick={() => {
+          setAllTogglesFalse()
+          setToggleStudentButton(!toggleStudentButton)}
+        }
         // onMouseLeave={() => setToggleStudentButton(false)}
-        >What Can I Do With My Student Account?
+        >WHAT CAN I DO WITH MY STUDENT ACCOUNT?
       </button>
+      </div>
+      <div className='button-holder'style={{backgroundImage: `url(${BackDrop})`}}>
       <button
         className='home-screen-button'
-        onClick={() => setToggleTeacherButton(!toggleTeacherButton)}
+        onClick={() => {
+          setAllTogglesFalse()
+          setToggleTeacherButton(!toggleTeacherButton)}
+        }
         // onMouseLeave={() => setToggleTeacherButton(false)}
-        >What Can I Do With My Teacher Account?
+        >WHAT CAN I DO WITH MY TEACHER ACCOUNT?
       </button>
-
+      </div>
       </div>
 
       <div>
         {toggleWhyCreateButton 
           ? 
-        <div>
-          <h1 className='home-one'>When you know which facts you need to focus on, you'll </h1>
-          <h2 className='home-two' style={{paddingLeft: '20px'}}>MULTI-DIGIT MULTIPLICATION, LONG DIVISION, REDUCING FRACTIONS</h2>
-          <h1 className='home-three'>All of these will use several multiplication facts for solving each problem. It is easy to lose your place if you need to pause and think about what 7 x 8, or another fact, equals.</h1>
-          <h1 className='home-four'style={{paddingLeft: '20px', fontSize: '35px'}}>THE SINGLE MOST IMPORTANT FACTOR IN SUCCEEDING IN MATH GOING FORWARD IS TO HAVE ALL YOUR MULTIPLICATION FACTS MEMORIZED!</h1>
+        <div className='home-div'>
+          <h1 className='home-one'>With a student account, you will be able quiz yourself on whichever times table you choose.</h1>
+          <h1 className='home-two'>If you answer correctly, your mastery level will go up. Answer incorrectly and it will go down.</h1>
+          <h1 className='home-three'>Focus on one times table or rule at a time, and master that.</h1>
+          <h1 className='home-four'>TIMES TABLES MASTERS will keep track of how well you know each fact, and you can see which facts you've mastered, and which ones need the most work in the "My Times Tables" and "Dashboard" sections.</h1> 
         </div>
           : 
         null}
@@ -72,41 +93,47 @@ function NoUserHomeScreen () {
 
         {toggleWhyLearnButton 
           ? 
-        <div>
+        <div className='home-div'>
           <h1 className='home-one'>Here are some of the things you have waiting for you in the next years of your mathematical future: </h1>
-          <h2 className='home-two' style={{paddingLeft: '20px'}}>MULTI-DIGIT MULTIPLICATION, LONG DIVISION, REDUCING FRACTIONS</h2>
+          <h2 className='home-two'>MULTI-DIGIT MULTIPLICATION, LONG DIVISION, REDUCING FRACTIONS</h2>
           <h1 className='home-three'>All of these will use several multiplication facts for solving each problem. It is easy to lose your place if you need to pause and think about what 7 x 8, or another fact, equals.</h1>
-          <h1 className='home-four'style={{paddingLeft: '20px', fontSize: '35px'}}>THE SINGLE MOST IMPORTANT FACTOR IN SUCCEEDING IN MATH GOING FORWARD IS TO HAVE ALL YOUR MULTIPLICATION FACTS MEMORIZED!</h1>
+          <h1 className='home-four'>THE SINGLE MOST IMPORTANT FACTOR IN SUCCEEDING IN MATH GOING FORWARD IS TO HAVE ALL YOUR MULTIPLICATION FACTS MEMORIZED!</h1>
         </div>
           : 
         null}
 
         {toggleTeacherButton 
           ? 
-        <div>
-          <h1>What Can I Do With My Teacher Account?</h1> 
+        <div className='home-div'>
+          <h1 className='home-one'>Use the "Rules" to teach your students how to systemically conquer their times tables.</h1>
+          <h2 className='home-two'>Create your classrooms and add students. You can adjust the amount of time each individual student has to solve based on their needs. Keep track of students that could use your support.</h2>
+          <h1 className='home-three'>In your "Dashboard", check on each student's overall mastery of their times tables, and see which facts they should work on next.</h1>
+          <h1 className='home-four'>See which facts each student struggles with, ones they've answered many times, but without much success. Tailor individualized instruction to match each student's needs.</h1>
         </div>
           : 
         null}
 
         {toggleStudentButton 
           ? 
-        <div>
-          <h1>With a student account, you will be able quiz yourself on whichever times table you choose.</h1>
-          <h1>If you answer correctly, your mastery level will go up. Answer incorrectly and it will go down.</h1>
-          <h1>Focus on one times table or rule at a time, and master that.</h1>
-          <h1>TIMES TABLES MASTERS will keep track of how well you know each fact, and you can see which facts you've mastered, and which ones need the most work in the "My Times Tables" and "Dashboard" sections.</h1> 
+
+       
+          
+        <div className='home-div'>
+          <h1 className='home-one'>TIMES TABLES MASTER will let you know which facts you know already, so you can focus your powers on the few facts you  still need to learn.</h1>
+          <h2 className='home-two'>Select which times table you want to work on, and take the quizzes.</h2>
+          <h1 className='home-three'>Go to "My Times Tables". The lighter the color of the number, the more of a master you are!</h1>
+          <h1 className='home-four'>Check your "Dashboard". You'll see each multiplication fact organized by how well you've mastered it.</h1>
         </div>
           : 
         null}
 
         {toggleHowToBecomeButton 
           ? 
-        <div>
-          <h1>Here on TIMES TABLES MASTER, you can start by learning 8 simple rules (and a few other tricks) which will cover all 100 multiplication facts.</h1>
-          <h2>There rules will help you realize that learning all your times tables is much easier that it seems.</h2>
-          <h2>Ask anyone who's really good at something how they got so good. I guarantee their answer will be: PRACTICE!</h2>
-          <h2>With an account, you can learn which multiplication facts are the hardest for you and make sure you spend extra time practicing those facts.</h2>
+        <div className='home-div'>
+          <h1 className='home-one'>Here on TIMES TABLES MASTER, you can start by learning 8 simple rules (and a few other tricks) which will cover all 100 multiplication facts.</h1>
+          <h2 className='home-two'>There rules will help you realize that learning all your times tables is much easier that it seems.</h2>
+          <h2 className='home-three'>Ask anyone who's really good at something how they got so good. I guarantee their answer will be: PRACTICE!</h2>
+          <h2 className='home-four'>With an account, you can learn which multiplication facts are the hardest for you and make sure you spend extra time practicing those facts.</h2>
         </div>
           : 
         null}

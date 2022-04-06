@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef} from 'react'
 
-function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchClassroom}) {
+function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchClassroom, triggerClassroomFetch, setTriggerClassroomFetch}) {
 
   const sumAllResponses = singleStudent.masteries.map(item => item.times_answered).reduce((prev, curr) => prev + curr, 0);
   const sumAllCorrect = singleStudent.masteries.map(item => item.times_correct).reduce((prev, curr) => prev + curr, 0);
@@ -40,7 +40,8 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
         fetch(`/students/${singleStudent.id}`, {method: "DELETE"})
         .then((r) => r.json())
         .then((data) => {
-          console.log("Deleted")
+          setTriggerClassroomFetch(!triggerClassroomFetch)
+          setViewSingleStudent(false)
         })
       }
     }
@@ -58,7 +59,7 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
       if (r.ok) {
         r.json()
         // .then((user) => setUser(user));
-        .then((data) => console.log(data))
+        .then((data) => console.log("data updated", data))
       } else {
         r.json()
         // .then((err) => setErrors(err.errors));
@@ -107,27 +108,27 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
 
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#ED5564'}}># of Struggling Facts: {struggle.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {struggle.map((item) => <p className='student-dash-fact' >{item.problem.multiplication_fact}</p>)}
+        {struggle.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact' >{item.problem.multiplication_fact}</p>)}
       </div>
 
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#FFCE54'}}># of Mastered Facts: {mastered.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {mastered.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
+        {mastered.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#A0D568'}}># of Almost-Mastered Facts: {almostMastered.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {almostMastered.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
+        {almostMastered.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#4FC1E8'}}># of Still Learning Facts: {learning.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {learning.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
+        {learning.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
       
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#AC92EB'}}># of Unknown Facts: {unknown.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {unknown.map((item) => <p className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
+        {unknown.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
       </div>
 
       <button style={{margin: '20px'}} onClick={handleViewClass}>View Class</button>

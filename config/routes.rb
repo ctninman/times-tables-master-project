@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-  resources :rules
-  resources :masteries
-  resources :problems
-  resources :students
-  resources :classrooms
-  resources :teachers
+  resources :rules, only: :index
+  resources :masteries, only: :update
+  resources :problems, only: :index
+  resources :students, except: :index
+  resources :classrooms, only: [:create, :destroy, :show]
+  resources :teachers, only: [:create, :destroy, :show]
 
   get '/hello', to: 'application#hello'
 

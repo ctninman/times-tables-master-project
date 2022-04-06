@@ -1,11 +1,22 @@
-import {useState} from "react"
+import {useState, useRef, useEffect} from "react"
 
-function AddStudent ({setSingleStudent, selectedClassroom}) {
+function AddStudent ({setSingleStudent, selectedClassroom, fetchClassroom, setNewStudentErrors, newStudentErrors}) {
 
     const [newStudentUsername, setNewStudentUsername] = useState("");
     const [newStudentPassword, setNewStudentPassword] = useState("");
     // const [teacherLogin, setTeacherLogin] = useState(false)
     const [newStudentPasswordConfirmation, setNewStudentPasswordConfirmation] = useState("")
+    const [triggerClassroomUpdate, setTriggerClassroomUpdate] = useState(false)
+
+  const firstUpdate = useRef(true)
+
+  useEffect (() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+    fetchClassroom()
+  }, [triggerClassroomUpdate]) 
 
     function handleAddStudent (e) {
       e.preventDefault()
@@ -27,17 +38,21 @@ function AddStudent ({setSingleStudent, selectedClassroom}) {
         // setIsLoading(false);
         if (r.ok) {
           r.json()
-          .then((student) => setSingleStudent(student));
+          .then((student) => {
+            setSingleStudent(student)
+            setTriggerClassroomUpdate(!triggerClassroomUpdate)
+          });
         } else {
           r.json()
+          .then((err) => setNewStudentErrors(err))
           // .then((err) => setErrors(err.errors));
-          console.log("um, nope")
         }
       });
     }
 
     return (
       <form onSubmit={handleAddStudent}>
+        <div>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -45,6 +60,8 @@ function AddStudent ({setSingleStudent, selectedClassroom}) {
           value={newStudentUsername}
           onChange={(e) => setNewStudentUsername(e.target.value)}
         />
+        </div>
+        <div>
         <label htmlFor="password">Password:</label>
         <input
           type="password"
@@ -52,13 +69,16 @@ function AddStudent ({setSingleStudent, selectedClassroom}) {
           value={newStudentPassword}
           onChange={(e) => setNewStudentPassword(e.target.value)}
         />
-        <label htmlFor="password-confirmation">Password:</label>
+        </div>
+        <div>
+        <label htmlFor="password-confirmation">Confirm Password:</label>
         <input
           type="password"
           id="password-confirmation"
           value={newStudentPasswordConfirmation}
           onChange={(e) => setNewStudentPasswordConfirmation(e.target.value)}
         />
+        </div>
 
         <button type="submit">Submit</button>
       </form>

@@ -20,6 +20,7 @@ function NumberSquare ({
   generalToggler,
   setCorrectResponse
 }) {
+  
 
   const {user} = useContext(UserContext)
   const firstUpdate = useRef(true);

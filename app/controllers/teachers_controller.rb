@@ -2,6 +2,8 @@ class TeachersController < ApplicationController
 
   wrap_parameters format: []
 
+  before_action :authorize, only: :show
+
   def show
     teacher = Teacher.find_by(id: session[:teacher_id])
     if teacher
@@ -17,7 +19,7 @@ class TeachersController < ApplicationController
       new_teacher.save
       render json: new_teacher, status: :created  
     else
-      render json: {error: "Invalid data"}, status: :unprocessable_entity
+      render json: {errors: new_teacher.errors.full_messages}, status: :unprocessable_entity
     end
 
   end
@@ -34,8 +36,13 @@ class TeachersController < ApplicationController
 
   private
 
+  def authorize
+    return render json: {error: ['You are not authorized. Check to see if you are logged in.']}, status: :unauthorized unless session.include? :teacher_id || :student_id
+  end
+
+
   def teacher_params
-    params.permit(:username, :password, :email, is_teacher)
+    params.permit(:username, :password, :email, :is_teacher, :password, :password_confirmation)
   end
   
 end

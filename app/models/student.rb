@@ -1,6 +1,15 @@
 class Student < ApplicationRecord
   has_secure_password
 
+  validates :username, uniqueness: true
+  
+  validates :username, length: { minimum: 2 }
+  validates :username, length: { maximum: 20 }
+  # validates :password, length: { in: 6..12 }, on: create
+  validates :password, confirmation: true
+  validates :password, length: { minimum: 6 }
+  validates :is_teacher, exclusion: { in: %w(true)}
+
   belongs_to :classroom
   has_many :masteries, dependent: :destroy
   has_many :problems, through: :masteries

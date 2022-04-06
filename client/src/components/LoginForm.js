@@ -5,7 +5,7 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
 
   let history = useHistory()
 
-  const [errors, setErrors] = useState(false)
+  const [errors, setErrors] = useState(null)
 
     function handleLogin (event) {
       event.preventDefault()
@@ -29,7 +29,8 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
               history.push('/')
             });
           } else {
-            setErrors(true)
+            r.json()
+            .then((err) => setErrors(err))
           }
         })
       } else {
@@ -48,7 +49,8 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
               history.push('/')
             })
           }   else {
-            setErrors(true)
+            r.json()
+            .then((err) => setErrors(err))
           }
         })
       }
@@ -84,7 +86,7 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
           </div>
           <button style={{margin: '20px', fontSize: '15px'}} type="submit">Submit</button>
         </form>
-        {errors ? <h1>Incorrect Login Information</h1>: null}
+        {errors ? <h2 className='error'>- {errors.error}</h2> : null}
       </>
     );
   }

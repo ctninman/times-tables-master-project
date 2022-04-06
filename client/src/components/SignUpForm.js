@@ -1,29 +1,13 @@
 import {useState} from "react"
+import {useHistory} from 'react-router-dom'
 
 function SignUpForm ({username, setUsername, password, setPassword, teacherLogin, setTeacherLogin, setUser, user, setIsTeacher}) {
 
-    // const [username, setUsername] = useState("");
-    // const [password, setPassword] = useState("");
-    // const [teacherLogin, setTeacherLogin] = useState(false)
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     const [email, setEmail] = useState("")
+    const [errors, setErrors] = useState(null)
 
-  
-    // function handleSubmit(e) {
-    //   e.preventDefault();
-    //   fetch("/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       username,
-    //       password
-    //     }),
-    //   })
-    //     .then((r) => r.json())
-    //     .then(onLogin);
-    // }
+  let history = useHistory()
 
     function handleSubmit(e) {
       e.preventDefault();
@@ -48,11 +32,13 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
           // setIsLoading(false);
           if (r.ok) {
             r.json()
-            .then((user) => setUser(user));
+            .then((user) => setUser(user))
+            .then(console.log(user))
+            .then(history.push('/'))
           } else {
             r.json()
-            // .then((err) => setErrors(err.errors));
-            console.log("um, nope")
+            
+            .then((err)=>setErrors(err))
           }
         });
       } else {
@@ -75,8 +61,7 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
             .then((user) => setUser(user));
           } else {
             r.json()
-            // .then((err) => setErrors(err.errors));
-            console.log("um, nope")
+            .then((err)=>setErrors(err))
           }
         });
       }
@@ -124,6 +109,7 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
     // }
   
     return (
+      <div>
       <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', width: '400px', marginLeft: '20px'}}>
         <label htmlFor="username">Username:</label>
         <input
@@ -174,6 +160,9 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
         <button type="submit">Submit</button>
       </form>
 
+      {errors ? errors.errors.map((error) => <h2 key={error} className='error'>-{error}</h2>) : null}
+
+      </div>
 
     );
   }

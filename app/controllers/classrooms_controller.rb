@@ -4,7 +4,7 @@ class ClassroomsController < ApplicationController
     teacher = Teacher.find_by(id: session[:teacher_id])
     if teacher
       classroom = Classroom.find_by(id: params[:id])
-      render json: classroom, include: ['students.masteries', 'students.masteries.problem'], status: :ok
+      render json: classroom, include: [ 'students.masteries.problem'], status: :ok
     else
       render json: {error: "Not authorized"}, status: :unauthorized
     end

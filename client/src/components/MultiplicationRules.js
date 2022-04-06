@@ -29,8 +29,8 @@ useEffect (() => {
       return;
     }
     console.log('in that effect', allRules)
-    setSingleRule(allRules.find((rule) => rule.rule_number === currentRuleNumber))
-  }, [allRules, currentRuleNumber])
+    setSingleRule(allRules.find((rule) => rule.rule_number === 0))
+  }, [allRules])
 
 
 

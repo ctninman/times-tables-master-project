@@ -20,7 +20,7 @@ function StudentInfo ({student, setSingleStudent, setViewSingleStudent, viewSing
   //   setUserUnknownFacts(user.masteries.filter ((mastery) => mastery.mastery_level < 3))
 
   return (
-    <div style={{border: '2px solid'}} >
+    <div className='student-on-teacher-dash' style={{border: '2px solid'}} >
       <h2 style={{textAlign: 'center', textDecoration: 'underline'}}
         className={student.offer_support === false 
           ? 
@@ -34,7 +34,7 @@ function StudentInfo ({student, setSingleStudent, setViewSingleStudent, viewSing
       <h3> <i>#Almost Mastered:</i>  {studentAlmostMasteredFacts.length}</h3>
       <h3> <i>#Learning:</i>  {studentStillLearningFacts.length}</h3>
       <h3> <i>#Unknown:</i>  {studentUnknownFacts.length}</h3>
-      <button onClick={handleViewStudent}>View Student</button>
+      <button onClick={handleViewStudent}>VIEW STUDENT</button>
     </div>
   )
 }

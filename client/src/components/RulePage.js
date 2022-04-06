@@ -1,6 +1,7 @@
 import {useEffect, useState, useRef} from 'react'
 import LoadScreen from './LoadScreen'
 import SingleExplanation from './SingleExplanation'
+import BackgroundGraphic from '../images/canvabackground.png'
 
 function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setCurrentRuleNumber}) {
 
@@ -10,6 +11,8 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
   const [showRelatedFacts, setShowRelatedFacts] = useState(true)
 
   const scollToRef = useRef();
+
+  const firstUpdate = useRef(true);
 
   // useEffect(() => {
   //   const interval = setInterval(() => {
@@ -21,6 +24,10 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
 
 
   useEffect (() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
     setSingleRule(allRules.find((oneRule) => oneRule.rule_number == currentRuleNumber))
   }, [currentRuleNumber])
   
@@ -57,8 +64,10 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
         ?
       <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center'}}>
         <div style={{display: 'flex', flexDirection: 'row', textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
-          <h1 style={{padding: '8px', marginLeft: '15px', width: '120px', fontWeight: 'bolder', height: '80px',textAlign: 'center', fontSize: '40px', color: 'black',textShadow: '2px 2px 2px #4FC1E8'}}>{singleRule.rule_title.toUpperCase()}:</h1>
-          <h1 style={{padding: '5px',backgroundImage: 'linear-gradient(to bottom right, #4FC1E8, #A0D568, #4FC1E8)', marginLeft: '15px',borderRadius: '5px', width: '75%', textShadow: '2px 2px 2px #AC92EB'}}>{singleRule.rule}</h1>
+          <div className='button-holder' style={{backgroundImage: `url(${BackgroundGraphic})`}}>
+            <h1 style={{padding: '8px', marginLeft: '15px', width: '120px', fontWeight: 'bolder', height: '80px',textAlign: 'center', fontSize: '40px', color: 'black',textShadow: '2px 2px 2px #4FC1E8'}}>{singleRule.rule_title.toUpperCase()}:</h1>
+          </div>
+          <h1 style={{padding: '5px',backgroundImage: 'linear-gradient(to bottom right, white, #A0D56888', border: '5px solid #A0D56888', marginLeft: '15px',borderRadius: '5px', width: '75%', textShadow: '2px 2px 2px #AC92EB'}}>{singleRule.rule}</h1>
         </div>
         <div style={{textAlign: 'center'}}>
           {singleRule.explanation.map((explanation) => (
@@ -77,7 +86,7 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
           <img onClick={() => setShowRelatedFacts(() =>!showRelatedFacts)}src={"https://storage.googleapis.com/times-tables-master_photos/NoTimes.png"} alt={singleRule.rule} className='grid-photo'/>
         </div>
         } 
-        <button onClick={() => setShowRelatedFacts(!showRelatedFacts)}>{showRelatedFacts? "Hide Facts" : "See Facts"}</button>
+        <button style={{fontSize: '15px'}} onClick={() => setShowRelatedFacts(!showRelatedFacts)}>{showRelatedFacts? "HIDE FACTS" : "SEE FACTS"}</button>
         
         </div>
         <div style={{textAlign: 'center'}}>
@@ -86,11 +95,13 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
           ))}
           </div>
           <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-          <h1 style={{padding: '5px',backgroundImage: 'linear-gradient(#A0D568, #4FC1E8', marginLeft: '15px',borderRadius: '5px', width: 'auto', textShadow: '2px 2px 2px #AC92EB'}}>Number of facts learned through this rule: </h1>
-          <h1 style={{paddingTop: '4px', backgroundColor: '#FFCE54', marginLeft: '15px', borderRadius: '50%', width: '75px', height: 'auto',textAlign: 'center', fontSize: '40px',textShadow: '2px 2px 2px #4FC1E8'}}>{singleRule.related_facts}</h1>
-        </div>
+          <h1 style={{padding: '5px',backgroundImage:'linear-gradient(to bottom right, white, #A0D56888', border: '5px solid #A0D56888', marginLeft: '15px',borderRadius: '5px', width: 'auto', textShadow: '2px 2px 2px #AC92EB'}}>Number of facts learned through this rule: </h1>
+          <div className='button-holder' style={{marginLeft: '20px',backgroundImage: `url(${BackgroundGraphic})`}}>
+            <h1 style={{padding: '20px', paddingTop:'35px', width: '75px', height: '75px',textAlign: 'center', fontSize: '50px',textShadow: '2px 2px 2px #4FC1E8'}}>{singleRule.related_facts}</h1>
+          </div>
+          </div>
         <div style={{marginBottom: '15px', textAlign: 'center'}}>
-          <button onClick={handleNextRule}>Next Rule</button>
+          <button style={{fontSize: '15px'}} onClick={handleNextRule}>NEXT RULE</button>
         </div>
       </div>
       :

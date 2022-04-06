@@ -26,7 +26,7 @@ function MyTimesTables ({allFacts, user}) {
     :
   <div>
     <NoUserTimesTables allFacts={allFacts}/>
-    <MatteoTimesTables allFacts={allFacts}/>
+    {/* <MatteoTimesTables allFacts={allFacts}/> */}
   </div>
 
 }

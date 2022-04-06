@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         session.delete :student_id
         head :no_content
       else
-        render json: { error: "student not logged in" }, status: :unauthorized
+        render json: { error: "Student not logged in" }, status: :unauthorized
       end
     elsif session.key?("teacher_id")
       teacher = Teacher.find_by(id: session[:teacher_id])
@@ -37,7 +37,7 @@ class SessionsController < ApplicationController
         session.delete :teacher_id
         head :no_content
       else
-        render json: { error: "teacher not logged in" }, status: :unauthorized
+        render json: { error: "Teacher not logged in" }, status: :unauthorized
       end
     end
   end
