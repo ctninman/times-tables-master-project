@@ -1,4 +1,5 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, useEffect, useRef, useContext} from 'react'
+import {UserContext} from './UserContext'
 
 function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchClassroom, triggerClassroomFetch, setTriggerClassroomFetch}) {
 
@@ -14,6 +15,8 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
   const [studentSupportNeeded, setStudentSupportNeeded] = useState(singleStudent.offer_support)
 
   const firstUpdate = useRef(true);
+
+  const {allFacts} = useContext(UserContext)
 
   useEffect (() => {
     if (firstUpdate.current) {
@@ -45,6 +48,11 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
         })
       }
     }
+  }
+
+  function handleMap (item) {
+    const problem = allFacts.find((fact) => fact.id === item.problem_id)
+    return <p key={problem.multiplication_fact} className='student-dash-fact' >{problem.multiplication_fact}</p>
   }
 
   function patchUpdatedStudent (object) {
@@ -108,27 +116,27 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
 
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#ED5564'}}># of Struggling Facts: {struggle.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {struggle.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact' >{item.problem.multiplication_fact}</p>)}
+        {struggle.map(handleMap)}
       </div>
 
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#FFCE54'}}># of Mastered Facts: {mastered.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {mastered.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
+        {mastered.map(handleMap)}
       </div>
       
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#A0D568'}}># of Almost-Mastered Facts: {almostMastered.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {almostMastered.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
+        {almostMastered.map(handleMap)}
       </div>
       
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#4FC1E8'}}># of Still Learning Facts: {learning.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {learning.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
+        {learning.map(handleMap)}
       </div>
       
       <h2 style={{paddingTop: '3px', textAlign: 'center', backgroundColor: '#AC92EB'}}># of Unknown Facts: {unknown.length}</h2>
       <div style={{display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-        {unknown.map((item) => <p key={item.problem.multiplication_fact} className='student-dash-fact'>{item.problem.multiplication_fact}</p>)}
+        {unknown.map(handleMap)}
       </div>
 
       <button style={{margin: '20px'}} onClick={handleViewClass}>View Class</button>

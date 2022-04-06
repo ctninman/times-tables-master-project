@@ -3,7 +3,7 @@ import {useContext, useState} from 'react'
 
 function FactFilter ({setFilteredQuestionList, filteredQuestionList, whichFacts, setWhichFacts}) {
 
-  const {user} = useContext(UserContext)
+  const {user, allFacts} = useContext(UserContext)
 
   // const [whichFacts, setWhichFacts] = useState(null)
   
@@ -21,7 +21,12 @@ function FactFilter ({setFilteredQuestionList, filteredQuestionList, whichFacts,
   const tenX = [91,92,93,94,95,96,97,98,99,100,10,20,30,40,50,60,70,80,90]
 
   function filterFacts (numberArray) {
-    setFilteredQuestionList(user.masteries.filter((mastery) => numberArray.includes(mastery.problem.fact_number)))
+    // let userMasteries = user.masteries.filter((mastery) => {
+    //   numberArray.includes(mastery.problem_id)
+    //   setFilteredQuestionList(allFacts.)
+    setFilteredQuestionList(user.masteries.filter((mastery) => (
+      numberArray.includes(mastery.problem_id)
+    )))
   }
 
   function handleFilterChange (event) {
@@ -31,6 +36,8 @@ function FactFilter ({setFilteredQuestionList, filteredQuestionList, whichFacts,
   return (
     <div style={{marginTop: '10px'}}>
       <div>
+        <button onClick={() => console.log(filteredQuestionList)}>fitler</button>
+        <button onClick={() => console.log(user.masteries)}>fitler allX</button>
         <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '87px', fontSize: '14px'}}>ALL FACTS</button>      
         <button value={"1x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(oneX)}} style={{width: '34px', fontSize: '14px'}}>1x</button>
         <button value={"2x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(twoX)}} style={{width: '34px', fontSize: '14px'}}>2x</button>

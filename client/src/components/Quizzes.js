@@ -13,7 +13,7 @@ function Quizzes () {
   const secondUpdate = useRef(true)
   const thirdUpdate = useRef(true)
 
-  const {user, isTeacher} = useContext(UserContext)
+  const {user, allFacts, isTeacher} = useContext(UserContext)
   const [selectedQuizQuestion, setSelectedQuizQuestion] = useState(null)
   const [answerGiven, setAnswerGiven] = useState(false)
   const [makeRequest, setMakeRequest] = useState(false)
@@ -23,6 +23,7 @@ function Quizzes () {
   const [correctResponse, setCorrectResponse] = useState (null)
   // const [selectedFactNumbers, setSelectedFactNumbers] = useState([...Array(101).keys()])
   const [filteredQuestionList, setFilteredQuestionList] = useState(null)
+  const [selectedQuizProblem, setSelectedQuizProblem] = useState(null)
   const [whichFacts, setWhichFacts] = useState(null)
   const [factMasteryLevel, setFactMasteryLevel] = useState(0)
   const [factTimesAnswered, setFactTimesAnswered] = useState(0)
@@ -52,6 +53,7 @@ function Quizzes () {
     setFactTimesAnswered(selectedQuizQuestion.times_answered)
     setFactTimesCorrect(selectedQuizQuestion.times_correct)
     setTimeToAnswer(user.time_to_solve)
+    setSelectedQuizProblem(allFacts.find((fact) => fact.id === selectedQuizQuestion.id))
   }, [selectedQuizQuestion])
 
   useEffect (() => {
@@ -130,10 +132,13 @@ function Quizzes () {
        
           <button onClick={() => history.push('/my-times-tables')}style={{marginRight: '30px',width: '90px',marginTop: '30px'}}>STOP</button>
          
+
+         {selectedQuizProblem ?
           <div style={{display: 'flex', flexDirection: 'column'}}>
-            <h1 style={{margin: '3px', fontSize: '40px', padding: '8px', border: '4px solid', borderRadius: '10px'}}>{selectedQuizQuestion.problem.multiplication_fact} = {answerGiven ? `${selectedQuizQuestion.problem.answer}` : null}</h1>
-           
-          </div>
+            <h1 style={{margin: '3px', fontSize: '40px', padding: '8px', border: '4px solid', borderRadius: '10px'}}>{selectedQuizProblem.multiplication_fact} = {answerGiven ? `${selectedQuizProblem.answer}` : null}</h1>
+           </div>
+           :
+           null}
           <button style={{width: '90px', marginLeft: '30px', marginTop: '30px'}} onClick={setNextQuestion} >NEXT</button>
         </div>
         
@@ -158,7 +163,8 @@ function Quizzes () {
               patchStudentMastery={patchStudentMastery}
               timerFinished={timerFinished}
               generalToggler={generalToggler}
-              setCorrectResponse={setCorrectResponse}/>
+              setCorrectResponse={setCorrectResponse}
+              selectedQuizProblem={selectedQuizProblem}/>
             ))}
           </div>
         </div>

@@ -3,7 +3,7 @@ import {UserContext} from "./UserContext"
 
 function GridSquare ({fact}) {
 
-  const {user} = useContext(UserContext)
+  const {user, allFacts} = useContext(UserContext)
 
   const firstUpdate = useRef(true);
 
@@ -26,7 +26,10 @@ function GridSquare ({fact}) {
     //   return;
     // }
     if (user) {
-    let currentFact = user.masteries.find(mastery => mastery.problem.fact_number === fact.fact_number)
+    let currentFact = user.masteries.find(mastery => {
+      const problem = allFacts.find((fact) => mastery.problem_id === fact.id)
+      return problem.fact_number === fact.fact_number
+    })
     setMasteryLevel(currentFact.mastery_level)
     }
   }, [user]);

@@ -11,6 +11,8 @@ function SingleExplanation ({explanation}) {
         fontSize: '30px',
         borderRadius: '25px',
         backgroundImage: 'linear-gradient(to bottom left, #AC92EB88, #4FC1E888)',
+        backgroundSize: 'fit-content',
+        textAlign: 'center'
         }}>{explanation}
       </h2>
     </div>

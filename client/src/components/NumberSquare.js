@@ -18,7 +18,8 @@ function NumberSquare ({
   timeToAnswer,
   timerFinished,
   generalToggler,
-  setCorrectResponse
+  setCorrectResponse,
+  selectedQuizProblem
 }) {
   
 
@@ -33,7 +34,7 @@ function NumberSquare ({
       firstUpdate.current = false;
       return;
     }
-    if (selectedQuizQuestion.problem.answer === number) {
+    if (selectedQuizProblem.answer === number) {
       setRevealAnswer(true)
     }
   }, [makeRequest, timerFinished])
@@ -68,14 +69,14 @@ function NumberSquare ({
     if (answerGiven === false) {
       setAnswerGiven(true)
       setFactTimesAnswered(factTimesAnswered + 1)
-      if (selectedQuizQuestion.problem.answer == number) {
+      if (selectedQuizProblem.answer == number) {
         setCorrectResponse(true)
         setFactTimesCorrect(factTimesCorrect + 1)
         if (factMasteryLevel < 10) {
           setFactMasteryLevel(factMasteryLevel + 1)
           console.log('1st')
         }
-      } else if (selectedQuizQuestion.problem.answer != number) {
+      } else if (selectedQuizProblem.answer != number) {
         setCorrectResponse(false)
         if (factMasteryLevel > 0) {
           setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
