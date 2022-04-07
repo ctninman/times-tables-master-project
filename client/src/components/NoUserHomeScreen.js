@@ -20,7 +20,7 @@ function NoUserHomeScreen () {
 
   return (
     <>
-    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '20px', marginTop: '15px'}}>
+    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '-10px', marginTop: '0px'}}>
       <div className='button-holder'style={{backgroundImage: `url(${BackDrop})`}}>
       <button
         className='home-screen-button'

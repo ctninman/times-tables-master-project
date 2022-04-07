@@ -21,7 +21,7 @@ function NavBar({isTeacher, setIsTeacher}) {
 
     // *** JSX *** //
   return (
-    <div style={{marginTop: '-15px'}}>
+    <div style={{marginTop: '-15px', marginBottom: '0px'}}>
     <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', backgroundColor: 'white', marginTop: '0px'}}> 
       
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginTop: '0px', width: '340px', marginBottom: '0px', marginLeft: '8px'}}>
@@ -142,7 +142,7 @@ function NavBar({isTeacher, setIsTeacher}) {
 
         </div>
 
-        <div style={{display: 'flex', flexDirection: 'row', width: '100%',marginTop: '2px', flexWrap: 'wrap', justifyContent: 'center'}}>
+        <div style={{display: 'flex', flexDirection: 'row', width: '100%',marginTop: '2px', marginBottom: '0px', flexWrap: 'wrap', justifyContent: 'center'}}>
           {/* <h2 
             style={{fontSize: '40px', fontWeight: 'bolder', color: '#AC92EB', textAlign: 'center', textShadow: '0px 0px 6px rgba(255,255,255,0.7)', margin: '0px', marginTop: '0px'}}
             >TIMES TABLES MASTER

@@ -33,7 +33,10 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
           if (r.ok) {
             r.json()
             .then((user) => setUser(user))
-            .then(console.log(user))
+            .then(() => {
+              setIsTeacher(false)
+              console.log(user)
+            })
             .then(history.push('/'))
           } else {
             r.json()
@@ -58,7 +61,8 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
           // setIsLoading(false);
           if (r.ok) {
             r.json()
-            .then((user) => setUser(user));
+            .then((user) => setUser(user))
+            .then(() => setIsTeacher(true))
           } else {
             r.json()
             .then((err)=>setErrors(err))

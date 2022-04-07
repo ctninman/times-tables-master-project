@@ -19,7 +19,8 @@ function NumberSquare ({
   timerFinished,
   generalToggler,
   setCorrectResponse,
-  selectedQuizProblem
+  selectedQuizProblem,
+  filteredQuestionList
 }) {
   
 
@@ -69,23 +70,48 @@ function NumberSquare ({
     if (answerGiven === false) {
       setAnswerGiven(true)
       setFactTimesAnswered(factTimesAnswered + 1)
-      if (selectedQuizProblem.answer == number) {
+      if (selectedQuizProblem.answer === number) {
         setCorrectResponse(true)
         setFactTimesCorrect(factTimesCorrect + 1)
         if (factMasteryLevel < 10) {
           setFactMasteryLevel(factMasteryLevel + 1)
           console.log('1st')
         }
+        setMakeRequest(() => !makeRequest)
       } else if (selectedQuizProblem.answer != number) {
         setCorrectResponse(false)
         if (factMasteryLevel > 0) {
-          setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
+          setFactMasteryLevel(factMasteryLevel - 1)
           console.log('2nd')
         }
+        setMakeRequest(() => !makeRequest)
       }
-      setMakeRequest(() => !makeRequest)
+      // setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
     }
+    
   }
+
+
+  // useEffect(() => {
+  //   if (timeToAnswer === 0 && answerGiven === false) {
+  //     setMakeRequest(!makeRequest)
+  //     setTimerFinished(true)
+  //     setAnswerGiven(true)
+  //     setFactTimesAnswered(factTimesAnswered + 1)
+  //     if (factMasteryLevel > 0) {
+  //       setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
+  //       console.log('time')
+  //     }
+  //     setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
+  //   } else if (answerGiven) {
+  //     setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
+  //   } else if (timeToAnswer > 0) {
+  //     const interval = setInterval(() => {
+  //       setTimeToAnswer(timeToAnswer - 1)
+  //     }, 1000);
+  //     return () => clearInterval(interval);
+  //   }
+  // }, [timeToAnswer]);
 
 
 

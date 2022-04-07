@@ -10,10 +10,10 @@ function Quizzes () {
   let history = useHistory()
 
   const firstUpdate = useRef(true);
-  const secondUpdate = useRef(true)
-  const thirdUpdate = useRef(true)
+  const secondUpdate = useRef(true);
+  const thirdUpdate = useRef(true);
 
-  const {user, allFacts, isTeacher} = useContext(UserContext)
+  const {user, allFacts, setUser, fetchUser, isTeacher} = useContext(UserContext)
   const [selectedQuizQuestion, setSelectedQuizQuestion] = useState(null)
   const [answerGiven, setAnswerGiven] = useState(false)
   const [makeRequest, setMakeRequest] = useState(false)
@@ -25,53 +25,82 @@ function Quizzes () {
   const [filteredQuestionList, setFilteredQuestionList] = useState(null)
   const [selectedQuizProblem, setSelectedQuizProblem] = useState(null)
   const [whichFacts, setWhichFacts] = useState(null)
+  const [whichFactsArray, setWhichFactsArray] = useState(null)
   const [factMasteryLevel, setFactMasteryLevel] = useState(0)
   const [factTimesAnswered, setFactTimesAnswered] = useState(0)
   const [factTimesCorrect, setFactTimesCorrect] = useState(0)
+  const [quizBegan, setQuizBegan] = useState(false)
+
 
 
   let hundredArray = [...Array(101).keys()]
   hundredArray.shift()
 
-  useEffect (() => {
+  // useEffect (() => {
+  //   if (firstUpdate.current) {
+  //     firstUpdate.current = false;
+  //     return;
+  //   }
+  //    else if (user) {
+  //     // setSelectedQuizQuesti[Math.floor(Math.random.length)])
+  //     setTimeToAnswer(user.time_to_solve)
+  //   }
+  // }, [selectedQuizQuestion])
+
+  useEffect (()=> {
     if (firstUpdate.current) {
       firstUpdate.current = false;
       return;
     }
-     else if (user) {
-      // setSelectedQuizQuesti[Math.floor(Math.random.length)])
-      setTimeToAnswer(user.time_to_solve)
-    }
+    setTimeToAnswer(user.time_to_solve)
+    setFactMasteryLevel(selectedQuizQuestion.mastery_level)
+    setFactTimesAnswered(selectedQuizQuestion.times_answered)
+    setFactTimesCorrect(selectedQuizQuestion.times_correct)
   }, [selectedQuizQuestion])
 
-  useEffect (()=> {
+  useEffect (() => {
     if (secondUpdate.current) {
       secondUpdate.current = false;
       return;
     }
-    setFactMasteryLevel(selectedQuizQuestion.mastery_level)
-    setFactTimesAnswered(selectedQuizQuestion.times_answered)
-    setFactTimesCorrect(selectedQuizQuestion.times_correct)
-    setTimeToAnswer(user.time_to_solve)
-    setSelectedQuizProblem(allFacts.find((fact) => fact.id === selectedQuizQuestion.id))
-  }, [selectedQuizQuestion])
+    if (selectedQuizQuestion) {
+      patchStudentMastery()
+      // setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
+    }
+  }, [makeRequest])
 
   useEffect (() => {
     if (thirdUpdate.current) {
       thirdUpdate.current = false;
       return;
     }
-    if (selectedQuizQuestion) {
-      patchStudentMastery()
-    }
-  }, [makeRequest, timerFinished])
+    // if (quizBegan === true && answerGiven === false) {
+    //   return
+    // } else {
+    // if (quizBegan === false) {
+      // setQuizBegan(true)
+      setTimeToAnswer(user.time_to_solve)
+    // }
+    // setSelectedQuizProblem(null)
+    // setSelectedQuizProblem(null)
+      setTimerFinished(false)
+      setCorrectResponse(null)
+    
+      if (whichFacts) {
+        // setSelectedQuizProblem(allFacts.find((fact) => fact.id === selectedQuizQuestion.id))
+        setAnswerGiven(false)
+        setGeneralToggler(!generalToggler)
+      } else {
+        window.alert("Select which times tables you want to master.")
+      }
+  }, [selectedQuizProblem])
+
+  // useEffect(() => {
+  //   setFilteredQuestionList(hundredArray)
+  // }, [] )
 
   useEffect(() => {
-    setFilteredQuestionList(hundredArray)
-  }, [] )
-
-  useEffect(() => {
-    if (timeToAnswer === 0 && answerGiven === false) {
+    if (timeToAnswer === 0 && answerGiven === false) {  
       setTimerFinished(true)
       setAnswerGiven(true)
       setFactTimesAnswered(factTimesAnswered + 1)
@@ -79,8 +108,9 @@ function Quizzes () {
         setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
         console.log('time')
       }
-    } else if (answerGiven) {
-      return
+      setMakeRequest(!makeRequest)
+    // } else if (answerGiven) {
+    //   return
     } else if (timeToAnswer > 0) {
       const interval = setInterval(() => {
         setTimeToAnswer(timeToAnswer - 1)
@@ -100,28 +130,51 @@ function Quizzes () {
       ),
     })
     .then((res) => res.json())
-    .then((data) => console.log(data))
+    .then((data) => {
+      console.log(data)
+      let objIndex = user.masteries.findIndex((obj => obj.problem_id == data.problem_id))
+      console.log(objIndex)
+      let copyOfUser = {...user}
+      // let copyOfUserMasteries = copyOfUser.masteries
+      copyOfUser.masteries[objIndex] = data
+      setUser(copyOfUser)
+      
+
+      // user.masteries[objIndex] = data
+      // console.log()
+    })
+    .then(() => {
+      let filteredMasteries = user.masteries.filter((mastery) => (
+        whichFactsArray.includes(mastery.problem_id)))
+        setSelectedQuizQuestion(filteredMasteries[Math.floor(Math.random()*filteredMasteries.length)])
+    })
+    // .then(let filteredMasteries = user.masteries.filter((mastery) => (
+    //   whichFacts.includes(mastery.problem_id))
+    //   )))
+    // .then(setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)]))
+    // .then(setSelectedQuizQuestion(user.masteries.filter((mastery) => whichFacts.include
+    //   filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)]))
   }
 
   function setNextQuestion () {
-    setTimerFinished(false)
-    setCorrectResponse(null)
-    if (whichFacts) {
-      setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
-      setAnswerGiven(false)
-      setGeneralToggler(!generalToggler)
-    } else {
-      window.alert("Select which times tables you want to master.")
+    if (answerGiven && selectedQuizQuestion) {
+      setSelectedQuizProblem(allFacts.find((fact) => fact.id === selectedQuizQuestion.problem_id))
     }
   }
 
+    function beginQuiz () {
+      setQuizBegan(true)
+      setSelectedQuizProblem(allFacts.find((fact) => fact.id === selectedQuizQuestion.problem_id))
+    }
+  
+
   return user && isTeacher === false? (
     <>
-      
-      {selectedQuizQuestion ?
+    
+      {quizBegan ?
       
       <div style={{display: 'flex', flexDirection: 'column', marginTop: '10px'}}>
-
+      
       {timerFinished ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time's Up </h1> : null }
       {timeToAnswer != 0  && answerGiven === false? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time Left: {timeToAnswer} </h1> : null }
       {answerGiven && !timerFinished ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>{correctResponse ? "CORRECT!" : "INCORRECT" }</h1> : null }
@@ -148,7 +201,8 @@ function Quizzes () {
               <NumberSquare 
               key={number} 
               number={number} 
-              setSelectedQuizQuestion={setSelectedQuizQuestion} selectedQuizQuestion={selectedQuizQuestion} 
+              setSelectedQuizQuestion={setSelectedQuizQuestion} 
+              selectedQuizQuestion={selectedQuizQuestion} 
               answerGiven={answerGiven}
               setAnswerGiven={setAnswerGiven}
               factMasteryLevel={factMasteryLevel}
@@ -164,7 +218,8 @@ function Quizzes () {
               timerFinished={timerFinished}
               generalToggler={generalToggler}
               setCorrectResponse={setCorrectResponse}
-              selectedQuizProblem={selectedQuizProblem}/>
+              selectedQuizProblem={selectedQuizProblem}
+              filteredQuestionList={filteredQuestionList}/>
             ))}
           </div>
         </div>
@@ -173,9 +228,15 @@ function Quizzes () {
       <div style={{textAlign: 'center'}}>
         <div>
           <FactFilter 
-            filteredQuestionList={filteredQuestionList}setFilteredQuestionList={setFilteredQuestionList} whichFacts={whichFacts} setWhichFacts={setWhichFacts}/>
+            filteredQuestionList={filteredQuestionList}
+            setFilteredQuestionList={setFilteredQuestionList} 
+            whichFacts={whichFacts} setWhichFacts={setWhichFacts}
+            setSelectedQuizQuestion={setSelectedQuizQuestion}
+            setQuizBegan={setQuizBegan}
+            setWhichFactsArray={setWhichFactsArray}
+            />
         </div>
-        <button style={{margin: '30px', fontSize: '14px'}} onClick={setNextQuestion}>BECOME A MASTER!</button>
+        <button style={{margin: '30px', fontSize: '14px'}} onClick={beginQuiz}>BECOME A MASTER!</button>
 
         {/* <div><button onClick={checkLengths}>testArray</button></div> */}
       </div>

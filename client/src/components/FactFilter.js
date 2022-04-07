@@ -1,16 +1,18 @@
 import {UserContext} from "./UserContext"
-import {useContext, useState} from 'react'
+import {useContext, useEffect, useRef} from 'react'
 
-function FactFilter ({setFilteredQuestionList, filteredQuestionList, whichFacts, setWhichFacts}) {
+function FactFilter ({setFilteredQuestionList, setWhichFactsArray, whichFacts, setWhichFacts, setSelectedQuizQuestion, filteredQuestionList}) {
 
-  const {user, allFacts} = useContext(UserContext)
+  const {user} = useContext(UserContext)
+
+  const firstUpdate = useRef(true)
 
   // const [whichFacts, setWhichFacts] = useState(null)
   
   const allX = [...Array(101).keys()]
   allX.shift()
   const oneX = [1,2,3,4,5,6,7,8,9,10,11,21,31,41,51,61,71,81,91]
-  const twoX = [11,12,13,14,15,16,17,18,19,20,2,12,32,42,52,62,72,82,92]
+  const twoX = [11,12,13,14,15,16,17,18,19,20,2,22,32,42,52,62,72,82,92]
   const threeX = [21,22,23,24,25,26,27,28,29,30,3,13,33,43,53,63,73,83,93]
   const fourX = [31,32,33,34,35,36,37,38,39,40,4,14,24,44,54,64,74,84,94]
   const fiveX = [41,42,43,44,45,46,47,48,49,50,5,15,25,35,55,65,75,85,95]
@@ -27,7 +29,16 @@ function FactFilter ({setFilteredQuestionList, filteredQuestionList, whichFacts,
     setFilteredQuestionList(user.masteries.filter((mastery) => (
       numberArray.includes(mastery.problem_id)
     )))
+    setWhichFactsArray(numberArray)
   }
+
+  useEffect (() => {
+    if (firstUpdate.current) {
+      firstUpdate.current = false;
+      return;
+    }
+      setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
+  }, [filteredQuestionList])
 
   function handleFilterChange (event) {
     setWhichFacts(event.target.value)
@@ -36,8 +47,6 @@ function FactFilter ({setFilteredQuestionList, filteredQuestionList, whichFacts,
   return (
     <div style={{marginTop: '10px'}}>
       <div>
-        <button onClick={() => console.log(filteredQuestionList)}>fitler</button>
-        <button onClick={() => console.log(user.masteries)}>fitler allX</button>
         <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '87px', fontSize: '14px'}}>ALL FACTS</button>      
         <button value={"1x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(oneX)}} style={{width: '34px', fontSize: '14px'}}>1x</button>
         <button value={"2x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(twoX)}} style={{width: '34px', fontSize: '14px'}}>2x</button>
