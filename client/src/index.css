@@ -52,6 +52,7 @@ button {
 
 button:hover {
   box-shadow: inset 0 0 0 50px #A0D568;
+  transform: translate(2%,2%);
 }
 
 #color-0 {
@@ -138,11 +139,19 @@ form {
   margin-bottom: 5px;
 }
 
-.grid-answer {
+.grid:hover {
+  cursor: cell;
+}
 
+.grid-answer {
   font-size: min(3vw, 24px);
   margin-top: 18%;
-  
+  transition: transform 500ms; 
+}
+
+.grid-answer:hover {
+  transform: scale(1.5);
+  cursor: cell; 
 }
 
 .grid-fact-no-user {
@@ -340,12 +349,28 @@ input {
 
 .nav-bar:hover {
   color: #4FC1E8;
+  transform: translate( 2%, 2% );
 }
 
 .needs-support input[type='checkbox']{
   font-weight:bold;
   font-size: 50px;
   color: gray;
+}
+
+.number-grid-fact {
+  font-size: 22px;
+  font-weight: bolder;
+  margin: 0;
+  padding-top: 9.5%;
+  padding-bottom: 9.5%;
+  border-radius: 5px;
+  transition: transform 500ms;
+}
+
+.number-grid-fact:hover {
+  cursor: cell;
+  transform: scale(1.2);
 }
 
 .number-square-0 {
@@ -500,15 +525,6 @@ input {
   margin: 2px;
   flex-wrap: wrap;
   background-color: white;
-}
-
-.number-grid-fact {
-  font-size: 22px;
-  font-weight: bolder;
-  margin: 0;
-  padding-top: 9.5%;
-  padding-bottom: 9.5%;
-  border-radius: 5px;
 }
 
 #outer {
