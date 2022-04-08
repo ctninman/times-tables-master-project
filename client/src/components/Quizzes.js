@@ -13,7 +13,7 @@ function Quizzes () {
   const secondUpdate = useRef(true);
   const thirdUpdate = useRef(true);
 
-  const {user, allFacts, setUser, fetchUser, isTeacher} = useContext(UserContext)
+  const {user, allFacts, setUser, isTeacher} = useContext(UserContext)
   const [selectedQuizQuestion, setSelectedQuizQuestion] = useState(null)
   const [answerGiven, setAnswerGiven] = useState(false)
   const [makeRequest, setMakeRequest] = useState(false)
@@ -21,7 +21,6 @@ function Quizzes () {
   const [timerFinished, setTimerFinished] = useState(false)
   const [generalToggler, setGeneralToggler] = useState(false)
   const [correctResponse, setCorrectResponse] = useState (null)
-  // const [selectedFactNumbers, setSelectedFactNumbers] = useState([...Array(101).keys()])
   const [filteredQuestionList, setFilteredQuestionList] = useState(null)
   const [selectedQuizProblem, setSelectedQuizProblem] = useState(null)
   const [whichFacts, setWhichFacts] = useState(null)
@@ -31,21 +30,8 @@ function Quizzes () {
   const [factTimesCorrect, setFactTimesCorrect] = useState(0)
   const [quizBegan, setQuizBegan] = useState(false)
 
-
-
   let hundredArray = [...Array(101).keys()]
   hundredArray.shift()
-
-  // useEffect (() => {
-  //   if (firstUpdate.current) {
-  //     firstUpdate.current = false;
-  //     return;
-  //   }
-  //    else if (user) {
-  //     // setSelectedQuizQuesti[Math.floor(Math.random.length)])
-  //     setTimeToAnswer(user.time_to_solve)
-  //   }
-  // }, [selectedQuizQuestion])
 
   useEffect (()=> {
     if (firstUpdate.current) {
@@ -65,7 +51,6 @@ function Quizzes () {
     }
     if (selectedQuizQuestion) {
       patchStudentMastery()
-      // setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
     }
   }, [makeRequest])
 
@@ -74,30 +59,16 @@ function Quizzes () {
       thirdUpdate.current = false;
       return;
     }
-    // if (quizBegan === true && answerGiven === false) {
-    //   return
-    // } else {
-    // if (quizBegan === false) {
-      // setQuizBegan(true)
-      setTimeToAnswer(user.time_to_solve)
-    // }
-    // setSelectedQuizProblem(null)
-    // setSelectedQuizProblem(null)
-      setTimerFinished(false)
-      setCorrectResponse(null)
-    
-      if (whichFacts) {
-        // setSelectedQuizProblem(allFacts.find((fact) => fact.id === selectedQuizQuestion.id))
-        setAnswerGiven(false)
-        setGeneralToggler(!generalToggler)
-      } else {
-        window.alert("Select which times tables you want to master.")
-      }
+    setTimeToAnswer(user.time_to_solve)
+    setTimerFinished(false)
+    setCorrectResponse(null)
+    if (whichFacts) {
+      setAnswerGiven(false)
+      setGeneralToggler(!generalToggler)
+    } else {
+      window.alert("Select which times tables you want to master.")
+    }
   }, [selectedQuizProblem])
-
-  // useEffect(() => {
-  //   setFilteredQuestionList(hundredArray)
-  // }, [] )
 
   useEffect(() => {
     if (timeToAnswer === 0 && answerGiven === false) {  
@@ -109,8 +80,6 @@ function Quizzes () {
         console.log('time')
       }
       setMakeRequest(!makeRequest)
-    // } else if (answerGiven) {
-    //   return
     } else if (timeToAnswer > 0) {
       const interval = setInterval(() => {
         setTimeToAnswer(timeToAnswer - 1)
@@ -135,25 +104,14 @@ function Quizzes () {
       let objIndex = user.masteries.findIndex((obj => obj.problem_id == data.problem_id))
       console.log(objIndex)
       let copyOfUser = {...user}
-      // let copyOfUserMasteries = copyOfUser.masteries
       copyOfUser.masteries[objIndex] = data
       setUser(copyOfUser)
-      
-
-      // user.masteries[objIndex] = data
-      // console.log()
     })
     .then(() => {
       let filteredMasteries = user.masteries.filter((mastery) => (
         whichFactsArray.includes(mastery.problem_id)))
         setSelectedQuizQuestion(filteredMasteries[Math.floor(Math.random()*filteredMasteries.length)])
     })
-    // .then(let filteredMasteries = user.masteries.filter((mastery) => (
-    //   whichFacts.includes(mastery.problem_id))
-    //   )))
-    // .then(setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)]))
-    // .then(setSelectedQuizQuestion(user.masteries.filter((mastery) => whichFacts.include
-    //   filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)]))
   }
 
   function setNextQuestion () {
@@ -181,17 +139,16 @@ function Quizzes () {
 
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center',textAlign: 'center', marginBottom: '12px'}}>
          
-        
-       
           <button onClick={() => history.push('/my-times-tables')}style={{marginRight: '30px',width: '90px',marginTop: '30px'}}>STOP</button>
          
-
-         {selectedQuizProblem ?
+          {selectedQuizProblem 
+            ?
           <div style={{display: 'flex', flexDirection: 'column'}}>
             <h1 style={{margin: '3px', fontSize: '40px', padding: '8px', border: '4px solid', borderRadius: '10px'}}>{selectedQuizProblem.multiplication_fact} = {answerGiven ? `${selectedQuizProblem.answer}` : null}</h1>
            </div>
-           :
-           null}
+            :
+          null
+          }
           <button style={{width: '90px', marginLeft: '30px', marginTop: '30px'}} onClick={setNextQuestion} >NEXT</button>
         </div>
         
@@ -238,7 +195,6 @@ function Quizzes () {
         </div>
         <button style={{margin: '30px', fontSize: '14px'}} onClick={beginQuiz}>BECOME A MASTER!</button>
 
-        {/* <div><button onClick={checkLengths}>testArray</button></div> */}
       </div>
     }
     </>

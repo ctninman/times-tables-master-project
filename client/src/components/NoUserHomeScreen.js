@@ -28,7 +28,6 @@ function NoUserHomeScreen () {
           setAllTogglesFalse()
           setToggleWhyLearnButton(!toggleWhyLearnButton)}
         }
-        // onMouseLeave={() => setToggleWhyLearnButton(false)}
         >WHY LEARN THE TIMES TABLES?
       </button>
       </div>
@@ -39,7 +38,6 @@ function NoUserHomeScreen () {
           setAllTogglesFalse()
           setToggleHowToBecomeButton(!toggleHowToBecomeButton)}
         }
-        // onMouseLeave={() => setToggleHowToBecomeButton(false)}
         >HOW CAN I BECOME A MASTER?
       </button>
       </div>
@@ -50,7 +48,6 @@ function NoUserHomeScreen () {
           setAllTogglesFalse()
           setToggleWhyCreateButton(!toggleWhyCreateButton)}
         }
-        // onMouseLeave={() => setToggleWhyCreateButton(false)}
         >WHY CREATE AN ACCOUNT?
       </button>
       </div>
@@ -61,7 +58,6 @@ function NoUserHomeScreen () {
           setAllTogglesFalse()
           setToggleStudentButton(!toggleStudentButton)}
         }
-        // onMouseLeave={() => setToggleStudentButton(false)}
         >WHAT CAN I DO WITH MY STUDENT ACCOUNT?
       </button>
       </div>
@@ -72,7 +68,6 @@ function NoUserHomeScreen () {
           setAllTogglesFalse()
           setToggleTeacherButton(!toggleTeacherButton)}
         }
-        // onMouseLeave={() => setToggleTeacherButton(false)}
         >WHAT CAN I DO WITH MY TEACHER ACCOUNT?
       </button>
       </div>
@@ -115,9 +110,6 @@ function NoUserHomeScreen () {
 
         {toggleStudentButton 
           ? 
-
-       
-          
         <div className='home-div'>
           <h1 className='home-one'>TIMES TABLES MASTER will let you know which facts you know already, so you can focus your powers on the few facts you  still need to learn.</h1>
           <h2 className='home-two'>Select which times table you want to work on, and take the quizzes.</h2>

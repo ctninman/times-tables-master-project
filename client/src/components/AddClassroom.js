@@ -9,8 +9,7 @@ function AddClassroom ({setSelectedClassroom, triggerClassroomFetch, setTriggerC
 
     function handleAddClassroom (e) {
       e.preventDefault();
-      // setErrors([]);
-      // setIsLoading(true);
+
       if (isTeacher === true) {
         fetch("/classrooms", {
           method: "POST",
@@ -22,12 +21,10 @@ function AddClassroom ({setSelectedClassroom, triggerClassroomFetch, setTriggerC
             teacher_id: user.id
           }),
         }).then((r) => {
-          // setIsLoading(false);
           if (r.ok) {
             r.json()
             .then((classroom) => {
               setSelectedClassroom(classroom)
-              // setTriggerClassroomFetch(!triggerClassroomFetch)
             })
             .then(() => {
               setTriggerClassroomFetch(!triggerClassroomFetch)
@@ -35,7 +32,6 @@ function AddClassroom ({setSelectedClassroom, triggerClassroomFetch, setTriggerC
             .then(fetchUser())
           } else {
             r.json()
-            // .then((err) => setErrors(err.errors));
             console.log("um, nope")
           }
         })
@@ -55,7 +51,6 @@ function AddClassroom ({setSelectedClassroom, triggerClassroomFetch, setTriggerC
           value={newClassroomName}
           onChange={(e) => setNewClassroomName(e.target.value)}
         />
- 
 
         <button type="submit">SUBMIT</button>
       </form>

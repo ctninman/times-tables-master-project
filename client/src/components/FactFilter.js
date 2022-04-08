@@ -6,8 +6,6 @@ function FactFilter ({setFilteredQuestionList, setWhichFactsArray, whichFacts, s
   const {user} = useContext(UserContext)
 
   const firstUpdate = useRef(true)
-
-  // const [whichFacts, setWhichFacts] = useState(null)
   
   const allX = [...Array(101).keys()]
   allX.shift()
@@ -23,9 +21,6 @@ function FactFilter ({setFilteredQuestionList, setWhichFactsArray, whichFacts, s
   const tenX = [91,92,93,94,95,96,97,98,99,100,10,20,30,40,50,60,70,80,90]
 
   function filterFacts (numberArray) {
-    // let userMasteries = user.masteries.filter((mastery) => {
-    //   numberArray.includes(mastery.problem_id)
-    //   setFilteredQuestionList(allFacts.)
     setFilteredQuestionList(user.masteries.filter((mastery) => (
       numberArray.includes(mastery.problem_id)
     )))

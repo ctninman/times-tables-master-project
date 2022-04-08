@@ -1,4 +1,3 @@
-import GridSquare from './GridSquare'
 import NoUserGridSquare from './NoUserGridSquare'
 import {useContext} from 'react'
 import {UserContext} from './UserContext'

@@ -5,23 +5,11 @@ import BackgroundGraphic from '../images/canvabackground.png'
 
 function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setCurrentRuleNumber}) {
 
-  // const [allRules, setAllRules] = useState([])
-  // const [currentRuleNumber, setCurrentRuleNumber] = useState(0)
-  // const [singleRule, setSingleRule] = useState(allRules.find((oneRule) => oneRule.rule_number == currentRuleNumber))
   const [showRelatedFacts, setShowRelatedFacts] = useState(true)
 
   const scollToRef = useRef();
 
   const firstUpdate = useRef(true);
-
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     setShowRelatedFacts(showRelatedFacts => !showRelatedFacts)
-  //     console.log(showRelatedFacts)
-  //   }, 500);
-  //   return () => clearInterval(interval);
-  // }, []);
-
 
   useEffect (() => {
     if (firstUpdate.current) {
@@ -33,7 +21,6 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
   
   function handleRuleChange (event) {
     setCurrentRuleNumber(event.target.value)
-    // setSingleRule(allRules.find((oneRule) => oneRule.rule_number == event.target.value))
     console.log(event.target.value)
   }
 

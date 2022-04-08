@@ -1,4 +1,3 @@
-import {useState} from 'react'
 
 function StudentInfo ({student, setSingleStudent, setViewSingleStudent, viewSingleStudent}) {
 
@@ -7,17 +6,11 @@ function StudentInfo ({student, setSingleStudent, setViewSingleStudent, viewSing
   let studentStillLearningFacts = student.masteries.filter((mastery) => mastery.mastery_level < 8 && mastery.mastery_level >=3)
   let studentStrugglingFacts = student.masteries.filter((mastery) => mastery.times_answered > 8 && mastery.times_answered / mastery.times_correct > 2)
   let studentUnknownFacts = student.masteries.filter((mastery) => mastery.mastery_level < 3)
-  let studentFacts = student.masteries.filter( (mastery) => mastery.times_answered > 8 && mastery.times_answered / mastery.times_correct > 2)
-  
-  const [needsSupport, setNeedsSupport] = useState(student.offer_support)
 
   function handleViewStudent () {
     setSingleStudent(student)
     setViewSingleStudent(!viewSingleStudent)
   }
-  //   setUserAlmostMasteredFacts(user.masteries.filter ((mastery) => mastery.mastery_level < 10 && mastery.mastery_level >=8 ))
-  //   setUserLearningFacts(user.masteries.filter ((mastery) => mastery.mastery_level < 10 && mastery.mastery_level >=8 ))((mastery) => mastery.mastery_level < 8 && mastery.mastery_level >=4))
-  //   setUserUnknownFacts(user.masteries.filter ((mastery) => mastery.mastery_level < 3))
 
   return (
     <div className='student-on-teacher-dash' style={{border: '2px solid'}} >

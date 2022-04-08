@@ -11,8 +11,6 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
 
     function handleSubmit(e) {
       e.preventDefault();
-      // setErrors([]);
-      // setIsLoading(true);
       if (teacherLogin === false) {
         fetch("/signup-student", {
           method: "POST",
@@ -29,7 +27,6 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
             time_to_solve: 7,
           }),
         }).then((r) => {
-          // setIsLoading(false);
           if (r.ok) {
             r.json()
             .then((user) => setUser(user))
@@ -58,7 +55,6 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
             is_teacher: true
           }),
         }).then((r) => {
-          // setIsLoading(false);
           if (r.ok) {
             r.json()
             .then((user) => setUser(user))
@@ -70,47 +66,6 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
         });
       }
     } 
-
-
-
-    // function handleLogin (event) {
-    //   event.preventDefault()
-    //   // setIsLoading(true);
-      
-    //   if (teacherLogin === false) {
-    //     fetch("/me", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({ username, password }),
-    //     }).then((r) => {
-    //       if (r.ok) {
-    //         r.json()
-    //         .then((user) => {
-    //           setUser(user)
-    //           setIsTeacher(false)
-    //         });
-    //       }
-    //     })
-    //   } else {
-    //     fetch("/login-teacher", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({ username, password }),
-    //     }).then((r) => {
-    //       if (r.ok) {
-    //         r.json()
-    //         .then((user) => {
-    //           setUser(user)
-    //           setIsTeacher(true)
-    //         })
-    //       }
-    //     })
-    //   }
-    // }
   
     return (
       <div>
@@ -170,36 +125,5 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
 
     );
   }
-
-
-
-  // function handleChange (event) {
-  //   setUsername(event.target.value)
-  // }
-
-  // function handlePasswordChange (event) {
-  //   setPassword(event.target.value)
-  // }
-
-  // function clogUser () {
-  //   console.log(user)
-  // }
-
-  // return (
-  //   <>
-  //   <form onSubmit={handleLogin}>
-  //     <input type='text' onChange={handleChange}></input>
-
-  //     <input type='text' onChange={handlePasswordChange}></input>
-
-  //     <button>Login</button>
-
-      
-  //   </form>
-  //   <button onClick={clogUser}>User</button>
-  //   </>
-
-  // )
-// }
 
 export default SignUpForm

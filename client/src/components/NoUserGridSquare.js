@@ -10,8 +10,6 @@ function NoUserGridSquare ({fact}) {
     <div 
       className='grid-square' 
       style={{backgroundColor: '#ED5564', display: 'inline-block',flexDirection: 'column'}}
-      // onMouseEnter={() => setToggleShowAnswer(true)}
-      // onMouseLeave={() => setToggleShowAnswer(false)}
       onClick={() => setToggleShowAnswer(!toggleShowAnswer)}
       >
       <h2 className='grid-fact-no-user' style={{backgroundColor: 'transparent', color: 'black', fontWeight: 'bold'}}  >{fact.answer}</h2>
@@ -21,8 +19,6 @@ function NoUserGridSquare ({fact}) {
       <div 
         className='grid-square' 
         style={{backgroundColor: '#FFCE54', display: 'inline-block',flexDirection: 'column'}} 
-        // onMouseEnter={() => setToggleShowAnswer(true)}
-        // onMouseLeave={() => setToggleShowAnswer(false)}
         onClick={() => setToggleShowAnswer(!toggleShowAnswer)}
         >
       <h2 className='grid-fact-no-user' style={{backgroundColor: 'transparent', color: 'black'}} >{fact.answer}</h2>

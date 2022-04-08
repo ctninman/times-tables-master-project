@@ -16,19 +16,14 @@ import NoUserHomeScreen from "./NoUserHomeScreen";
 function App() {
   const [user, setUser] = useState(null)
   const [allFacts, setAllFacts] = useState([])
-  // const [allRules, setAllRules] = useState([])
   const [isTeacher, setIsTeacher] = useState(false)
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [teacherLogin, setTeacherLogin] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
-  
-  // const [currentRule, setCurrentRule] = useState({})
-  // const [currentRuleNumber, setCurrentRuleNumber] = useState(2)
-
+// *** AUTO-LOGIN *** //
   useEffect(() => {
-    // auto-login
     fetch("/me", {method: 'GET'})
       .then((r) => {
       if (r.ok) {
@@ -55,15 +50,6 @@ function App() {
     });
   }, []);
 
-  // useEffect (() => {
-  //   fetch('/rules')
-  //   .then(res => res.json())
-  //   .then(data => {
-  //     setAllRules(data)
-  //     // setCurrentRule(data.find((rule) => rule.rule_number === currentRuleNumber))
-  //   })
-  // }, [] )
-
   function fetchUser () {
     fetch("/me", {method: 'GET'})
     .then((r) => {
@@ -81,7 +67,6 @@ function App() {
     
     <BrowserRouter>
     
-
       <UserContext.Provider value={{user, setUser, isLoading, setIsLoading, isTeacher, setIsTeacher, fetchUser, allFacts}}> 
       {isTeacher === false ?
         <div className="App">
@@ -115,8 +100,6 @@ function App() {
               <MultiplicationRules 
                 user={user} 
                 setUser={setUser} 
-                // allRules={allRules} 
-                // setAllRules={setAllRules}
                 />
             </Route>
             <Route path="/teacher-dashboard">
@@ -169,8 +152,6 @@ function App() {
               <MultiplicationRules 
                 user={user} 
                 setUser={setUser} 
-                // allRules={allRules}
-                // setAllRules={setAllRules}
                 />
             </Route>
             <Route path="/the-times-tables">
@@ -179,15 +160,6 @@ function App() {
             <Route path="/teacher-dashboard">
               <TeacherDashboard user={user} setUser={setUser} teacherLogin={teacherLogin}/>
             </Route>
-            {/* <Route path="/student-dashboard">
-              <StudentDashboard user={user} setUser={setUser}/>
-            </Route> */}
-            {/* <Route path="/my-times-tables">
-              <MyTimesTables allFacts={allFacts} user={user} setUser={setUser}/>
-            </Route> */}
-            {/* <Route path="/quizzes">
-              <Quizzes user={user} setUser={setUser}/>
-            </Route> */}
             <Route exact path="/">
               <NoUserHomeScreen />
             </Route>

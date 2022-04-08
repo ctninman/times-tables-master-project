@@ -1,10 +1,7 @@
-import {useState, useEffect, useRef, useContext} from 'react'
-import {UserContext} from './UserContext'
+import {useState, useEffect, useRef} from 'react'
 
 function NumberSquare ({
   number, 
-  selectedQuizQuestion, 
-  setSelectedQuizQuestion, 
   answerGiven, 
   setAnswerGiven,
   factMasteryLevel,
@@ -15,16 +12,12 @@ function NumberSquare ({
   setFactTimesCorrect,
   makeRequest,
   setMakeRequest,
-  timeToAnswer,
   timerFinished,
   generalToggler,
   setCorrectResponse,
   selectedQuizProblem,
-  filteredQuestionList
 }) {
   
-
-  const {user} = useContext(UserContext)
   const firstUpdate = useRef(true);
 
   const [revealAnswer, setRevealAnswer] = useState(false)
@@ -44,28 +37,6 @@ function NumberSquare ({
     setRevealAnswer(false)
   }, [generalToggler])
 
-  // const [factMasteryLevel, setFactMasteryLevel] = useState(selectedQuizQuestion.mastery_level)
-  // const [factTimesAnswered, setFactTimesAnswered] = useState(selectedQuizQuestion.times_answered)
-  // const [factTimesCorrect, setFactTimesCorrect] = useState(selectedQuizQuestion.times_correct)
-
-  // useEffect (() => {
-  //   if (firstUpdate.current) {
-  //     firstUpdate.current = false;
-  //     return;
-  //   }
-  //   fetch(`/masteries/${selectedQuizQuestion.id}`, {
-  //     method: "PATCH",
-  //     headers: {"Content-Type": "application/json",},
-  //     body: JSON.stringify(
-  //       {mastery_level: factMasteryLevel,
-  //         times_answered: factTimesAnswered,
-  //         times_correct: factTimesCorrect}
-  //     ),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data))
-  // }, [factTimesAnswered])
-
   function handleAnswer () {
     if (answerGiven === false) {
       setAnswerGiven(true)
@@ -75,45 +46,17 @@ function NumberSquare ({
         setFactTimesCorrect(factTimesCorrect + 1)
         if (factMasteryLevel < 10) {
           setFactMasteryLevel(factMasteryLevel + 1)
-          console.log('1st')
         }
         setMakeRequest(() => !makeRequest)
       } else if (selectedQuizProblem.answer != number) {
         setCorrectResponse(false)
         if (factMasteryLevel > 0) {
           setFactMasteryLevel(factMasteryLevel - 1)
-          console.log('2nd')
         }
         setMakeRequest(() => !makeRequest)
       }
-      // setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
     }
-    
   }
-
-
-  // useEffect(() => {
-  //   if (timeToAnswer === 0 && answerGiven === false) {
-  //     setMakeRequest(!makeRequest)
-  //     setTimerFinished(true)
-  //     setAnswerGiven(true)
-  //     setFactTimesAnswered(factTimesAnswered + 1)
-  //     if (factMasteryLevel > 0) {
-  //       setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
-  //       console.log('time')
-  //     }
-  //     setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
-  //   } else if (answerGiven) {
-  //     setSelectedQuizQuestion(filteredQuestionList[Math.floor(Math.random()*filteredQuestionList.length)])
-  //   } else if (timeToAnswer > 0) {
-  //     const interval = setInterval(() => {
-  //       setTimeToAnswer(timeToAnswer - 1)
-  //     }, 1000);
-  //     return () => clearInterval(interval);
-  //   }
-  // }, [timeToAnswer]);
-
-
 
   return (
     <div 

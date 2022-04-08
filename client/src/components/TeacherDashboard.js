@@ -9,7 +9,7 @@ import AddStudent from "./AddStudent"
 import LoadScreen from "./LoadScreen"
 import AddClassroom from "./AddClassroom"
 
-function TeacherDashboard ({teacherLogin}) {
+function TeacherDashboard () {
 
   const {user, isLoading, setIsLoading} = useContext(UserContext)
 
@@ -22,7 +22,6 @@ function TeacherDashboard ({teacherLogin}) {
   const [toggleAddClassroom, setToggleAddClassroom] = useState(false)
   const [singleStudent, setSingleStudent] = useState(null)
   const [triggerClassroomFetch, setTriggerClassroomFetch] = useState(false)
-  const [addClassroomName, setAddClassroomName] = useState('New Class')
   const [newStudentErrors, setNewStudentErrors] = useState(null)
 
   useEffect (() => {
@@ -31,31 +30,11 @@ function TeacherDashboard ({teacherLogin}) {
       return;
     }
     fetchClassroom()
-    // if (selectedClassroom) {
-    //   setIsLoading(true)
-    //   // if (firstUpdate.current) {
-    //   //   firstUpdate.current = false;
-    //   //   return;
-    //   // }
-    //   fetch(`/classrooms/${selectedClassroom.id}`, {method: "GET"})
-    //     .then((res) => {
-    //       res.json()
-    //     .then((data) => {
-    //       console.log(data)
-    //       setFullClassroomData(data)
-    //       setIsLoading(false)
-    //     })
-    //   })
-    // }
   }, [triggerClassroomFetch])
 
   function fetchClassroom() {
     if (selectedClassroom) {
       setIsLoading(true)
-      // if (firstUpdate.current) {
-      //   firstUpdate.current = false;
-      //   return;
-      // }
       fetch(`/classrooms/${selectedClassroom.id}`, {method: "GET"})
         .then((res) => {
           res.json()
@@ -72,7 +51,6 @@ function TeacherDashboard ({teacherLogin}) {
     setViewSingleStudent(false)
     setSelectedClassroom(null)
   }
-
 
   return user ?
   (
@@ -103,72 +81,69 @@ function TeacherDashboard ({teacherLogin}) {
             setTriggerClassroomFetch={setTriggerClassroomFetch}
             triggerClassroomFetch={triggerClassroomFetch}/>
         ))}
-        
-
+      
       </div>
       {viewSingleStudent === false 
-        ? 
+        ?  
+      <>
+        {isLoading === true 
+          ?
+        
+          <LoadScreen />
+          : 
         
         <>
-          {isLoading === true 
-            ?
-          
-            <LoadScreen />
-            : 
-          
-          <>
-            {selectedClassroom && fullClassroomData 
-                ?
-              <div>
-                <div style={{display: 'flex', flexDirection: 'row', margin: '10px', marginTop: '15px', alignItems: 'center'}}>
-                  <h1 style={{marginRight: '20px'}}>{selectedClassroom.classroom_name}</h1>
-                  <button onClick={() => setToggleAddStudent(!toggleAddStudent)}>{toggleAddStudent ? "CANCEL": "+ ADD STUDENT"}</button>
-                </div>
-                  {toggleAddStudent === true 
-                  ?
-                  <>
-                    <AddStudent 
-                      selectedClassroom={selectedClassroom} 
-                      setSingleStudent={setSingleStudent} 
-                      fetchClassroom={fetchClassroom}
-                      setTriggerClassroomFetch={setTriggerClassroomFetch}
-                      newStudentErrors={newStudentErrors}
-                      setNewStudentErrors={setNewStudentErrors}
-                      setToggleAddStudent={setToggleAddStudent}/>
-                    {newStudentErrors ? newStudentErrors.errors.map((error) => <h2 className="error">- {error}</h2>): null}
-                  </>
-                  :
-                    null
-                  }
-                  
-                <div style={{display: 'flex', flexDirection:'row', flexWrap: 'wrap', marginTop: '0px'}}>
-                  {fullClassroomData.students.map((student) => (
-                    <StudentInfo 
-                      key={student.username} 
-                      student={student} 
-                      setSingleStudent={setSingleStudent} 
-                      setViewSingleStudent={setViewSingleStudent} 
-                      viewSingleStudent={viewSingleStudent}
-                      setTriggerClassroomFetch={setTriggerClassroomFetch}/>
-                  ))}
-                </div>
+          {selectedClassroom && fullClassroomData 
+              ?
+            <div>
+              <div style={{display: 'flex', flexDirection: 'row', margin: '10px', marginTop: '15px', alignItems: 'center'}}>
+                <h1 style={{marginRight: '20px'}}>{selectedClassroom.classroom_name}</h1>
+                <button onClick={() => setToggleAddStudent(!toggleAddStudent)}>{toggleAddStudent ? "CANCEL": "+ ADD STUDENT"}</button>
               </div>
+                {toggleAddStudent === true 
+                ?
+                <>
+                  <AddStudent 
+                    selectedClassroom={selectedClassroom} 
+                    setSingleStudent={setSingleStudent} 
+                    fetchClassroom={fetchClassroom}
+                    setTriggerClassroomFetch={setTriggerClassroomFetch}
+                    newStudentErrors={newStudentErrors}
+                    setNewStudentErrors={setNewStudentErrors}
+                    setToggleAddStudent={setToggleAddStudent}/>
+                  {newStudentErrors ? newStudentErrors.errors.map((error) => <h2 className="error">- {error}</h2>): null}
+                </>
                 :
-              null
-            }
-          </>
-        }
+                  null
+                }
+                
+              <div style={{display: 'flex', flexDirection:'row', flexWrap: 'wrap', marginTop: '0px'}}>
+                {fullClassroomData.students.map((student) => (
+                  <StudentInfo 
+                    key={student.username} 
+                    student={student} 
+                    setSingleStudent={setSingleStudent} 
+                    setViewSingleStudent={setViewSingleStudent} 
+                    viewSingleStudent={viewSingleStudent}
+                    setTriggerClassroomFetch={setTriggerClassroomFetch}/>
+                ))}
+              </div>
+            </div>
+              :
+            null
+          }
         </>
-          :
-        <SingleStudentTeacherDash 
-          key={singleStudent.username} 
-          singleStudent={singleStudent} 
-          setViewSingleStudent={setViewSingleStudent}
-          fetchClassroom={fetchClassroom}
-          triggerClassroomFetch={triggerClassroomFetch}
-          setTriggerClassroomFetch={setTriggerClassroomFetch}
-          />
-    
+      }
+      </>
+        :
+      <SingleStudentTeacherDash 
+        key={singleStudent.username} 
+        singleStudent={singleStudent} 
+        setViewSingleStudent={setViewSingleStudent}
+        fetchClassroom={fetchClassroom}
+        triggerClassroomFetch={triggerClassroomFetch}
+        setTriggerClassroomFetch={setTriggerClassroomFetch}
+        />
     
     }
       

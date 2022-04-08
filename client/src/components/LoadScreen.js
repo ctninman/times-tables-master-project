@@ -1,5 +1,4 @@
 import {useState, useEffect} from 'react'
-import NoUserHomeScreen from './NoUserHomeScreen'
 
 function LoadScreen () {
 
@@ -14,7 +13,6 @@ function LoadScreen () {
   const [seventhLoadingFact, setSeventhLoadingFact] = useState(difficultFacts[Math.floor(Math.random()*difficultFacts.length)])
   const [eighthLoadingFact, setEighthLoadingFact] = useState(difficultFacts[Math.floor(Math.random()*difficultFacts.length)])
   const [ninthLoadingFact, setNinthLoadingFact] = useState(difficultFacts[Math.floor(Math.random()*difficultFacts.length)])
-  // const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -81,11 +79,3 @@ function LoadScreen () {
 }
 
 export default LoadScreen
-
-// .color-palette {
-//   color: #AC92EB;
-//   color: #4FC1E8;
-//   color: #A0D568;
-//   color: #FFCE54;
-//   color: #ED5564;
-// }

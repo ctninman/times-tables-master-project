@@ -13,8 +13,6 @@ function MatteoGridSquare ({fact}) {
       className='grid-square' 
       id={`matteo-${matteoArray[Math.floor(Math.random()*matteoArray.length)]}`}
       style={{ display: 'inline-block',flexDirection: 'column'}}
-      // onMouseEnter={() => setToggleShowAnswer(true)}
-      // onMouseLeave={() => setToggleShowAnswer(false)}
       onClick={() => setToggleShowAnswer(!toggleShowAnswer)}
       >
       {toggleShowAnswer ? <h2 className='grid-fact-no-user' style={{backgroundColor: 'transparent', color: 'black', fontWeight: 'bold'}}  >{fact.answer}</h2> :
@@ -25,8 +23,6 @@ function MatteoGridSquare ({fact}) {
         className='grid-square' 
         id={`matteo-${matteoArray[Math.floor(Math.random()*matteoArray.length)]}`}
         style={{ display: 'inline-block',flexDirection: 'column'}} 
-        // onMouseEnter={() => setToggleShowAnswer(true)}
-        // onMouseLeave={() => setToggleShowAnswer(false)}
         onClick={() => setToggleShowAnswer(!toggleShowAnswer)}
         >
       {toggleShowAnswer ? <h2 className='grid-fact-no-user' style={{backgroundColor: 'transparent', color: 'black'}} >{fact.answer}</h2> :

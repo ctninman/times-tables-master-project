@@ -1,7 +1,7 @@
 import {useState} from "react"
 import {useHistory} from 'react-router-dom'
 
-function LoginForm ({username, setUsername, password, setPassword, teacherLogin, setTeacherLogin, setUser, user, setIsTeacher}) {
+function LoginForm ({username, setUsername, password, setPassword, teacherLogin, setTeacherLogin, setUser, setIsTeacher}) {
 
   let history = useHistory()
 
@@ -11,8 +11,6 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
       event.preventDefault()
       setPassword("")
       setUsername("")
-      // setIsLoading(true);
-      
       if (teacherLogin === false) {
         fetch("/login", {
           method: "POST",
@@ -90,36 +88,5 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
       </>
     );
   }
-
-
-
-  // function handleChange (event) {
-  //   setUsername(event.target.value)
-  // }
-
-  // function handlePasswordChange (event) {
-  //   setPassword(event.target.value)
-  // }
-
-  // function clogUser () {
-  //   console.log(user)
-  // }
-
-  // return (
-  //   <>
-  //   <form onSubmit={handleLogin}>
-  //     <input type='text' onChange={handleChange}></input>
-
-  //     <input type='text' onChange={handlePasswordChange}></input>
-
-  //     <button>Login</button>
-
-      
-  //   </form>
-  //   <button onClick={clogUser}>User</button>
-  //   </>
-
-  // )
-// }
 
 export default LoginForm

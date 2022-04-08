@@ -63,14 +63,11 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
       },
       body: JSON.stringify(object),
     }).then((r) => {
-      // setIsLoading(false);
       if (r.ok) {
         r.json()
-        // .then((user) => setUser(user));
         .then((data) => console.log(data))
       } else {
         r.json()
-        // .then((err) => setErrors(err.errors));
         console.log("um, nope")
       }
     });
@@ -146,10 +143,3 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
 }
 
 export default SingleStudentTeacherDash
-
-
-// color: #AC92EB;
-// color: #4FC1E8;
-// color: #A0D568;
-// color: #FFCE54;
-// color: #ED5564;

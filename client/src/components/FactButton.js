@@ -1,10 +1,7 @@
 import {useState, useEffect, useRef} from 'react'
-import { useContext } from "react"
-import {UserContext} from "./UserContext"
 
 function FactButton ({mastery}) {
 
-  const {user, setUser} = useContext(UserContext)
   const firstUpdate = useRef(true);
 
   const [factMasteryLevel, setFactMasteryLevel] = useState(mastery.mastery_level)

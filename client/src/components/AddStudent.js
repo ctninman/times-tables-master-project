@@ -1,10 +1,9 @@
 import {useState, useRef, useEffect} from "react"
 
-function AddStudent ({setSingleStudent, setToggleAddStudent, selectedClassroom, fetchClassroom, setNewStudentErrors, newStudentErrors}) {
+function AddStudent ({setSingleStudent, setToggleAddStudent, selectedClassroom, fetchClassroom, setNewStudentErrors}) {
 
     const [newStudentUsername, setNewStudentUsername] = useState("");
     const [newStudentPassword, setNewStudentPassword] = useState("");
-    // const [teacherLogin, setTeacherLogin] = useState(false)
     const [newStudentPasswordConfirmation, setNewStudentPasswordConfirmation] = useState("")
     const [triggerClassroomUpdate, setTriggerClassroomUpdate] = useState(false)
 
@@ -35,7 +34,6 @@ function AddStudent ({setSingleStudent, setToggleAddStudent, selectedClassroom, 
           is_teacher: false
         }),
       }).then((r) => {
-        // setIsLoading(false);
         if (r.ok) {
           r.json()
           .then((student) => {
@@ -46,7 +44,6 @@ function AddStudent ({setSingleStudent, setToggleAddStudent, selectedClassroom, 
         } else {
           r.json()
           .then((err) => setNewStudentErrors(err))
-          // .then((err) => setErrors(err.errors));
         }
       });
     }

@@ -1,4 +1,4 @@
-import { useContext, useState,useEffect } from "react"
+import { useContext } from "react"
 import {UserContext} from "./UserContext"
 import FactCard from "./FactCard"
 import LoadScreen from "./LoadScreen"
@@ -10,7 +10,6 @@ function StudentDashboard () {
   return (
     user ?
       <>
-      {/* <h1>Dashboard</h1> */}
       <h2 style={{textDecoration: 'underline'}}>My Mastered Facts</h2>
         <div className="student-dash-header" style ={{backgroundColor: '#FFCE54', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
           

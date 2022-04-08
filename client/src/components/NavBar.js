@@ -61,8 +61,6 @@ function NavBar({isTeacher, setIsTeacher}) {
             QUIZ
           </NavLink>
           <h3 style={{fontSize: '11px', marginLeft: '8px', marginRight: '8px'}}>|</h3>
-          {isTeacher === false 
-            ?
           <NavLink
             to='/student-dashboard'
             exact
@@ -71,27 +69,17 @@ function NavBar({isTeacher, setIsTeacher}) {
           >
             DASHBOARD
           </NavLink>
-            :
-            <NavLink
-            to='/teacher-dashboard'
-            exact
-            className='nav-bar'
-            activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
-          >
-            DASHBOARD
-          </NavLink>
-          }
+  
         </div>
         
         <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center',alignContent: 'right', justifyContent: 'right', marginRight: '5px',textAlign: 'right', flexWrap: 'wrap'}}>
-          {/* <div style={{width: '75px'}}> */}
-            {user ?
-                     <h5 
-                     style={{fontSize: '12px', marginRight: '8px',width: 'auto', justifyContent: 'center', textDecoration: 'none'}}
-                
-                     >{user.username}
-                   </h5>
-            :
+      
+            {user 
+              ?
+            <h5 style={{fontSize: '12px', marginRight: '8px',width: 'auto', justifyContent: 'center', textDecoration: 'none'}}>
+              {user.username}
+            </h5>
+              :
             <div style={{display: 'flex', justifyContent: 'flex-end'}}>
               <NavLink
                 to='/user-login'
@@ -109,21 +97,22 @@ function NavBar({isTeacher, setIsTeacher}) {
             </div>
             }
           
-          {user ?
-          null:
-          // <div style={{display: 'flex', justifyContent: 'flex-end'}}>  
-            <NavLink
-              to='/user-signup'
-              exact
-              className='nav-bar'
-              activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
-            >
-              SIGN UP
-            </NavLink>
-          // </div>
+          {user 
+            ?
+          null
+            : 
+          <NavLink
+            to='/user-signup'
+            exact
+            className='nav-bar'
+            activeStyle={{color: '#AC92EB', textDecoration: 'underline'}}
+          >
+            SIGN UP
+          </NavLink>
           }
+
           {user
-          ?
+            ?
           <div style={{display: 'flex', justifyContent: 'flex-end', alignItems: 'center'}}>
               <h5 className='nav-bar' 
               style={{fontSize: '12px',  justifyContent: 'center'}}
@@ -136,17 +125,15 @@ function NavBar({isTeacher, setIsTeacher}) {
               >SIGN OUT
             </h5>
           </div>
-          :
-          null}
+            :
+          null
+          }
+
         </div>
 
         </div>
 
         <div style={{display: 'flex', flexDirection: 'row', width: '100%',marginTop: '2px', marginBottom: '0px', flexWrap: 'wrap', justifyContent: 'center'}}>
-          {/* <h2 
-            style={{fontSize: '40px', fontWeight: 'bolder', color: '#AC92EB', textAlign: 'center', textShadow: '0px 0px 6px rgba(255,255,255,0.7)', margin: '0px', marginTop: '0px'}}
-            >TIMES TABLES MASTER
-          </h2> */}
           <img style={{width: '35%', minWidth: '350px'}}src={siteLogo}/>
         </div>
 
