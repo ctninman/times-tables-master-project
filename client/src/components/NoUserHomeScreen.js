@@ -123,7 +123,7 @@ function NoUserHomeScreen () {
           ? 
         <div className='home-div'>
           <h1 className='home-one'>Here on TIMES TABLES MASTER, you can start by learning 8 simple rules (and a few other tricks) which will cover all 100 multiplication facts.</h1>
-          <h2 className='home-two'>There rules will help you realize that learning all your times tables is much easier that it seems.</h2>
+          <h2 className='home-two'>These rules will help you realize that learning all your times tables is much easier that it seems.</h2>
           <h2 className='home-three'>Ask anyone who's really good at something how they got so good. I guarantee their answer will be: PRACTICE!</h2>
           <h2 className='home-four'>With an account, you can learn which multiplication facts are the hardest for you and make sure you spend extra time practicing those facts.</h2>
         </div>
