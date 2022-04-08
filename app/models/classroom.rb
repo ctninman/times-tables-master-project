@@ -6,8 +6,4 @@ class Classroom < ApplicationRecord
     self.students.length
   end
 
-  # def class_mastery_level
-
-  # end
-
 end
