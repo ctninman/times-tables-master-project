@@ -12,7 +12,7 @@ function Quizzes () {
   const firstUpdate = useRef(true);
   const secondUpdate = useRef(true);
   const thirdUpdate = useRef(true);
-
+  const fourthUpdate = useRef(true)
   const {user, allFacts, setUser, isTeacher} = useContext(UserContext)
   const [selectedQuizQuestion, setSelectedQuizQuestion] = useState(null)
   const [answerGiven, setAnswerGiven] = useState(false)
@@ -29,6 +29,7 @@ function Quizzes () {
   const [factTimesAnswered, setFactTimesAnswered] = useState(0)
   const [factTimesCorrect, setFactTimesCorrect] = useState(0)
   const [quizBegan, setQuizBegan] = useState(false)
+  const [initiateNewProblem, setInitiateNewProblem] = useState(false)
 
   let hundredArray = [...Array(101).keys()]
   hundredArray.shift()
@@ -68,7 +69,15 @@ function Quizzes () {
     } else {
       window.alert("Select which times tables you want to master.")
     }
-  }, [selectedQuizProblem])
+  }, [initiateNewProblem])
+
+  // useEffect (() => {
+  //   if (fourthUpdate.current) {
+  //     fourthUpdate.current = false;
+  //     return;
+  //   }
+  //   setSelectedQuizProblem(allFacts.find((fact) => fact.id === selectedQuizQuestion.problem_id))
+  // }, [initiateNewProblem])
 
   useEffect(() => {
     if (timeToAnswer === 0 && answerGiven === false) {  
@@ -101,7 +110,7 @@ function Quizzes () {
     .then((res) => res.json())
     .then((data) => {
       console.log(data)
-      let objIndex = user.masteries.findIndex((obj => obj.problem_id == data.problem_id))
+      let objIndex = user.masteries.findIndex((obj => obj.problem_id === data.problem_id))
       console.log(objIndex)
       let copyOfUser = {...user}
       copyOfUser.masteries[objIndex] = data
@@ -116,6 +125,7 @@ function Quizzes () {
 
   function setNextQuestion () {
     if (answerGiven && selectedQuizQuestion) {
+      setInitiateNewProblem(() => !initiateNewProblem)
       setSelectedQuizProblem(allFacts.find((fact) => fact.id === selectedQuizQuestion.problem_id))
     }
   }
@@ -139,17 +149,17 @@ function Quizzes () {
 
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center',textAlign: 'center', marginBottom: '12px'}}>
          
-          <button onClick={() => history.push('/my-times-tables')}style={{marginRight: '30px',width: '90px',marginTop: '30px'}}>STOP</button>
+          <button onClick={() => history.push('/my-times-tables')}style={{marginRight: '10px',width: '90px',marginTop: '30px'}}>STOP</button>
          
           {selectedQuizProblem 
             ?
-          <div style={{display: 'flex', flexDirection: 'column'}}>
+          <div style={{display: 'flex', flexDirection: 'column', width: '280px'}}>
             <h1 style={{margin: '3px', fontSize: '40px', padding: '8px', border: '4px solid', borderRadius: '10px'}}>{selectedQuizProblem.multiplication_fact} = {answerGiven ? `${selectedQuizProblem.answer}` : null}</h1>
            </div>
             :
           null
           }
-          <button style={{width: '90px', marginLeft: '30px', marginTop: '30px'}} onClick={setNextQuestion} >NEXT</button>
+          <button style={{width: '90px', marginLeft: '10px', marginTop: '30px'}} onClick={setNextQuestion} >NEXT</button>
         </div>
         
         <div style={{display: 'flex', justifyContent: 'center'}}>
