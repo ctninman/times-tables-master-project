@@ -63,6 +63,10 @@ function App() {
     })
   }
 
+  useEffect (() => {
+    document.title = "Times Tables Master"
+  }, [] )
+
   return (
     
     <BrowserRouter>

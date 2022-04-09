@@ -161,7 +161,7 @@ form {
 }
 
 .grid:hover {
-  cursor: none;
+  cursor: crosshair;
 }
 
 .grid-answer {
@@ -172,7 +172,7 @@ form {
 
 .grid-answer:hover {
   transform: scale(1.5);
-  cursor: none; 
+  cursor: crosshair; 
 }
 
 .grid-fact-no-user {
@@ -390,7 +390,7 @@ input {
 }
 
 .number-grid-fact:hover {
-  cursor: cell;
+  cursor: crosshair;
   transform: scale(1.2);
 }
 
