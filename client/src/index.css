@@ -140,7 +140,7 @@ form {
 }
 
 .grid:hover {
-  cursor: cell;
+  cursor: none;
 }
 
 .grid-answer {
@@ -151,7 +151,7 @@ form {
 
 .grid-answer:hover {
   transform: scale(1.5);
-  cursor: cell; 
+  cursor: none; 
 }
 
 .grid-fact-no-user {
