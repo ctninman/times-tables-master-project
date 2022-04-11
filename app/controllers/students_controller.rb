@@ -57,6 +57,13 @@ class StudentsController < ApplicationController
     end
   end
 
+  def most_difficult
+    student = Student.find_by(id: params[:id])
+    if student
+      render json: student.most_difficult_facts, status: :ok
+    end
+  end
+
   # def update
   #   student = Student.find_by(id: params[:id])
   #   students_classroom = Classroom.find_by(id: student.classroom_id)

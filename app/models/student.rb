@@ -24,6 +24,19 @@ class Student < ApplicationRecord
     self.masteries.where("mastery_level = ?", 10) 
   end
 
+  # def most_difficult_facts_array
+  #   difficult_array =[]
+  #   full_facts = self.masteries.order('masteries.mastery_level ASC').limit(10)
+  #   full_facts.each do |fact|
+  #     difficult_array << fact.problem_id
+  #   end
+  #   return difficult_array
+  # end
+
+  def most_difficult_facts
+    self.masteries.order('masteries.mastery_level ASC').limit(10)
+  end
+
   private
     def create_student_masteries
       n = 1

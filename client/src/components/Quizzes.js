@@ -80,20 +80,22 @@ function Quizzes () {
   // }, [initiateNewProblem])
 
   useEffect(() => {
-    if (timeToAnswer === 0 && answerGiven === false) {  
-      setTimerFinished(true)
-      setAnswerGiven(true)
-      setFactTimesAnswered(factTimesAnswered + 1)
-      if (factMasteryLevel > 0) {
-        setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
-        console.log('time')
+    if (quizBegan) {
+      if (timeToAnswer === 0 && answerGiven === false) {  
+        setTimerFinished(true)
+        setAnswerGiven(true)
+        setFactTimesAnswered(factTimesAnswered + 1)
+        if (factMasteryLevel > 0) {
+          setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
+          console.log('time')
+        }
+        setMakeRequest(!makeRequest)
+      } else if (timeToAnswer > 0) {
+        const interval = setInterval(() => {
+          setTimeToAnswer(timeToAnswer - 1)
+        }, 1000);
+        return () => clearInterval(interval);
       }
-      setMakeRequest(!makeRequest)
-    } else if (timeToAnswer > 0) {
-      const interval = setInterval(() => {
-        setTimeToAnswer(timeToAnswer - 1)
-      }, 1000);
-      return () => clearInterval(interval);
     }
   }, [timeToAnswer]);
 

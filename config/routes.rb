@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   post '/login-teacher', to: 'sessions#create_teacher'
   delete '/logout', to: 'sessions#destroy'
 
+  get '/students/:id/most-difficult', to: 'students#most_difficult'
+
   get '*path',
   to: 'fallback#index',
   constraints: ->(req) { !req.xhr? && req.format.html? }

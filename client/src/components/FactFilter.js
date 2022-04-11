@@ -1,11 +1,13 @@
 import {UserContext} from "./UserContext"
-import {useContext, useEffect, useRef} from 'react'
+import {useState, useContext, useEffect, useRef} from 'react'
+import LoadScreen from "./LoadScreen"
 
 function FactFilter ({setFilteredQuestionList, setWhichFactsArray, whichFacts, setWhichFacts, setSelectedQuizQuestion, filteredQuestionList}) {
 
   const {user} = useContext(UserContext)
 
   const firstUpdate = useRef(true)
+  const secondUpdate = useRef(true)
   
   const allX = [...Array(101).keys()]
   allX.shift()
@@ -19,6 +21,9 @@ function FactFilter ({setFilteredQuestionList, setWhichFactsArray, whichFacts, s
   const eightX = [71,72,73,74,75,76,77,78,79,80,8,18,28,38,48,58,68,88,98]
   const nineX = [81,82,83,84,85,86,87,88,89,90,9,19,29,39,49,59,69,79,99]
   const tenX = [91,92,93,94,95,96,97,98,99,100,10,20,30,40,50,60,70,80,90]
+
+  const [filterIsLoading, setFilterIsLoading] = useState(false)
+  const [triggerFactFetch, setTriggerFactFetch] = useState(false)
 
   function filterFacts (numberArray) {
     setFilteredQuestionList(user.masteries.filter((mastery) => (
@@ -39,10 +44,38 @@ function FactFilter ({setFilteredQuestionList, setWhichFactsArray, whichFacts, s
     setWhichFacts(event.target.value)
   }
 
+  useEffect (() => {
+    if (secondUpdate.current) {
+      secondUpdate.current = false;
+      return;
+    }
+    fetchToughFacts()
+  }, [triggerFactFetch])
+
+  function fetchToughFacts() {
+    if (user) {
+      setFilterIsLoading(true)
+      fetch(`/students/${user.id}/most-difficult`, {method: "GET"})
+        .then((res) => {
+          res.json()
+        .then((data) => {
+          let difficulty_array = []
+          data.map((fact) => difficulty_array.push(fact.problem_id))
+          console.log(data)
+          console.log(difficulty_array)
+          filterFacts(difficulty_array)
+        })
+        setFilterIsLoading(false)
+      })
+    }
+  }
+
   return (
+    filterIsLoading ?
+    <LoadScreen />
+      :
     <div style={{marginTop: '10px'}}>
       <div>
-        <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '87px', fontSize: '14px'}}>ALL FACTS</button>      
         <button value={"1x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(oneX)}} style={{width: '34px', fontSize: '14px'}}>1x</button>
         <button value={"2x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(twoX)}} style={{width: '34px', fontSize: '14px'}}>2x</button>
         <button value={"3x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(threeX)}} style={{width: '34px', fontSize: '14px'}}>3x</button>
@@ -53,6 +86,10 @@ function FactFilter ({setFilteredQuestionList, setWhichFactsArray, whichFacts, s
         <button value={"8x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(eightX)}} style={{width: '34px', fontSize: '14px'}}>8x</button>
         <button value={"9x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(nineX)}}style={{width: '34px', fontSize: '14px'}}>9x</button>
         <button value={"10x Table"} onClick={function(e){ handleFilterChange(e); filterFacts(tenX)}}style={{paddingLeft: '2px',width: '36px', fontSize: '14px'}}>10x</button>
+      </div>
+      <div>
+        <button value={"All Facts"} onClick={function(e){ handleFilterChange(e); filterFacts(allX)}} style={{width: '87px', fontSize: '14px'}}>ALL FACTS</button>      
+        <button value={"My Toughest Facts"} onClick={function(e){ handleFilterChange(e); fetchToughFacts()}}style={{width: '140px', fontSize: '14px'}}>My Toughest Facts</button>
       </div>
      
       {whichFacts?
