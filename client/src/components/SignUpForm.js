@@ -65,6 +65,8 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
           }
         });
       }
+      setPassword("")
+      setUsername("")
     } 
   
     return (
