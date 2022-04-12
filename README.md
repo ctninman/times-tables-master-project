@@ -1,16 +1,17 @@
-# TIMES TABLES MASTER
-
+![](https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-12%20at%202.52.51%20PM.png)
 ### Ruby on Rails - backend 
 
 ### React - frontend
 
-[Deployed site] (https://times-tables-master.herokuapp.com/)
+[DEPLOYED SITE](https://times-tables-master.herokuapp.com/)
 
 ## Overview
 
 TIMES TABLE MASTER is an application created to help students master their multiplication facts, and to give teachers data that will allow them to focus their instruction to individual students based on their knowledge. 
 
 Students can learn 8 rules to master their times tables, and then take quizzes on various times tables. Correct answers in the given time will increase the student's mastery level of a given fact, while an incorrect answer will move it down. Students can view a grid or graph that shows how well they know each of the 100 multiplication facts.
+
+![PERSONAL GRID](https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-12%20at%202.42.29%20PM.png)
 
 Teachers can set up various classrooms and create students within them. From their dashboard, teachers can keep track of which students need support, give students extra time to solve based on their needs, and view each student's progress.
 
@@ -60,13 +61,19 @@ The database consists of 6 related tables:
 
 - As a teacher, a user has access to a teacher dashboard, which tracks all students' demonstrated proficiency of multiplication facts. Teachers can create classroom and students in those classrooms.
 
+![TEACHER DASHBOARD](https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-12%20at%202.45.55%20PM.png)
+
 ## Classrooms
 
 - Each student belongs to a classroom, and the teacher of that classroom can access all data of students in that classroom. Students who sign up without a teacher will be placed in the default classroom.
 
+![CLASSROOM SELECTED ON TEACHER DASHBOARD](https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-12%20at%202.45.15%20PM.png)
+
 ### Student
 
 - Anyone who visits the site can explore the 8 rules of multiplication and a blank multiplication grid. A user who logs in with a student account can also take multiplication quizzes, and view the results of their accumulated data organized in their dashboard, or through a colored grid.
+
+![MULTIPLICATION QUIZ](https://storage.googleapis.com/times-tables-master_photos/Screen%20Shot%202022-04-12%20at%202.44.18%20PM.png)
 
 ### Problem
 
