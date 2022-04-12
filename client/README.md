@@ -4,6 +4,8 @@
 
 ### React - frontend
 
+[Deployed site] (https://times-tables-master.herokuapp.com/)
+
 ## Overview
 
 TIMES TABLE MASTER is an application created to help students master their multiplication facts, and to give teachers data that will allow them to focus their instruction to individual students based on their knowledge. 
