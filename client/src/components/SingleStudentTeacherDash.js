@@ -65,10 +65,9 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
     }).then((r) => {
       if (r.ok) {
         r.json()
-        .then((data) => console.log(data))
+        .then(() => console.log('student updated'))
       } else {
         r.json()
-        console.log("um, nope")
       }
     });
   }

@@ -24,7 +24,6 @@ function MultiplicationRules () {
       firstUpdate.current = false;
       return;
     }
-    console.log('in that effect', allRules)
     setSingleRule(allRules.find((rule) => rule.rule_number === 0))
   }, [allRules])
 

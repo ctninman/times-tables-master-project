@@ -17,6 +17,8 @@ class TeachersController < ApplicationController
     new_teacher = Teacher.new(teacher_params)
     if new_teacher.valid?
       new_teacher.save
+      session.delete :student_id
+      session[:teacher_id] = new_teacher.id
       render json: new_teacher, status: :created  
     else
       render json: {errors: new_teacher.errors.full_messages}, status: :unprocessable_entity

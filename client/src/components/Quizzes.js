@@ -87,7 +87,6 @@ function Quizzes () {
         setFactTimesAnswered(factTimesAnswered + 1)
         if (factMasteryLevel > 0) {
           setFactMasteryLevel(selectedQuizQuestion.mastery_level - 1)
-          console.log('time')
         }
         setMakeRequest(!makeRequest)
       } else if (timeToAnswer > 0) {
@@ -97,7 +96,7 @@ function Quizzes () {
         return () => clearInterval(interval);
       }
     }
-  }, [timeToAnswer]);
+  }, [timeToAnswer, quizBegan]);
 
   function patchStudentMastery () {
     fetch(`/masteries/${selectedQuizQuestion.id}`, {
@@ -111,9 +110,7 @@ function Quizzes () {
     })
     .then((res) => res.json())
     .then((data) => {
-      console.log(data)
       let objIndex = user.masteries.findIndex((obj => obj.problem_id === data.problem_id))
-      console.log(objIndex)
       let copyOfUser = {...user}
       copyOfUser.masteries[objIndex] = data
       setUser(copyOfUser)

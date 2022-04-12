@@ -19,8 +19,7 @@ function ClassroomButton ({classroom, setSelectedClassroom, setViewSingleStudent
         setViewSingleStudent(false)
         fetch(`/classrooms/${classroom.id}`, {method: "DELETE"})
         .then((r) => r.json())
-        .then((data) => {
-          console.log("Deleted")
+        .then(() => {
           fetchUser()
           setSelectedClassroom(null)  
         })

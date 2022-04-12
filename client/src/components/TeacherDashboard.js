@@ -39,7 +39,6 @@ function TeacherDashboard () {
         .then((res) => {
           res.json()
         .then((data) => {
-          console.log(data)
           setFullClassroomData(data)
           setIsLoading(false)
         })

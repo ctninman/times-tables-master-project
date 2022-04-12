@@ -10,7 +10,7 @@ function Grid ({allFacts}) {
     <div style={{display: 'flex', justifyContent: 'center'}}>
     <div className='grid'>
       {allFacts.map((fact) => (
-        <GridSquare style={{width: '9%'}} key={fact.fact_number} fact={fact}/>
+        <GridSquare style={{width: '9%'}} key={fact.multiplication_fact + fact.fact_number} fact={fact}/>
       )) }
     </div>
     </div>  

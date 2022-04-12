@@ -29,7 +29,6 @@ function App() {
       if (r.ok) {
         r.json()
         .then((user) => {
-          console.log(user);
           setUser(user)
           if (user.is_teacher === true) {
             setIsTeacher(true)
@@ -57,7 +56,6 @@ function App() {
         r.json()
         .then((user) => {
           setUser(user)
-          console.log('user fetchies')
         })
       }
     })

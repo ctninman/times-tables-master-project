@@ -2,6 +2,7 @@ import {useEffect, useState, useRef} from 'react'
 import LoadScreen from './LoadScreen'
 import SingleExplanation from './SingleExplanation'
 import BackgroundGraphic from '../images/canvabackground.png'
+import { v4 as uuid } from 'uuid';
 
 function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setCurrentRuleNumber}) {
 
@@ -21,7 +22,6 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
   
   function handleRuleChange (event) {
     setCurrentRuleNumber(event.target.value)
-    console.log(event.target.value)
   }
 
   function handleNextRule () {
@@ -58,7 +58,7 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
         </div>
         <div style={{textAlign: 'center'}}>
           {singleRule.explanation.map((explanation) => (
-            <SingleExplanation key={explanation} explanation={explanation}/>
+            <SingleExplanation key={uuid()} explanation={explanation}/>
           ))}
         </div>
         <div style={{textAlign: 'center'}}>
@@ -78,7 +78,7 @@ function RulePage ({allRules, singleRule, setSingleRule, currentRuleNumber, setC
         </div>
         <div style={{textAlign: 'center'}}>
           {singleRule.additional_explanation.map((additional_explanation) => (
-              <SingleExplanation key={additional_explanation} explanation={additional_explanation} />
+              <SingleExplanation key={uuid()} explanation={additional_explanation} />
           ))}
           </div>
           <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>

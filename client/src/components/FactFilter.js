@@ -61,8 +61,6 @@ function FactFilter ({setFilteredQuestionList, setWhichFactsArray, whichFacts, s
         .then((data) => {
           let difficulty_array = []
           data.map((fact) => difficulty_array.push(fact.problem_id))
-          console.log(data)
-          console.log(difficulty_array)
           filterFacts(difficulty_array)
         })
         setFilterIsLoading(false)

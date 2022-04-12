@@ -32,7 +32,6 @@ function AddClassroom ({setSelectedClassroom, triggerClassroomFetch, setTriggerC
             .then(fetchUser())
           } else {
             r.json()
-            console.log("um, nope")
           }
         })
       } 
