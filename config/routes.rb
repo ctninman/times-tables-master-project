@@ -2,9 +2,9 @@ Rails.application.routes.draw do
   resources :rules, only: :index
   resources :masteries, only: :update
   resources :problems, only: :index
-  resources :students, except: :index
+  resources :students, except: [:index, :create]
   resources :classrooms, only: [:create, :destroy, :show]
-  resources :teachers, only: [:create, :destroy, :show]
+  resources :teachers, only: [:destroy, :show]
 
   get '/hello', to: 'application#hello'
 
@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   get '/students/:id/most-difficult', to: 'students#most_difficult'
+  post '/students/in-class', to: 'students#create_by_teacher'
 
   get '*path',
   to: 'fallback#index',

@@ -39,6 +39,18 @@ class StudentsController < ApplicationController
 
   end
 
+  def create_by_teacher
+    student_classroom = Classroom.find_by(id: params[:classroom_id])
+    new_student = student_classroom.students.create(student_params)
+    if new_student.valid?
+      new_student.save
+      render json: new_student, status: :created  
+    else
+      render json: {errors: new_student.errors.full_messages}, status: :unprocessable_entity
+    end
+
+  end
+
   def update
     student = Student.find_by(id: params[:id])
     if student

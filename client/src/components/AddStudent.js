@@ -19,7 +19,7 @@ function AddStudent ({setSingleStudent, setToggleAddStudent, selectedClassroom, 
 
     function handleAddStudent (e) {
       e.preventDefault()
-      fetch("/signup-student", {
+      fetch("/students/in-class", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
