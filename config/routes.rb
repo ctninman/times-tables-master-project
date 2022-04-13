@@ -23,6 +23,8 @@ Rails.application.routes.draw do
 
   # Custom routes
   get '/students/:id/most-difficult', to: 'students#most_difficult'
+
+  get '/students/filter', to:'students#filter'
   
   # Default route (if not in rails routes, send to client)
   get '*path',

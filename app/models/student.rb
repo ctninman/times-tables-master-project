@@ -12,7 +12,7 @@ class Student < ApplicationRecord
 
   belongs_to :classroom
   has_many :masteries, dependent: :destroy
-  has_many :problems, through: :masteries
+  # has_many :problems, through: :masteries
 
   after_create :create_student_masteries
 
@@ -35,6 +35,11 @@ class Student < ApplicationRecord
 
   def most_difficult_facts
     self.masteries.order('masteries.mastery_level ASC').limit(10)
+  end
+
+  def self.filtered_students (first_name)    
+    Student.where("username LIKE ?", "%#{first_name}%")
+
   end
 
   private

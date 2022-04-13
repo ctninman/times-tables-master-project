@@ -66,11 +66,13 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
         });
       }
       setPassword("")
+      setPasswordConfirmation("")
       setUsername("")
     } 
   
     return (
       <div>
+      <h1 style={{marginLeft: '10px'}}>{ teacherLogin ? "Teacher Sign Up" : "Student Sign Up"}</h1>
       <form onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', width: '400px', marginLeft: '20px'}}>
         <label htmlFor="username">Username:</label>
         <input
