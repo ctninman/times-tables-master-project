@@ -6,9 +6,9 @@ function SingleStudentTeacherDash ({singleStudent, setViewSingleStudent, fetchCl
   const sumAllResponses = singleStudent.masteries.map(item => item.times_answered).reduce((prev, curr) => prev + curr, 0);
   const sumAllCorrect = singleStudent.masteries.map(item => item.times_correct).reduce((prev, curr) => prev + curr, 0);
   const mastered = singleStudent.masteries.filter(item => item.mastery_level === 10)
-  const almostMastered = singleStudent.masteries.filter(item => item.mastery_level > 7 && item.mastery_level < 10)
-  const learning = singleStudent.masteries.filter(item => item.mastery_level >= 4 && item.mastery_level <=7 )
-  const unknown = singleStudent.masteries.filter(item => item.mastery_level < 4)
+  const almostMastered = singleStudent.masteries.filter(item => item.mastery_level >= 7 && item.mastery_level <= 9)
+  const learning = singleStudent.masteries.filter(item => item.mastery_level >= 3 && item.mastery_level <=6 )
+  const unknown = singleStudent.masteries.filter(item => item.mastery_level <= 2)
   const struggle = singleStudent.masteries.filter((mastery) => mastery.times_answered > 8 && mastery.times_answered / mastery.times_correct > 2)
 
   const [studentTimeNeeded, setStudentTimeNeeded] = useState(singleStudent.time_to_solve)

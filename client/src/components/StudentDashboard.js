@@ -20,14 +20,14 @@ function StudentDashboard () {
         </div>
       <h2 style={{textDecoration: 'underline'}}>My Almost-Mastered Facts</h2>
       <div className="student-dash-header" style ={{backgroundColor: '#A0D568', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-          {user.masteries.filter ((mastery) => mastery.mastery_level < 10 && mastery.mastery_level >=8 ).map((filteredMastery)=> {
+          {user.masteries.filter ((mastery) => mastery.mastery_level <= 9 && mastery.mastery_level >=7 ).map((filteredMastery)=> {
             const problem = allFacts.find((fact) => fact.id === filteredMastery.problem_id)
             return <FactCard fact={problem} key={problem.id} />
           })}
         </div>
       <h2 style={{textDecoration: 'underline'}}>Facts I'm Learning</h2>
       <div className="student-dash-header" style ={{backgroundColor: '#4FC1E8', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-          {user.masteries.filter ((mastery) => mastery.mastery_level < 8 && mastery.mastery_level >=4).map((filteredMastery)=> {
+          {user.masteries.filter ((mastery) => mastery.mastery_level <= 6 && mastery.mastery_level >=3).map((filteredMastery)=> {
             const problem = allFacts.find((fact) => fact.id === filteredMastery.problem_id)
             return <FactCard fact={problem} key={problem.id} />
           })}
@@ -35,7 +35,7 @@ function StudentDashboard () {
 
       <h2 style={{textDecoration: 'underline'}}>Facts I Need To Work On</h2>  
       <div className="student-dash-header" style ={{backgroundColor: '#ED5564', display: 'flex', flexDirection: 'row', flexWrap: 'wrap'}}>
-          {user.masteries.filter ((mastery) => mastery.mastery_level < 3).map((filteredMastery)=> {
+          {user.masteries.filter ((mastery) => mastery.mastery_level <= 2).map((filteredMastery)=> {
             const problem = allFacts.find((fact) => fact.id === filteredMastery.problem_id)
             return <FactCard fact={problem} key={problem.id} />
           })}

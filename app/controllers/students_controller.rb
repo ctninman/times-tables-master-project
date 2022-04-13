@@ -20,7 +20,7 @@ class StudentsController < ApplicationController
         render json: {errors: teacher.errors.full_messages}, status: :unauthorized
       end
     else
-      render json: {errors: teacher.errors.full_messages}, status: :unauthorized
+      render json: {errors: "You are not authorized"}, status: :unauthorized
     end
 
   end

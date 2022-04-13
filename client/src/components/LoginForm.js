@@ -1,7 +1,7 @@
 import {useState} from "react"
 import {useHistory} from 'react-router-dom'
 
-function LoginForm ({username, setUsername, password, setPassword, teacherLogin, setTeacherLogin, setUser, setIsTeacher}) {
+function LoginForm ({username, setUsername, password, setPassword, teacherLogin, setTeacherLogin, setUser, setIsTeacher, isTeacher}) {
 
   let history = useHistory()
 
@@ -24,7 +24,7 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
             .then((user) => {
               setUser(user)
               setIsTeacher(false)
-              history.push('/')
+              history.push('/my-times-tables')
             });
           } else {
             r.json()
@@ -44,7 +44,7 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
             .then((user) => {
               setUser(user)
               setIsTeacher(true)
-              history.push('/')
+              history.push('/teacher-dashboard')
             })
           }   else {
             r.json()
@@ -56,6 +56,7 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
   
     return (
       <>
+        <h1 style={{marginLeft: '10px'}}>{teacherLogin ? "Teacher Login" : "Student Login"}</h1>
         <form onSubmit={handleLogin}>
           <div style={{marginLeft: '20px'}}>
             <label htmlFor="username">Username:</label>
@@ -82,7 +83,7 @@ function LoginForm ({username, setUsername, password, setPassword, teacherLogin,
               onChange={() => setTeacherLogin(!teacherLogin)}
             />
           </div>
-          <button style={{margin: '20px', fontSize: '15px'}} type="submit">Submit</button>
+          <button style={{margin: '20px', fontSize: '15px'}} type="submit">Login</button>
         </form>
         {errors ? <h2 className='error'>- {errors.error}</h2> : null}
       </>

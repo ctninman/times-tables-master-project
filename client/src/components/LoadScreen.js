@@ -1,8 +1,11 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
+import {UserContext} from "./UserContext"
 
 function LoadScreen () {
 
-  let difficultFacts = ["8 x 6 = 48", "8 x 7 = 56", "8 x 8 = 64", "8 x 8 = 72", "6 x 6 = 36", "6 x 7 = 42", "6 x 8 = 48", "6 x 9 = 54", "7 x 6 = 42", "7 x 7 = 49", "7 x 8 = 56", "7 x 9 = 63", "9 x 6 = 54", "9 x 7 = 63", "9 x 8 = 72", "9 x 9 = 81"]
+  const {user} = useContext(UserContext)
+
+  let difficultFacts = ["8 x 6 = 48", "8 x 7 = 56", "8 x 8 = 64", "8 x 9 = 72", "6 x 6 = 36", "6 x 7 = 42", "6 x 8 = 48", "6 x 9 = 54", "7 x 6 = 42", "7 x 7 = 49", "7 x 8 = 56", "7 x 9 = 63", "9 x 6 = 54", "9 x 7 = 63", "9 x 8 = 72", "9 x 9 = 81", "5 x 6 = 30", "5 x 7 = 35", "5 x 8 = 40", "5 x 9 = 49","4 x 6 = 24", "4 x 7 = 28", "4 x 8 = 32", "3 x 9 = 36"]
 
   const [loadingFact, setLoadingFact] = useState(difficultFacts[Math.floor(Math.random()*difficultFacts.length)])
   const [secondLoadingFact, setSecondLoadingFact] = useState(difficultFacts[Math.floor(Math.random()*difficultFacts.length)])
@@ -52,7 +55,7 @@ function LoadScreen () {
       
       <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
         <div style={{backgroundImage: 'radial-gradient(#FFCE54, #A0D568)', borderRadius: '45%'}}>
-          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{thirdLoadingFact}</h2>
+          <h2 style={{paddingLeft: '15px', paddingRight: '15px'}}>{user ? user.username : thirdLoadingFact}</h2>
         </div>
       </div>
 

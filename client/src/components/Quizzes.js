@@ -8,6 +8,7 @@ import LoadScreen from "./LoadScreen";
 function Quizzes () {
 
   let history = useHistory()
+  const scollToRefQuiz = useRef();
 
   const firstUpdate = useRef(true);
   const secondUpdate = useRef(true);
@@ -98,6 +99,14 @@ function Quizzes () {
     }
   }, [timeToAnswer, quizBegan]);
 
+  useEffect (() => {
+    if (fourthUpdate.current) {
+      fourthUpdate.current = false;
+      return;
+    }
+    scollToRefQuiz.current.scrollIntoView()
+  }, [quizBegan])
+
   function patchStudentMastery () {
     fetch(`/masteries/${selectedQuizQuestion.id}`, {
       method: "PATCH",
@@ -140,7 +149,7 @@ function Quizzes () {
     
       {quizBegan ?
       
-      <div style={{display: 'flex', flexDirection: 'column', marginTop: '10px'}}>
+      <div ref={scollToRefQuiz} style={{display: 'flex', flexDirection: 'column', marginTop: '10px'}}>
       
       {timerFinished ? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time's Up </h1> : null }
       {timeToAnswer != 0  && answerGiven === false? <h1 style={{margin: '3px', color: 'red', textAlign: 'center'}}>Time Left: {timeToAnswer} </h1> : null }

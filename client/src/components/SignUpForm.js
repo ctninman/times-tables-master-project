@@ -33,7 +33,7 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
             .then(() => {
               setIsTeacher(false)
             })
-            .then(history.push('/'))
+            .then(history.push('/multiplication-rules'))
           } else {
             r.json()
             
@@ -58,7 +58,7 @@ function SignUpForm ({username, setUsername, password, setPassword, teacherLogin
             r.json()
             .then((user) => setUser(user))
             .then(() => setIsTeacher(true))
-            .then(history.push('/'))
+            .then(history.push('/teacher-dashboard'))
           } else {
             r.json()
             .then((err)=>setErrors(err))

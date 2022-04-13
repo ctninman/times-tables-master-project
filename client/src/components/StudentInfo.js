@@ -2,10 +2,10 @@
 function StudentInfo ({student, setSingleStudent, setViewSingleStudent, viewSingleStudent}) {
 
   let studentMasteredFacts = student.masteries.filter( (mastery) => mastery.mastery_level === 10)
-  let studentAlmostMasteredFacts = student.masteries.filter((mastery) => mastery.mastery_level < 10 && mastery.mastery_level >=8 )
-  let studentStillLearningFacts = student.masteries.filter((mastery) => mastery.mastery_level < 8 && mastery.mastery_level >=3)
+  let studentAlmostMasteredFacts = student.masteries.filter((mastery) => mastery.mastery_level <= 9 && mastery.mastery_level >=7 )
+  let studentStillLearningFacts = student.masteries.filter((mastery) => mastery.mastery_level <= 6 && mastery.mastery_level >=3)
   let studentStrugglingFacts = student.masteries.filter((mastery) => mastery.times_answered > 8 && mastery.times_answered / mastery.times_correct > 2)
-  let studentUnknownFacts = student.masteries.filter((mastery) => mastery.mastery_level < 3)
+  let studentUnknownFacts = student.masteries.filter((mastery) => mastery.mastery_level <= 2)
 
   function handleViewStudent () {
     setSingleStudent(student)
