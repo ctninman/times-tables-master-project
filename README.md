@@ -16,6 +16,10 @@ Students can learn 8 rules to master their times tables, and then take quizzes o
 
 Teachers can set up various classrooms and create students within them. From their dashboard, teachers can keep track of which students need support, give students extra time to solve based on their needs, and view each student's progress.
 
+<img width="798" alt="Screen Shot 2022-06-15 at 9 58 12 AM" src="https://user-images.githubusercontent.com/89664157/175072024-f3ccccae-b292-4750-8d2b-cadb342bb55e.png">
+
+*Color-coded grid based upon student mastery level of each multiplication fact*
+
 ## Database Tables
 
 The database consists of 6 related tables:
@@ -62,13 +66,20 @@ The database consists of 6 related tables:
 
 - As a teacher, a user has access to a teacher dashboard, which tracks all students' demonstrated proficiency of multiplication facts. Teachers can create classroom and students in those classrooms.
 
+<img width="1067" alt="Teacher View of Single Student" src="https://user-images.githubusercontent.com/89664157/175073660-55f99d32-4e94-4a36-8275-1d17ad9d7932.png">
+
+
 ## Classrooms
 
 - Each student belongs to a classroom, and the teacher of that classroom can access all data of students in that classroom. Students who sign up without a teacher will be placed in the default classroom.
 
+<img width="1067" alt="Teacher Dashboard" src="https://user-images.githubusercontent.com/89664157/175070921-3b5f2cf9-67b8-41f8-b43d-5169cf6ebbbe.png">
+
 ### Student
 
 - Anyone who visits the site can explore the 8 rules of multiplication and a blank multiplication grid. A user who logs in with a student account can also take multiplication quizzes, and view the results of their accumulated data organized in their dashboard, or through a colored grid.
+
+<img width="1067" alt="Student Dashboard" src="https://user-images.githubusercontent.com/89664157/175071627-d3233877-be07-4ba8-8600-ec9645d92942.png">
 
 ### Problem
 
@@ -78,8 +89,16 @@ The database consists of 6 related tables:
 
 - Each student has a mastery for each of the 100 problems. The number of times a multiplication fact is answered, the number of times answered correctly, and the overall mastery level score is updated as a student takes quizzes.
 
+<img width="999" alt="Student Quiz" src="https://user-images.githubusercontent.com/89664157/175072569-a66a8244-c9da-4bfb-bd3d-3626a1bfa549.png">
+
+*Timed quiz for students which updates their mastery level. Teachers can adjust time given to solve for each student.*
+
 ### Rule
 
 - Rules for teaching the times tables, along with various related information, such as the number of facts related to the rules, and a photo of each of the facts highlighted on a grid.
+
+<img width="350" alt="Odd Times Odd Grid" src="https://user-images.githubusercontent.com/89664157/175069480-4b709f2d-94ed-49de-a1bd-1f86bb462877.png">
+
+*Grid showing multiplication facts including odd number times odd number*
 
 
