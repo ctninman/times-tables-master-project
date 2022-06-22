@@ -1,10 +1,12 @@
-# TIMES TABLES MASTER
+<img width="420" alt="Times Tables Master" src="https://user-images.githubusercontent.com/89664157/175067803-88285ac2-3209-4531-83f3-70734688cca6.png">
 
-### Ruby on Rails - backend 
+### React: front-end, Ruby on Rails: back-end 
 
-### React - frontend
+[DEPLOYED SITE](https://times-tables-master.herokuapp.com/)
 
-[Deployed site] (https://times-tables-master.herokuapp.com/)
+[VIDEO WALKTHROUGH](https://www.loom.com/share/098133a34fa04deebda97138ba99daab)
+
+[BLOG: Building a Rails App to Track Student Progress](https://dev.to/alternate_robot/building-a-rails-api-to-track-student-progress-3a09)
 
 ## Overview
 
